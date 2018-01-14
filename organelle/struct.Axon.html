@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Axon` struct in crate `organelle`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Axon">
+
+    <title>organelle::Axon - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct Axon</p><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.update">update</a><a href="#method.effector">effector</a><a href="#method.send_req_input">send_req_input</a><a href="#method.send_req_output">send_req_output</a><a href="#method.req_input">req_input</a><a href="#method.var_input">var_input</a><a href="#method.req_output">req_output</a><a href="#method.var_output">var_output</a></div></div><p class='location'><a href='index.html'>organelle</a></p><script>window.sidebarCurrent = {name: 'Axon', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>organelle</a>::<wbr><a class="struct" href=''>Axon</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/organelle/axon.rs.html#24-29' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Axon&lt;S:&nbsp;<a class="trait" href="../organelle/trait.Signal.html" title="trait organelle::Signal">Signal</a>, Y:&nbsp;<a class="trait" href="../organelle/trait.Synapse.html" title="trait organelle::Synapse">Synapse</a>&gt; { /* fields omitted */ }</pre><div class='docblock'><p>provides core convenience functions with little boilerplate</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl&lt;S:&nbsp;<a class="trait" href="../organelle/trait.Signal.html" title="trait organelle::Signal">Signal</a>, Y:&nbsp;<a class="trait" href="../organelle/trait.Synapse.html" title="trait organelle::Synapse">Synapse</a>&gt; <a class="struct" href="../organelle/struct.Axon.html" title="struct organelle::Axon">Axon</a>&lt;S, Y&gt;</code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#31-246' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>(inputs: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="enum" href="../organelle/enum.Dendrite.html" title="enum organelle::Dendrite">Dendrite</a>&lt;Y&gt;&gt;, outputs: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="enum" href="../organelle/enum.Dendrite.html" title="enum organelle::Dendrite">Dendrite</a>&lt;Y&gt;&gt;) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;Self&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#33-43' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>new axon with dendrites and default user-defined state</p>
+</div><h4 id='method.update' class="method"><span id='update.v' class='invisible'><code>pub fn <a href='#method.update' class='fnname'>update</a>(&amp;mut self, msg: <a class="enum" href="../organelle/enum.Impulse.html" title="enum organelle::Impulse">Impulse</a>&lt;S, Y&gt;) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="../organelle/enum.Impulse.html" title="enum organelle::Impulse">Impulse</a>&lt;S, Y&gt;&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#78-103' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>update the axon&#39;s inputs and outputs, then verify dendrites</p>
+
+<p>if axon handles the given message, it consumes it, otherwise it is
+returned so that the soma can use it.</p>
+</div><h4 id='method.effector' class="method"><span id='effector.v' class='invisible'><code>pub fn <a href='#method.effector' class='fnname'>effector</a>(&amp;self) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;&amp;<a class="struct" href="../organelle/struct.Effector.html" title="struct organelle::Effector">Effector</a>&lt;S, Y&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#106-115' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>get the effector assigned to this soma</p>
+</div><h4 id='method.send_req_input' class="method"><span id='send_req_input.v' class='invisible'><code>pub fn <a href='#method.send_req_input' class='fnname'>send_req_input</a>(&amp;self, dest: Y, msg: S) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#117-123' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>convenience function for sending messages by role</p>
+</div><h4 id='method.send_req_output' class="method"><span id='send_req_output.v' class='invisible'><code>pub fn <a href='#method.send_req_output' class='fnname'>send_req_output</a>(&amp;self, dest: Y, msg: S) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#126-132' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>convenience function for sending messages by role</p>
+</div><h4 id='method.req_input' class="method"><span id='req_input.v' class='invisible'><code>pub fn <a href='#method.req_input' class='fnname'>req_input</a>(&amp;self, role: Y) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;<a class="type" href="../organelle/type.Handle.html" title="type organelle::Handle">Handle</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#135-137' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>get a RequireOne input</p>
+</div><h4 id='method.var_input' class="method"><span id='var_input.v' class='invisible'><code>pub fn <a href='#method.var_input' class='fnname'>var_input</a>(&amp;self, role: Y) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;&amp;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="type" href="../organelle/type.Handle.html" title="type organelle::Handle">Handle</a>&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#140-142' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>get a Variadic input</p>
+</div><h4 id='method.req_output' class="method"><span id='req_output.v' class='invisible'><code>pub fn <a href='#method.req_output' class='fnname'>req_output</a>(&amp;self, role: Y) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;<a class="type" href="../organelle/type.Handle.html" title="type organelle::Handle">Handle</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#145-147' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>get a RequireOne output</p>
+</div><h4 id='method.var_output' class="method"><span id='var_output.v' class='invisible'><code>pub fn <a href='#method.var_output' class='fnname'>var_output</a>(&amp;self, role: Y) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;&amp;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="type" href="../organelle/type.Handle.html" title="type organelle::Handle">Handle</a>&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/organelle/axon.rs.html#150-152' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>get a Variadic output</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "organelle";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

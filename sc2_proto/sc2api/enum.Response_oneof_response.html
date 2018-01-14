@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Response_oneof_response` enum in crate `sc2_proto`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Response_oneof_response">
+
+    <title>sc2_proto::sc2api::Response_oneof_response - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc enum">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Enum Response_oneof_response</p><div class="block items"><a class="sidebar-title" href="#variants">Variants</a><div class="sidebar-links"><a href="#variant.create_game">create_game</a><a href="#variant.join_game">join_game</a><a href="#variant.restart_game">restart_game</a><a href="#variant.start_replay">start_replay</a><a href="#variant.leave_game">leave_game</a><a href="#variant.quick_save">quick_save</a><a href="#variant.quick_load">quick_load</a><a href="#variant.quit">quit</a><a href="#variant.game_info">game_info</a><a href="#variant.observation">observation</a><a href="#variant.action">action</a><a href="#variant.step">step</a><a href="#variant.data">data</a><a href="#variant.query">query</a><a href="#variant.save_replay">save_replay</a><a href="#variant.replay_info">replay_info</a><a href="#variant.available_maps">available_maps</a><a href="#variant.save_map">save_map</a><a href="#variant.ping">ping</a><a href="#variant.debug">debug</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Clone">Clone</a><a href="#impl-PartialEq">PartialEq</a></div></div><p class='location'><a href='../index.html'>sc2_proto</a>::<wbr><a href='index.html'>sc2api</a></p><script>window.sidebarCurrent = {name: 'Response_oneof_response', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>sc2_proto</a>::<wbr><a href='index.html'>sc2api</a>::<wbr><a class="enum" href=''>Response_oneof_response</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/sc2_proto/sc2api.rs.html#1699-1720' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum Response_oneof_response {
+    create_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseCreateGame.html" title="struct sc2_proto::sc2api::ResponseCreateGame">ResponseCreateGame</a>),
+    join_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseJoinGame.html" title="struct sc2_proto::sc2api::ResponseJoinGame">ResponseJoinGame</a>),
+    restart_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseRestartGame.html" title="struct sc2_proto::sc2api::ResponseRestartGame">ResponseRestartGame</a>),
+    start_replay(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseStartReplay.html" title="struct sc2_proto::sc2api::ResponseStartReplay">ResponseStartReplay</a>),
+    leave_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseLeaveGame.html" title="struct sc2_proto::sc2api::ResponseLeaveGame">ResponseLeaveGame</a>),
+    quick_save(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseQuickSave.html" title="struct sc2_proto::sc2api::ResponseQuickSave">ResponseQuickSave</a>),
+    quick_load(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseQuickLoad.html" title="struct sc2_proto::sc2api::ResponseQuickLoad">ResponseQuickLoad</a>),
+    quit(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseQuit.html" title="struct sc2_proto::sc2api::ResponseQuit">ResponseQuit</a>),
+    game_info(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseGameInfo.html" title="struct sc2_proto::sc2api::ResponseGameInfo">ResponseGameInfo</a>),
+    observation(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseObservation.html" title="struct sc2_proto::sc2api::ResponseObservation">ResponseObservation</a>),
+    action(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseAction.html" title="struct sc2_proto::sc2api::ResponseAction">ResponseAction</a>),
+    step(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseStep.html" title="struct sc2_proto::sc2api::ResponseStep">ResponseStep</a>),
+    data(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseData.html" title="struct sc2_proto::sc2api::ResponseData">ResponseData</a>),
+    query(<a class="struct" href="../../sc2_proto/query/struct.ResponseQuery.html" title="struct sc2_proto::query::ResponseQuery">ResponseQuery</a>),
+    save_replay(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseSaveReplay.html" title="struct sc2_proto::sc2api::ResponseSaveReplay">ResponseSaveReplay</a>),
+    replay_info(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseReplayInfo.html" title="struct sc2_proto::sc2api::ResponseReplayInfo">ResponseReplayInfo</a>),
+    available_maps(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseAvailableMaps.html" title="struct sc2_proto::sc2api::ResponseAvailableMaps">ResponseAvailableMaps</a>),
+    save_map(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseSaveMap.html" title="struct sc2_proto::sc2api::ResponseSaveMap">ResponseSaveMap</a>),
+    ping(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponsePing.html" title="struct sc2_proto::sc2api::ResponsePing">ResponsePing</a>),
+    debug(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseDebug.html" title="struct sc2_proto::sc2api::ResponseDebug">ResponseDebug</a>),
+}</pre><h2 id='variants' class='variants small-section-header'>
+                   Variants<a href='#variants' class='anchor'></a></h2>
+<span id="variant.create_game" class="variant small-section-header"><a href="#variant.create_game" class="anchor field"></a><span id='create_game.v' class='invisible'><code>create_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseCreateGame.html" title="struct sc2_proto::sc2api::ResponseCreateGame">ResponseCreateGame</a>)</code></span></span><span id="variant.join_game" class="variant small-section-header"><a href="#variant.join_game" class="anchor field"></a><span id='join_game.v' class='invisible'><code>join_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseJoinGame.html" title="struct sc2_proto::sc2api::ResponseJoinGame">ResponseJoinGame</a>)</code></span></span><span id="variant.restart_game" class="variant small-section-header"><a href="#variant.restart_game" class="anchor field"></a><span id='restart_game.v' class='invisible'><code>restart_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseRestartGame.html" title="struct sc2_proto::sc2api::ResponseRestartGame">ResponseRestartGame</a>)</code></span></span><span id="variant.start_replay" class="variant small-section-header"><a href="#variant.start_replay" class="anchor field"></a><span id='start_replay.v' class='invisible'><code>start_replay(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseStartReplay.html" title="struct sc2_proto::sc2api::ResponseStartReplay">ResponseStartReplay</a>)</code></span></span><span id="variant.leave_game" class="variant small-section-header"><a href="#variant.leave_game" class="anchor field"></a><span id='leave_game.v' class='invisible'><code>leave_game(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseLeaveGame.html" title="struct sc2_proto::sc2api::ResponseLeaveGame">ResponseLeaveGame</a>)</code></span></span><span id="variant.quick_save" class="variant small-section-header"><a href="#variant.quick_save" class="anchor field"></a><span id='quick_save.v' class='invisible'><code>quick_save(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseQuickSave.html" title="struct sc2_proto::sc2api::ResponseQuickSave">ResponseQuickSave</a>)</code></span></span><span id="variant.quick_load" class="variant small-section-header"><a href="#variant.quick_load" class="anchor field"></a><span id='quick_load.v' class='invisible'><code>quick_load(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseQuickLoad.html" title="struct sc2_proto::sc2api::ResponseQuickLoad">ResponseQuickLoad</a>)</code></span></span><span id="variant.quit" class="variant small-section-header"><a href="#variant.quit" class="anchor field"></a><span id='quit.v' class='invisible'><code>quit(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseQuit.html" title="struct sc2_proto::sc2api::ResponseQuit">ResponseQuit</a>)</code></span></span><span id="variant.game_info" class="variant small-section-header"><a href="#variant.game_info" class="anchor field"></a><span id='game_info.v' class='invisible'><code>game_info(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseGameInfo.html" title="struct sc2_proto::sc2api::ResponseGameInfo">ResponseGameInfo</a>)</code></span></span><span id="variant.observation" class="variant small-section-header"><a href="#variant.observation" class="anchor field"></a><span id='observation.v' class='invisible'><code>observation(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseObservation.html" title="struct sc2_proto::sc2api::ResponseObservation">ResponseObservation</a>)</code></span></span><span id="variant.action" class="variant small-section-header"><a href="#variant.action" class="anchor field"></a><span id='action.v' class='invisible'><code>action(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseAction.html" title="struct sc2_proto::sc2api::ResponseAction">ResponseAction</a>)</code></span></span><span id="variant.step" class="variant small-section-header"><a href="#variant.step" class="anchor field"></a><span id='step.v' class='invisible'><code>step(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseStep.html" title="struct sc2_proto::sc2api::ResponseStep">ResponseStep</a>)</code></span></span><span id="variant.data" class="variant small-section-header"><a href="#variant.data" class="anchor field"></a><span id='data.v' class='invisible'><code>data(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseData.html" title="struct sc2_proto::sc2api::ResponseData">ResponseData</a>)</code></span></span><span id="variant.query" class="variant small-section-header"><a href="#variant.query" class="anchor field"></a><span id='query.v' class='invisible'><code>query(<a class="struct" href="../../sc2_proto/query/struct.ResponseQuery.html" title="struct sc2_proto::query::ResponseQuery">ResponseQuery</a>)</code></span></span><span id="variant.save_replay" class="variant small-section-header"><a href="#variant.save_replay" class="anchor field"></a><span id='save_replay.v' class='invisible'><code>save_replay(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseSaveReplay.html" title="struct sc2_proto::sc2api::ResponseSaveReplay">ResponseSaveReplay</a>)</code></span></span><span id="variant.replay_info" class="variant small-section-header"><a href="#variant.replay_info" class="anchor field"></a><span id='replay_info.v' class='invisible'><code>replay_info(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseReplayInfo.html" title="struct sc2_proto::sc2api::ResponseReplayInfo">ResponseReplayInfo</a>)</code></span></span><span id="variant.available_maps" class="variant small-section-header"><a href="#variant.available_maps" class="anchor field"></a><span id='available_maps.v' class='invisible'><code>available_maps(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseAvailableMaps.html" title="struct sc2_proto::sc2api::ResponseAvailableMaps">ResponseAvailableMaps</a>)</code></span></span><span id="variant.save_map" class="variant small-section-header"><a href="#variant.save_map" class="anchor field"></a><span id='save_map.v' class='invisible'><code>save_map(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseSaveMap.html" title="struct sc2_proto::sc2api::ResponseSaveMap">ResponseSaveMap</a>)</code></span></span><span id="variant.ping" class="variant small-section-header"><a href="#variant.ping" class="anchor field"></a><span id='ping.v' class='invisible'><code>ping(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponsePing.html" title="struct sc2_proto::sc2api::ResponsePing">ResponsePing</a>)</code></span></span><span id="variant.debug" class="variant small-section-header"><a href="#variant.debug" class="anchor field"></a><span id='debug.v' class='invisible'><code>debug(<a class="struct" href="../../sc2_proto/sc2api/struct.ResponseDebug.html" title="struct sc2_proto::sc2api::ResponseDebug">ResponseDebug</a>)</code></span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="enum" href="../../sc2_proto/sc2api/enum.Response_oneof_response.html" title="enum sc2_proto::sc2api::Response_oneof_response">Response_oneof_response</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2_proto/sc2api.rs.html#1698' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="enum" href="../../sc2_proto/sc2api/enum.Response_oneof_response.html" title="enum sc2_proto::sc2api::Response_oneof_response">Response_oneof_response</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2_proto/sc2api.rs.html#1698' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-PartialEq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="enum" href="../../sc2_proto/sc2api/enum.Response_oneof_response.html" title="enum sc2_proto::sc2api::Response_oneof_response">Response_oneof_response</a></code><a href='#impl-PartialEq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2_proto/sc2api.rs.html#1698' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class="method"><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class="enum" href="../../sc2_proto/sc2api/enum.Response_oneof_response.html" title="enum sc2_proto::sc2api::Response_oneof_response">Response_oneof_response</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2_proto/sc2api.rs.html#1698' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class="method"><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class="enum" href="../../sc2_proto/sc2api/enum.Response_oneof_response.html" title="enum sc2_proto::sc2api::Response_oneof_response">Response_oneof_response</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2_proto/sc2api.rs.html#1698' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "sc2_proto";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

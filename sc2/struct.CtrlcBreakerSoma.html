@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `CtrlcBreakerSoma` struct in crate `sc2`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, CtrlcBreakerSoma">
+
+    <title>sc2::CtrlcBreakerSoma - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct CtrlcBreakerSoma</p><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.sheath">sheath</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Neuron">Neuron</a></div></div><p class='location'><a href='index.html'>sc2</a></p><script>window.sidebarCurrent = {name: 'CtrlcBreakerSoma', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>sc2</a>::<wbr><a class="struct" href=''>CtrlcBreakerSoma</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/sc2/ctrlc_breaker.rs.html#10' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct CtrlcBreakerSoma;</pre><div class='docblock'><p>soma that stops the organelle upon Ctrl-C</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../sc2/struct.CtrlcBreakerSoma.html" title="struct sc2::CtrlcBreakerSoma">CtrlcBreakerSoma</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sc2/ctrlc_breaker.rs.html#12-34' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.sheath' class="method"><span id='sheath.v' class='invisible'><code>pub fn <a href='#method.sheath' class='fnname'>sheath</a>() -&gt; <a class="type" href="../sc2/type.Result.html" title="type sc2::Result">Result</a>&lt;<a class="struct" href="../organelle/axon/struct.Sheath.html" title="struct organelle::axon::Sheath">Sheath</a>&lt;Self&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sc2/ctrlc_breaker.rs.html#14-16' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>create a new Ctrl-C breaker soma</p>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Neuron' class='impl'><span class='in-band'><code>impl <a class="trait" href="../organelle/axon/trait.Neuron.html" title="trait organelle::axon::Neuron">Neuron</a> for <a class="struct" href="../sc2/struct.CtrlcBreakerSoma.html" title="struct sc2::CtrlcBreakerSoma">CtrlcBreakerSoma</a></code><a href='#impl-Neuron' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sc2/ctrlc_breaker.rs.html#36-51' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Signal' class="type"><span id='Signal.t' class='invisible'><code>type <a href='../organelle/axon/trait.Neuron.html#associatedtype.Signal' class="type">Signal</a> = <a class="enum" href="../sc2/enum.Signal.html" title="enum sc2::Signal">Signal</a></code></span></h4>
+<div class='docblock'><p>a message that was not handled by the Axon</p>
+</div><h4 id='associatedtype.Synapse' class="type"><span id='Synapse.t' class='invisible'><code>type <a href='../organelle/axon/trait.Neuron.html#associatedtype.Synapse' class="type">Synapse</a> = <a class="enum" href="../sc2/enum.Synapse.html" title="enum sc2::Synapse">Synapse</a></code></span></h4>
+<div class='docblock'><p>the role a connection between somas takes</p>
+</div><h4 id='method.update' class="method"><span id='update.v' class='invisible'><code>fn <a href='../organelle/axon/trait.Neuron.html#tymethod.update' class='fnname'>update</a>(self, axon: &amp;<a class="type" href="../sc2/type.Axon.html" title="type sc2::Axon">Axon</a>, msg: <a class="enum" href="../organelle/enum.Impulse.html" title="enum organelle::Impulse">Impulse</a>&lt;<a class="enum" href="../sc2/enum.Signal.html" title="enum sc2::Signal">Signal</a>, <a class="enum" href="../sc2/enum.Synapse.html" title="enum sc2::Synapse">Synapse</a>&gt;) -&gt; <a class="type" href="../organelle/type.Result.html" title="type organelle::Result">Result</a>&lt;Self&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sc2/ctrlc_breaker.rs.html#40-50' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>update the nucleus with the Axon and soma message</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "sc2";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error","Ctrl-C error."]],"fn":[["set_handler","Register signal handler for Ctrl-C."]]});
