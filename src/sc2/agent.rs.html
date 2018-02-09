@@ -10,8 +10,11 @@
     <title>agent.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
         
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -737,548 +748,391 @@
 <span id="692">692</span>
 <span id="693">693</span>
 <span id="694">694</span>
-<span id="695">695</span>
-<span id="696">696</span>
-<span id="697">697</span>
-<span id="698">698</span>
-<span id="699">699</span>
-<span id="700">700</span>
-<span id="701">701</span>
-<span id="702">702</span>
-<span id="703">703</span>
-<span id="704">704</span>
-<span id="705">705</span>
-<span id="706">706</span>
-<span id="707">707</span>
-<span id="708">708</span>
-<span id="709">709</span>
-<span id="710">710</span>
-<span id="711">711</span>
-<span id="712">712</span>
-<span id="713">713</span>
-<span id="714">714</span>
-<span id="715">715</span>
-<span id="716">716</span>
-<span id="717">717</span>
-<span id="718">718</span>
-<span id="719">719</span>
-<span id="720">720</span>
-<span id="721">721</span>
-<span id="722">722</span>
-<span id="723">723</span>
-<span id="724">724</span>
-<span id="725">725</span>
-<span id="726">726</span>
-<span id="727">727</span>
-<span id="728">728</span>
-<span id="729">729</span>
-<span id="730">730</span>
-<span id="731">731</span>
-<span id="732">732</span>
-<span id="733">733</span>
-<span id="734">734</span>
-<span id="735">735</span>
-<span id="736">736</span>
-<span id="737">737</span>
-<span id="738">738</span>
-<span id="739">739</span>
-<span id="740">740</span>
-<span id="741">741</span>
-<span id="742">742</span>
-<span id="743">743</span>
-<span id="744">744</span>
-<span id="745">745</span>
-<span id="746">746</span>
-<span id="747">747</span>
-<span id="748">748</span>
-<span id="749">749</span>
-<span id="750">750</span>
-<span id="751">751</span>
-<span id="752">752</span>
-<span id="753">753</span>
-<span id="754">754</span>
-<span id="755">755</span>
-<span id="756">756</span>
-<span id="757">757</span>
-<span id="758">758</span>
-<span id="759">759</span>
-<span id="760">760</span>
-<span id="761">761</span>
-<span id="762">762</span>
-<span id="763">763</span>
-<span id="764">764</span>
-<span id="765">765</span>
-<span id="766">766</span>
-<span id="767">767</span>
-<span id="768">768</span>
-<span id="769">769</span>
-<span id="770">770</span>
-<span id="771">771</span>
-<span id="772">772</span>
-<span id="773">773</span>
-<span id="774">774</span>
-<span id="775">775</span>
-<span id="776">776</span>
-<span id="777">777</span>
-<span id="778">778</span>
-<span id="779">779</span>
-<span id="780">780</span>
-<span id="781">781</span>
-<span id="782">782</span>
-<span id="783">783</span>
-<span id="784">784</span>
-<span id="785">785</span>
-<span id="786">786</span>
-<span id="787">787</span>
-<span id="788">788</span>
-<span id="789">789</span>
-<span id="790">790</span>
-<span id="791">791</span>
-<span id="792">792</span>
-<span id="793">793</span>
-<span id="794">794</span>
-<span id="795">795</span>
-<span id="796">796</span>
-<span id="797">797</span>
-<span id="798">798</span>
-<span id="799">799</span>
-<span id="800">800</span>
-<span id="801">801</span>
-<span id="802">802</span>
-<span id="803">803</span>
-<span id="804">804</span>
-<span id="805">805</span>
-<span id="806">806</span>
-<span id="807">807</span>
-<span id="808">808</span>
-<span id="809">809</span>
-<span id="810">810</span>
-<span id="811">811</span>
-<span id="812">812</span>
-<span id="813">813</span>
-<span id="814">814</span>
-<span id="815">815</span>
-<span id="816">816</span>
-<span id="817">817</span>
-<span id="818">818</span>
-<span id="819">819</span>
-<span id="820">820</span>
-<span id="821">821</span>
-<span id="822">822</span>
-<span id="823">823</span>
-<span id="824">824</span>
-<span id="825">825</span>
-<span id="826">826</span>
-<span id="827">827</span>
-<span id="828">828</span>
-<span id="829">829</span>
-<span id="830">830</span>
-<span id="831">831</span>
-<span id="832">832</span>
-<span id="833">833</span>
-<span id="834">834</span>
-<span id="835">835</span>
-<span id="836">836</span>
-<span id="837">837</span>
-<span id="838">838</span>
-<span id="839">839</span>
-<span id="840">840</span>
-<span id="841">841</span>
-<span id="842">842</span>
-<span id="843">843</span>
-<span id="844">844</span>
-<span id="845">845</span>
-<span id="846">846</span>
-<span id="847">847</span>
-<span id="848">848</span>
-<span id="849">849</span>
-<span id="850">850</span>
-<span id="851">851</span>
-<span id="852">852</span>
-<span id="853">853</span>
-<span id="854">854</span>
-<span id="855">855</span>
-<span id="856">856</span>
-<span id="857">857</span>
-<span id="858">858</span>
-<span id="859">859</span>
-<span id="860">860</span>
-<span id="861">861</span>
-<span id="862">862</span>
-<span id="863">863</span>
-<span id="864">864</span>
-<span id="865">865</span>
-<span id="866">866</span>
-<span id="867">867</span>
-<span id="868">868</span>
-<span id="869">869</span>
-<span id="870">870</span>
-<span id="871">871</span>
-<span id="872">872</span>
-<span id="873">873</span>
-<span id="874">874</span>
-<span id="875">875</span>
-<span id="876">876</span>
-<span id="877">877</span>
-<span id="878">878</span>
-<span id="879">879</span>
-<span id="880">880</span>
-<span id="881">881</span>
-<span id="882">882</span>
-<span id="883">883</span>
-<span id="884">884</span>
-<span id="885">885</span>
-<span id="886">886</span>
-<span id="887">887</span>
-<span id="888">888</span>
-<span id="889">889</span>
-<span id="890">890</span>
-<span id="891">891</span>
-<span id="892">892</span>
-<span id="893">893</span>
-<span id="894">894</span>
-<span id="895">895</span>
-<span id="896">896</span>
-<span id="897">897</span>
-<span id="898">898</span>
-<span id="899">899</span>
-<span id="900">900</span>
-<span id="901">901</span>
-<span id="902">902</span>
-<span id="903">903</span>
-<span id="904">904</span>
-<span id="905">905</span>
-<span id="906">906</span>
-<span id="907">907</span>
-<span id="908">908</span>
-<span id="909">909</span>
-<span id="910">910</span>
-<span id="911">911</span>
-<span id="912">912</span>
-<span id="913">913</span>
-<span id="914">914</span>
-<span id="915">915</span>
-<span id="916">916</span>
-<span id="917">917</span>
-<span id="918">918</span>
-<span id="919">919</span>
-<span id="920">920</span>
-<span id="921">921</span>
-<span id="922">922</span>
-<span id="923">923</span>
-<span id="924">924</span>
-<span id="925">925</span>
-<span id="926">926</span>
-<span id="927">927</span>
-<span id="928">928</span>
-<span id="929">929</span>
-<span id="930">930</span>
-<span id="931">931</span>
-<span id="932">932</span>
-<span id="933">933</span>
-<span id="934">934</span>
-<span id="935">935</span>
-<span id="936">936</span>
-<span id="937">937</span>
-<span id="938">938</span>
-<span id="939">939</span>
-<span id="940">940</span>
-<span id="941">941</span>
-<span id="942">942</span>
-<span id="943">943</span>
-<span id="944">944</span>
-<span id="945">945</span>
-<span id="946">946</span>
-<span id="947">947</span>
-<span id="948">948</span>
-<span id="949">949</span>
-<span id="950">950</span>
-<span id="951">951</span>
-<span id="952">952</span>
-<span id="953">953</span>
-<span id="954">954</span>
-<span id="955">955</span>
-<span id="956">956</span>
-<span id="957">957</span>
-<span id="958">958</span>
 </pre><pre class="rust ">
+<span class="kw">use</span> <span class="ident">std</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">rc</span>::<span class="ident">Rc</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">time</span>;
 
-<span class="kw">use</span> <span class="ident">organelle</span>;
-<span class="kw">use</span> <span class="ident">organelle</span>::{
-    <span class="ident">Dendrite</span>,
-    <span class="ident">Handle</span>,
-    <span class="ident">Impulse</span>,
-    <span class="ident">Neuron</span>,
-    <span class="ident">Organelle</span>,
-    <span class="ident">ResultExt</span>,
-    <span class="ident">Sheath</span>,
-    <span class="ident">Soma</span>,
-};
-<span class="kw">use</span> <span class="ident">sc2_proto</span>::{<span class="ident">debug</span>, <span class="ident">sc2api</span>};
+<span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">future</span>;
+<span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">unsync</span>::{<span class="ident">mpsc</span>, <span class="ident">oneshot</span>};
+<span class="kw">use</span> <span class="ident">organelle</span>::{<span class="self">self</span>, <span class="ident">Axon</span>, <span class="ident">Constraint</span>, <span class="ident">Impulse</span>, <span class="ident">Organelle</span>, <span class="ident">Soma</span>};
+<span class="kw">use</span> <span class="ident">sc2_proto</span>::<span class="ident">sc2api</span>;
+<span class="kw">use</span> <span class="ident">tokio_core</span>::<span class="ident">reactor</span>;
 <span class="kw">use</span> <span class="ident">url</span>::<span class="ident">Url</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{
-    <span class="ident">ActionTarget</span>,
-    <span class="ident">Axon</span>,
-    <span class="ident">Command</span>,
-    <span class="ident">DebugCommand</span>,
-    <span class="ident">DebugTextTarget</span>,
-    <span class="ident">FrameData</span>,
-    <span class="ident">GamePorts</span>,
-    <span class="ident">GameSettings</span>,
-    <span class="ident">IntoProto</span>,
-    <span class="ident">Map</span>,
-    <span class="ident">PlayerSetup</span>,
-    <span class="prelude-ty">Result</span>,
-    <span class="ident">Signal</span>,
-    <span class="ident">Synapse</span>,
-};
-<span class="kw">use</span> <span class="ident">client</span>::{<span class="ident">ClientRequest</span>, <span class="ident">ClientResult</span>, <span class="ident">ClientSoma</span>, <span class="ident">Transactor</span>};
-<span class="kw">use</span> <span class="ident">observer</span>::<span class="ident">ObserverSoma</span>;
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Error</span>, <span class="ident">IntoProto</span>, <span class="prelude-ty">Result</span>};
+<span class="kw">use</span> <span class="ident">action</span>::{<span class="ident">ActionControlTerminal</span>, <span class="ident">ActionSoma</span>, <span class="ident">ActionTerminal</span>};
+<span class="kw">use</span> <span class="ident">client</span>::{<span class="ident">ClientSoma</span>, <span class="ident">ClientTerminal</span>};
+<span class="kw">use</span> <span class="ident">data</span>::{<span class="ident">GameSetup</span>, <span class="ident">Map</span>, <span class="ident">PlayerSetup</span>, <span class="ident">Unit</span>, <span class="ident">Upgrade</span>};
+<span class="kw">use</span> <span class="ident">launcher</span>::<span class="ident">GamePorts</span>;
+<span class="kw">use</span> <span class="ident">melee</span>::{<span class="ident">MeleeCompetitor</span>, <span class="ident">MeleeContract</span>, <span class="ident">MeleeDendrite</span>, <span class="ident">UpdateScheme</span>};
+<span class="kw">use</span> <span class="ident">observer</span>::{<span class="ident">ObserverControlTerminal</span>, <span class="ident">ObserverSoma</span>, <span class="ident">ObserverTerminal</span>};
+<span class="kw">use</span> <span class="ident">synapses</span>::{<span class="ident">Dendrite</span>, <span class="ident">Synapse</span>, <span class="ident">Terminal</span>};
 
-<span class="doccomment">/// mediates interactions between the player and the game instance</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AgentSoma</span> {
-    <span class="doccomment">/// initialize the axon</span>
-    <span class="ident">Init</span>(<span class="ident">Init</span>),
-    <span class="doccomment">/// perform setup queries</span>
-    <span class="ident">Setup</span>(<span class="ident">Setup</span>),
+<span class="doccomment">/// an event from the game</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">GameEvent</span> {
+    <span class="doccomment">/// game has loaded - not called for fast restarts</span>
+    <span class="ident">GameLoaded</span>,
+    <span class="doccomment">/// game has started</span>
+    <span class="ident">GameStarted</span>,
+    <span class="doccomment">/// game has ended</span>
+    <span class="ident">GameEnded</span>,
 
-    <span class="doccomment">/// order the game instance to create a game</span>
-    <span class="ident">CreateGame</span>(<span class="ident">CreateGame</span>),
-    <span class="doccomment">/// game has been created</span>
-    <span class="ident">GameCreated</span>(<span class="ident">GameCreated</span>),
-    <span class="doccomment">/// join an existing game</span>
-    <span class="ident">JoinGame</span>(<span class="ident">JoinGame</span>),
+    <span class="doccomment">/// a unit was destroyed</span>
+    <span class="ident">UnitDestroyed</span>(<span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// a unit was created</span>
+    <span class="ident">UnitCreated</span>(<span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// a unit does not have any orders</span>
+    <span class="ident">UnitIdle</span>(<span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// a unit was detected</span>
+    <span class="ident">UnitDetected</span>(<span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>),
 
-    <span class="doccomment">/// order the observer to fetch game data</span>
-    <span class="ident">FetchGameData</span>(<span class="ident">FetchGameData</span>),
-    <span class="doccomment">/// query the request interval from the player soma</span>
-    <span class="ident">StepperSetup</span>(<span class="ident">StepperSetup</span>),
+    <span class="doccomment">/// an upgrade completed</span>
+    <span class="ident">UpgradeCompleted</span>(<span class="ident">Upgrade</span>),
+    <span class="doccomment">/// a unit finished constructing a building</span>
+    <span class="ident">BuildingCompleted</span>(<span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>),
 
-    <span class="doccomment">/// broadcast game updates to the player soma</span>
-    <span class="ident">Update</span>(<span class="ident">Update</span>),
-    <span class="doccomment">/// send any actions for this step to the game instance</span>
-    <span class="ident">SendActions</span>(<span class="ident">SendActions</span>),
-    <span class="doccomment">/// send any debug actions for this step to the game instance</span>
-    <span class="ident">SendDebug</span>(<span class="ident">SendDebug</span>),
-    <span class="doccomment">/// step the game instance</span>
-    <span class="ident">Step</span>(<span class="ident">Step</span>),
-    <span class="doccomment">/// order the observer to observe the game state</span>
-    <span class="ident">Observe</span>(<span class="ident">Observe</span>),
+    <span class="doccomment">/// number of nydus worms detected</span>
+    <span class="ident">NydusWormsDetected</span>(<span class="ident">u32</span>),
+    <span class="doccomment">/// number of nukes launched</span>
+    <span class="ident">NukesDetected</span>(<span class="ident">u32</span>),
 
-    <span class="doccomment">/// leave the current game</span>
-    <span class="ident">LeaveGame</span>(<span class="ident">LeaveGame</span>),
-    <span class="doccomment">/// reset the client and re-enter setup state</span>
-    <span class="ident">Reset</span>(<span class="ident">Reset</span>),
+    <span class="doccomment">/// step the agent or observer</span>
+    <span class="ident">Step</span>,
+}
+
+<span class="doccomment">/// controls given to an agent</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AgentControl</span> {
+    <span class="ident">observer</span>: <span class="ident">ObserverTerminal</span>,
+    <span class="ident">action</span>: <span class="ident">ActionTerminal</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">AgentControl</span> {
+    <span class="doccomment">/// observe the game data and current state</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">observer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">ObserverTerminal</span> {
+        <span class="self">self</span>.<span class="ident">observer</span>.<span class="ident">clone</span>()
+    }
+
+    <span class="doccomment">/// dispatch commands and debug commands to the game instance</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">ActionTerminal</span> {
+        <span class="self">self</span>.<span class="ident">action</span>.<span class="ident">clone</span>()
+    }
+}
+
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AgentWrapper</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">T</span>: <span class="ident">Player</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AgentControl</span>) <span class="op">-&gt;</span> <span class="ident">T</span>,
+{
+    <span class="ident">agent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AgentDendrite</span><span class="op">&gt;</span>,
+    <span class="ident">observer</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ObserverTerminal</span><span class="op">&gt;</span>,
+    <span class="ident">action</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ActionTerminal</span><span class="op">&gt;</span>,
+
+    <span class="ident">factory</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;</span> <span class="ident">Soma</span> <span class="kw">for</span> <span class="ident">AgentWrapper</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">T</span>: <span class="ident">Player</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AgentControl</span>) <span class="op">-&gt;</span> <span class="ident">T</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+{
+    <span class="kw">type</span> <span class="ident">Synapse</span> <span class="op">=</span> <span class="ident">Synapse</span>;
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
+
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">update</span>(<span class="self">self</span>, <span class="ident">imp</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Synapse</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">imp</span> {
+            <span class="ident">Impulse</span>::<span class="ident">AddDendrite</span>(_, <span class="ident">Synapse</span>::<span class="ident">Agent</span>, <span class="ident">Dendrite</span>::<span class="ident">Agent</span>(<span class="ident">rx</span>)) <span class="op">=&gt;</span> {
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                    <span class="ident">agent</span>: <span class="prelude-val">Some</span>(<span class="ident">rx</span>),
+                    ..<span class="self">self</span>
+                })
+            },
+            <span class="ident">Impulse</span>::<span class="ident">AddTerminal</span>(
+                _,
+                <span class="ident">Synapse</span>::<span class="ident">Observer</span>,
+                <span class="ident">Terminal</span>::<span class="ident">Observer</span>(<span class="ident">tx</span>),
+            ) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                <span class="ident">observer</span>: <span class="prelude-val">Some</span>(<span class="ident">tx</span>),
+                ..<span class="self">self</span>
+            }),
+            <span class="ident">Impulse</span>::<span class="ident">AddTerminal</span>(_, <span class="ident">Synapse</span>::<span class="ident">Action</span>, <span class="ident">Terminal</span>::<span class="ident">Action</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                    <span class="ident">action</span>: <span class="prelude-val">Some</span>(<span class="ident">tx</span>),
+                    ..<span class="self">self</span>
+                })
+            },
+
+            <span class="ident">Impulse</span>::<span class="ident">Start</span>(_, <span class="ident">main_tx</span>, <span class="ident">handle</span>) <span class="op">=&gt;</span> {
+                <span class="ident">handle</span>.<span class="ident">spawn</span>(
+                    <span class="self">self</span>.<span class="ident">agent</span>
+                        .<span class="ident">unwrap</span>()
+                        .<span class="ident">wrap</span>(<span class="self">self</span>.<span class="ident">factory</span>.<span class="ident">unwrap</span>()(<span class="ident">AgentControl</span> {
+                            <span class="ident">observer</span>: <span class="self">self</span>.<span class="ident">observer</span>.<span class="ident">unwrap</span>(),
+                            <span class="ident">action</span>: <span class="self">self</span>.<span class="ident">action</span>.<span class="ident">unwrap</span>(),
+                        }))
+                        .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+                            <span class="ident">main_tx</span>
+                                .<span class="ident">send</span>(<span class="ident">Impulse</span>::<span class="ident">Error</span>(<span class="ident">e</span>.<span class="ident">into</span>()))
+                                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                        }),
+                );
+
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                    <span class="ident">agent</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">observer</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">action</span>: <span class="prelude-val">None</span>,
+
+                    <span class="ident">factory</span>: <span class="prelude-val">None</span>,
+                })
+            },
+            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected impulse&quot;</span>),
+        }
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;</span> <span class="ident">AgentWrapper</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">T</span>: <span class="ident">Player</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AgentControl</span>) <span class="op">-&gt;</span> <span class="ident">T</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+{
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">factory</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">agent</span>: <span class="prelude-val">None</span>,
+            <span class="ident">observer</span>: <span class="prelude-val">None</span>,
+            <span class="ident">action</span>: <span class="prelude-val">None</span>,
+
+            <span class="ident">factory</span>: <span class="prelude-val">Some</span>(<span class="ident">factory</span>),
+        }
+    }
+}
+
+<span class="doccomment">/// build an agent</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AgentBuilder</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Soma</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
+    <span class="ident">soma</span>: <span class="ident">T</span>,
+    <span class="ident">handle</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">reactor</span>::<span class="ident">Handle</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Soma</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">AgentBuilder</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// wrap the given soma in an agent</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-organelle&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">soma</span>(<span class="ident">agent</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">soma</span>: <span class="ident">agent</span>,
+            <span class="ident">handle</span>: <span class="prelude-val">None</span>,
+        }
+    }
+
+    <span class="doccomment">/// the tokio core handle to use</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">handle</span>(<span class="self">self</span>, <span class="ident">handle</span>: <span class="ident">reactor</span>::<span class="ident">Handle</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">handle</span>: <span class="prelude-val">Some</span>(<span class="ident">handle</span>),
+            ..<span class="self">self</span>
+        }
+    }
+
+    <span class="doccomment">/// create the agent</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Agent</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">T</span>::<span class="ident">Synapse</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Synapse</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Synapse</span><span class="op">&gt;</span>,
+        <span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Synapse</span> <span class="kw">as</span> <span class="ident">organelle</span>::<span class="ident">Synapse</span><span class="op">&gt;</span>::<span class="ident">Terminal</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Terminal</span><span class="op">&gt;</span>
+            <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Terminal</span><span class="op">&gt;</span>,
+        <span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Synapse</span> <span class="kw">as</span> <span class="ident">organelle</span>::<span class="ident">Synapse</span><span class="op">&gt;</span>::<span class="ident">Dendrite</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Dendrite</span><span class="op">&gt;</span>
+            <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Dendrite</span><span class="op">&gt;</span>,
+    {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">handle</span>.<span class="ident">is_none</span>() {
+            <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;missing tokio core handle&quot;</span>)
+        }
+
+        <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">handle</span>.<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">organelle</span> <span class="op">=</span> <span class="ident">Organelle</span>::<span class="ident">new</span>(<span class="ident">AgentSoma</span>::<span class="ident">axon</span>()<span class="question-mark">?</span>, <span class="ident">handle</span>);
+
+        <span class="kw">let</span> <span class="ident">agent</span> <span class="op">=</span> <span class="ident">organelle</span>.<span class="ident">nucleus</span>();
+        <span class="kw">let</span> <span class="ident">player</span> <span class="op">=</span> <span class="ident">organelle</span>.<span class="ident">add_soma</span>(<span class="self">self</span>.<span class="ident">soma</span>);
+
+        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">organelle</span>.<span class="ident">add_soma</span>(<span class="ident">ClientSoma</span>::<span class="ident">axon</span>()<span class="question-mark">?</span>);
+        <span class="kw">let</span> <span class="ident">observer</span> <span class="op">=</span> <span class="ident">organelle</span>.<span class="ident">add_soma</span>(<span class="ident">ObserverSoma</span>::<span class="ident">axon</span>()<span class="question-mark">?</span>);
+        <span class="kw">let</span> <span class="ident">action</span> <span class="op">=</span> <span class="ident">organelle</span>.<span class="ident">add_soma</span>(<span class="ident">ActionSoma</span>::<span class="ident">axon</span>()<span class="question-mark">?</span>);
+
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">client</span>, <span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span>;
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">observer</span>, <span class="ident">client</span>, <span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span>;
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">action</span>, <span class="ident">client</span>, <span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span>;
+
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">observer</span>, <span class="ident">Synapse</span>::<span class="ident">ObserverControl</span>)<span class="question-mark">?</span>;
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">action</span>, <span class="ident">Synapse</span>::<span class="ident">ActionControl</span>)<span class="question-mark">?</span>;
+
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">player</span>, <span class="ident">Synapse</span>::<span class="ident">Agent</span>)<span class="question-mark">?</span>;
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">player</span>, <span class="ident">observer</span>, <span class="ident">Synapse</span>::<span class="ident">Observer</span>)<span class="question-mark">?</span>;
+        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">player</span>, <span class="ident">action</span>, <span class="ident">Synapse</span>::<span class="ident">Action</span>)<span class="question-mark">?</span>;
+
+        <span class="prelude-val">Ok</span>(<span class="ident">Agent</span> { <span class="number">0</span>: <span class="ident">organelle</span> })
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;</span> <span class="ident">AgentBuilder</span><span class="op">&lt;</span><span class="ident">AgentWrapper</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">T</span>: <span class="ident">Player</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AgentControl</span>) <span class="op">-&gt;</span> <span class="ident">T</span>,
+{
+    <span class="doccomment">/// wrap a factory to be called with the agent controls when ready</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">factory</span>(<span class="ident">factory</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">AgentBuilder</span><span class="op">&lt;</span><span class="ident">AgentWrapper</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;&gt;</span> {
+        <span class="ident">AgentBuilder</span>::<span class="op">&lt;</span><span class="ident">AgentWrapper</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;&gt;</span> {
+            <span class="ident">soma</span>: <span class="ident">AgentWrapper</span>::<span class="ident">new</span>(<span class="ident">factory</span>),
+            <span class="ident">handle</span>: <span class="prelude-val">None</span>,
+        }
+    }
+}
+
+<span class="doccomment">/// a wrapper around a player to mediate interactions with game instance</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// exposes internal sc2 interfaces to players</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Agent</span>(<span class="ident">Organelle</span><span class="op">&lt;</span><span class="ident">Axon</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;&gt;</span>);
+
+<span class="kw">impl</span> <span class="ident">MeleeCompetitor</span> <span class="kw">for</span> <span class="ident">Agent</span> {
+    <span class="kw">type</span> <span class="ident">Soma</span> <span class="op">=</span> <span class="ident">Organelle</span><span class="op">&lt;</span><span class="ident">Axon</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;&gt;</span>;
+
+    <span class="kw">fn</span> <span class="ident">into_soma</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Soma</span> {
+        <span class="self">self</span>.<span class="number">0</span>
+    }
+}
+
+<span class="doccomment">/// manages a player soma</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AgentSoma</span> {
+    <span class="ident">controller</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MeleeDendrite</span><span class="op">&gt;</span>,
+    <span class="ident">client</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ClientTerminal</span><span class="op">&gt;</span>,
+    <span class="ident">observer</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ObserverControlTerminal</span><span class="op">&gt;</span>,
+    <span class="ident">agent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AgentTerminal</span><span class="op">&gt;</span>,
+    <span class="ident">action</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ActionControlTerminal</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">AgentSoma</span> {
-    <span class="kw">fn</span> <span class="ident">sheath</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Sheath</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">Sheath</span>::<span class="ident">new</span>(
-            <span class="ident">AgentSoma</span>::<span class="ident">Init</span>(<span class="ident">Init</span> {}),
+    <span class="kw">fn</span> <span class="ident">axon</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Axon</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Axon</span>::<span class="ident">new</span>(
+            <span class="self">Self</span> {
+                <span class="ident">controller</span>: <span class="prelude-val">None</span>,
+                <span class="ident">client</span>: <span class="prelude-val">None</span>,
+                <span class="ident">observer</span>: <span class="prelude-val">None</span>,
+                <span class="ident">agent</span>: <span class="prelude-val">None</span>,
+                <span class="ident">action</span>: <span class="prelude-val">None</span>,
+            },
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Constraint</span>::<span class="ident">One</span>(<span class="ident">Synapse</span>::<span class="ident">Melee</span>)],
             <span class="macro">vec</span><span class="macro">!</span>[
-                <span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">Controller</span>),
-                <span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">InstanceProvider</span>),
+                <span class="ident">Constraint</span>::<span class="ident">One</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>),
+                <span class="ident">Constraint</span>::<span class="ident">One</span>(<span class="ident">Synapse</span>::<span class="ident">ObserverControl</span>),
+                <span class="ident">Constraint</span>::<span class="ident">One</span>(<span class="ident">Synapse</span>::<span class="ident">ActionControl</span>),
+                <span class="ident">Constraint</span>::<span class="ident">One</span>(<span class="ident">Synapse</span>::<span class="ident">Agent</span>),
             ],
-            <span class="macro">vec</span><span class="macro">!</span>[
-                <span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>),
-                <span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">Agent</span>),
-                <span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">InstanceProvider</span>),
-                <span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>),
-            ],
-        )<span class="question-mark">?</span>)
-    }
-
-    <span class="doccomment">/// compose an agent organelle to interact with a controller soma</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">organelle</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">soma</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Organelle</span><span class="op">&lt;</span><span class="ident">Sheath</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">T</span>: <span class="ident">Soma</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
-
-        <span class="ident">T</span>::<span class="ident">Signal</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Signal</span><span class="op">&gt;</span>,
-        <span class="ident">T</span>::<span class="ident">Synapse</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Synapse</span><span class="op">&gt;</span>,
-
-        <span class="ident">Signal</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Signal</span><span class="op">&gt;</span>,
-        <span class="ident">Synapse</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Synapse</span><span class="op">&gt;</span>,
-    {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">organelle</span> <span class="op">=</span> <span class="ident">Organelle</span>::<span class="ident">new</span>(<span class="ident">AgentSoma</span>::<span class="ident">sheath</span>()<span class="question-mark">?</span>);
-
-        <span class="kw">let</span> <span class="ident">agent</span> <span class="op">=</span> <span class="ident">organelle</span>.<span class="ident">get_main_handle</span>();
-        <span class="kw">let</span> <span class="ident">player</span> <span class="op">=</span> <span class="ident">organelle</span>.<span class="ident">add_soma</span>(<span class="ident">soma</span>);
-
-        <span class="comment">// TODO: find out why these explicit annotation is needed. it&#39;s</span>
-        <span class="comment">// possible that it&#39;s a bug in the rust type system because it will</span>
-        <span class="comment">// work when the function is generic across two soma types, but not one</span>
-        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span>
-            <span class="ident">organelle</span>.<span class="ident">add_soma</span>::<span class="op">&lt;</span><span class="ident">Sheath</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;&gt;</span>(<span class="ident">ClientSoma</span>::<span class="ident">sheath</span>()<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">observer</span> <span class="op">=</span>
-            <span class="ident">organelle</span>.<span class="ident">add_soma</span>::<span class="op">&lt;</span><span class="ident">Sheath</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;&gt;</span>(<span class="ident">ObserverSoma</span>::<span class="ident">sheath</span>()<span class="question-mark">?</span>);
-
-        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">client</span>, <span class="ident">Synapse</span>::<span class="ident">InstanceProvider</span>);
-        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">client</span>, <span class="ident">Synapse</span>::<span class="ident">Client</span>);
-        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">observer</span>, <span class="ident">client</span>, <span class="ident">Synapse</span>::<span class="ident">Client</span>);
-
-        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">observer</span>, <span class="ident">Synapse</span>::<span class="ident">Observer</span>);
-        <span class="ident">organelle</span>.<span class="ident">connect</span>(<span class="ident">agent</span>, <span class="ident">player</span>, <span class="ident">Synapse</span>::<span class="ident">Agent</span>);
-
-        <span class="prelude-val">Ok</span>(<span class="ident">organelle</span>)
+        ))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Neuron</span> <span class="kw">for</span> <span class="ident">AgentSoma</span> {
-    <span class="kw">type</span> <span class="ident">Signal</span> <span class="op">=</span> <span class="ident">Signal</span>;
+<span class="kw">impl</span> <span class="ident">Soma</span> <span class="kw">for</span> <span class="ident">AgentSoma</span> {
     <span class="kw">type</span> <span class="ident">Synapse</span> <span class="op">=</span> <span class="ident">Synapse</span>;
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
 
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">organelle</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">AgentSoma</span>::<span class="ident">Init</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">Setup</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">imp</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Synapse</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">imp</span> {
+            <span class="ident">Impulse</span>::<span class="ident">AddDendrite</span>(_, <span class="ident">Synapse</span>::<span class="ident">Melee</span>, <span class="ident">Dendrite</span>::<span class="ident">Melee</span>(<span class="ident">rx</span>)) <span class="op">=&gt;</span> {
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                    <span class="ident">controller</span>: <span class="prelude-val">Some</span>(<span class="ident">rx</span>),
+                    ..<span class="self">self</span>
+                })
+            },
+            <span class="ident">Impulse</span>::<span class="ident">AddTerminal</span>(_, <span class="ident">Synapse</span>::<span class="ident">Client</span>, <span class="ident">Terminal</span>::<span class="ident">Client</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                    <span class="ident">client</span>: <span class="prelude-val">Some</span>(<span class="ident">tx</span>),
+                    ..<span class="self">self</span>
+                })
+            },
+            <span class="ident">Impulse</span>::<span class="ident">AddTerminal</span>(
+                _,
+                <span class="ident">Synapse</span>::<span class="ident">ObserverControl</span>,
+                <span class="ident">Terminal</span>::<span class="ident">ObserverControl</span>(<span class="ident">tx</span>),
+            ) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                <span class="ident">observer</span>: <span class="prelude-val">Some</span>(<span class="ident">tx</span>),
+                ..<span class="self">self</span>
+            }),
+            <span class="ident">Impulse</span>::<span class="ident">AddTerminal</span>(
+                _,
+                <span class="ident">Synapse</span>::<span class="ident">ActionControl</span>,
+                <span class="ident">Terminal</span>::<span class="ident">ActionControl</span>(<span class="ident">tx</span>),
+            ) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                <span class="ident">action</span>: <span class="prelude-val">Some</span>(<span class="ident">tx</span>),
+                ..<span class="self">self</span>
+            }),
+            <span class="ident">Impulse</span>::<span class="ident">AddTerminal</span>(_, <span class="ident">Synapse</span>::<span class="ident">Agent</span>, <span class="ident">Terminal</span>::<span class="ident">Agent</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                <span class="self">self</span>.<span class="ident">agent</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tx</span>);
 
-            <span class="ident">AgentSoma</span>::<span class="ident">CreateGame</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">GameCreated</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">JoinGame</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
+                <span class="prelude-val">Ok</span>(<span class="self">self</span>)
+            },
+            <span class="ident">Impulse</span>::<span class="ident">Start</span>(_, <span class="ident">tx</span>, <span class="ident">handle</span>) <span class="op">=&gt;</span> {
+                <span class="ident">handle</span>.<span class="ident">spawn</span>(
+                    <span class="self">self</span>.<span class="ident">controller</span>
+                        .<span class="ident">unwrap</span>()
+                        .<span class="ident">wrap</span>(<span class="ident">AgentMeleeDendrite</span> {
+                            <span class="ident">client</span>: <span class="self">self</span>.<span class="ident">client</span>.<span class="ident">unwrap</span>(),
+                            <span class="ident">observer</span>: <span class="self">self</span>.<span class="ident">observer</span>.<span class="ident">unwrap</span>(),
+                            <span class="ident">action</span>: <span class="self">self</span>.<span class="ident">action</span>.<span class="ident">unwrap</span>(),
+                            <span class="ident">agent</span>: <span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">unwrap</span>(),
+                        })
+                        .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+                            <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">Impulse</span>::<span class="ident">Error</span>(<span class="ident">e</span>.<span class="ident">into</span>()))
+                                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                        }),
+                );
 
-            <span class="ident">AgentSoma</span>::<span class="ident">StepperSetup</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">FetchGameData</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                    <span class="ident">controller</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">client</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">observer</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">agent</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">action</span>: <span class="prelude-val">None</span>,
+                })
+            },
 
-            <span class="ident">AgentSoma</span>::<span class="ident">Update</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">SendActions</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">SendDebug</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">Step</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">Observe</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-
-            <span class="ident">AgentSoma</span>::<span class="ident">LeaveGame</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">AgentSoma</span>::<span class="ident">Reset</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-        }.<span class="ident">chain_err</span>(<span class="op">||</span> <span class="ident">organelle</span>::<span class="ident">ErrorKind</span>::<span class="ident">SomaError</span>)
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Init</span>;
-
-<span class="kw">impl</span> <span class="ident">Init</span> {
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">_axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Start</span> <span class="op">=&gt;</span> <span class="ident">Setup</span>::<span class="ident">setup</span>(),
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
+            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected impulse&quot;</span>),
         }
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Setup</span>;
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AgentMeleeDendrite</span> {
+    <span class="ident">client</span>: <span class="ident">ClientTerminal</span>,
+    <span class="ident">observer</span>: <span class="ident">ObserverControlTerminal</span>,
+    <span class="ident">action</span>: <span class="ident">ActionControlTerminal</span>,
+    <span class="ident">agent</span>: <span class="ident">AgentTerminal</span>,
+}
 
-<span class="kw">impl</span> <span class="ident">Setup</span> {
-    <span class="kw">fn</span> <span class="ident">setup</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Setup</span>(<span class="ident">Setup</span> {}))
+<span class="kw">impl</span> <span class="ident">MeleeContract</span> <span class="kw">for</span> <span class="ident">AgentMeleeDendrite</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
+
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">get_player_setup</span>(<span class="self">self</span>, <span class="ident">game</span>: <span class="ident">GameSetup</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">PlayerSetup</span>)<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">setup</span> <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">clone</span>().<span class="ident">get_player_setup</span>(<span class="ident">game</span>))<span class="question-mark">?</span>;
+
+        <span class="prelude-val">Ok</span>((<span class="self">self</span>, <span class="ident">setup</span>))
     }
 
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">Ready</span>) <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">on_ready</span>(<span class="ident">axon</span>, <span class="ident">src</span>),
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">RequestPlayerSetup</span>(<span class="ident">settings</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_req_player_setup</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">settings</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">PlayerSetup</span>(<span class="ident">setup</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_player_setup</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">setup</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ProvideInstance</span>(<span class="ident">instance</span>, <span class="ident">url</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">provide_instance</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">instance</span>, <span class="ident">url</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">CreateGame</span>(<span class="ident">settings</span>, <span class="ident">players</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">create_game</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">settings</span>, <span class="ident">players</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">GameReady</span>(<span class="ident">setup</span>, <span class="ident">ports</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_game_ready</span>(<span class="ident">axon</span>, <span class="ident">setup</span>, <span class="ident">ports</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">connect</span>(<span class="self">self</span>, <span class="ident">url</span>: <span class="ident">Url</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">clone</span>().<span class="ident">connect</span>(<span class="ident">url</span>))<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">on_ready</span>(<span class="self">self</span>, <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">src</span>: <span class="ident">Handle</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span>);
-
-        <span class="ident">axon</span>.<span class="ident">send_req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Controller</span>, <span class="ident">Signal</span>::<span class="ident">Ready</span>)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Setup</span>(<span class="self">self</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_req_player_setup</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">settings</span>: <span class="ident">GameSettings</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Controller</span>)<span class="question-mark">?</span>);
-
-        <span class="ident">axon</span>.<span class="ident">send_req_output</span>(
-            <span class="ident">Synapse</span>::<span class="ident">Agent</span>,
-            <span class="ident">Signal</span>::<span class="ident">RequestPlayerSetup</span>(<span class="ident">settings</span>),
-        )<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Setup</span>(<span class="self">self</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_player_setup</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">setup</span>: <span class="ident">PlayerSetup</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Agent</span>)<span class="question-mark">?</span>);
-
-        <span class="ident">axon</span>.<span class="ident">send_req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Controller</span>, <span class="ident">Signal</span>::<span class="ident">PlayerSetup</span>(<span class="ident">setup</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Setup</span>(<span class="self">self</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">provide_instance</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">instance</span>: <span class="ident">Handle</span>,
-        <span class="ident">url</span>: <span class="ident">Url</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_input</span>(<span class="ident">Synapse</span>::<span class="ident">InstanceProvider</span>)<span class="question-mark">?</span>);
-
-        <span class="ident">axon</span>.<span class="ident">send_req_output</span>(
-            <span class="ident">Synapse</span>::<span class="ident">InstanceProvider</span>,
-            <span class="ident">Signal</span>::<span class="ident">ProvideInstance</span>(<span class="ident">instance</span>, <span class="ident">url</span>),
-        )<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Setup</span>(<span class="self">self</span>))
-    }
-
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_game</span>(
         <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">settings</span>: <span class="ident">GameSettings</span>,
+        <span class="ident">settings</span>: <span class="ident">GameSetup</span>,
         <span class="ident">players</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PlayerSetup</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Controller</span>)<span class="question-mark">?</span>);
-
+    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
 
-        <span class="kw">match</span> <span class="ident">settings</span>.<span class="ident">map</span> {
-            <span class="ident">Map</span>::<span class="ident">LocalMap</span>(<span class="kw-2">ref</span> <span class="ident">path</span>) <span class="op">=&gt;</span> {
+        <span class="kw">match</span> <span class="ident">settings</span>.<span class="ident">get_map</span>() {
+            <span class="kw-2">&amp;</span><span class="ident">Map</span>::<span class="ident">LocalMap</span>(<span class="kw-2">ref</span> <span class="ident">path</span>) <span class="op">=&gt;</span> {
                 <span class="ident">req</span>.<span class="ident">mut_create_game</span>().<span class="ident">mut_local_map</span>().<span class="ident">set_map_path</span>(
                     <span class="kw">match</span> <span class="ident">path</span>.<span class="ident">clone</span>().<span class="ident">into_os_string</span>().<span class="ident">into_string</span>() {
                         <span class="prelude-val">Ok</span>(<span class="ident">s</span>) <span class="op">=&gt;</span> <span class="ident">s</span>,
@@ -1286,7 +1140,7 @@
                     },
                 );
             },
-            <span class="ident">Map</span>::<span class="ident">BlizzardMap</span>(<span class="kw-2">ref</span> <span class="ident">map</span>) <span class="op">=&gt;</span> {
+            <span class="kw-2">&amp;</span><span class="ident">Map</span>::<span class="ident">BlizzardMap</span>(<span class="kw-2">ref</span> <span class="ident">map</span>) <span class="op">=&gt;</span> {
                 <span class="ident">req</span>.<span class="ident">mut_create_game</span>().<span class="ident">set_battlenet_map_name</span>(<span class="ident">map</span>.<span class="ident">clone</span>());
             },
         };
@@ -1295,15 +1149,13 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">setup</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">PlayerSetup</span>::<span class="ident">new</span>();
 
             <span class="kw">match</span> <span class="ident">player</span> {
-                <span class="ident">PlayerSetup</span>::<span class="ident">Computer</span> {
-                    <span class="ident">difficulty</span>, <span class="ident">race</span>, ..
-                } <span class="op">=&gt;</span> {
+                <span class="ident">PlayerSetup</span>::<span class="ident">Computer</span>(<span class="ident">race</span>, <span class="ident">difficulty</span>) <span class="op">=&gt;</span> {
                     <span class="ident">setup</span>.<span class="ident">set_field_type</span>(<span class="ident">sc2api</span>::<span class="ident">PlayerType</span>::<span class="ident">Computer</span>);
 
                     <span class="ident">setup</span>.<span class="ident">set_difficulty</span>(<span class="ident">difficulty</span>.<span class="ident">to_proto</span>());
                     <span class="ident">setup</span>.<span class="ident">set_race</span>(<span class="ident">race</span>.<span class="ident">into_proto</span>()<span class="question-mark">?</span>);
                 },
-                <span class="ident">PlayerSetup</span>::<span class="ident">Player</span> { <span class="ident">race</span>, .. } <span class="op">=&gt;</span> {
+                <span class="ident">PlayerSetup</span>::<span class="ident">Player</span>(<span class="ident">race</span>) <span class="op">=&gt;</span> {
                     <span class="ident">setup</span>.<span class="ident">set_field_type</span>(<span class="ident">sc2api</span>::<span class="ident">PlayerType</span>::<span class="ident">Participant</span>);
 
                     <span class="ident">setup</span>.<span class="ident">set_race</span>(<span class="ident">race</span>.<span class="ident">into_proto</span>()<span class="question-mark">?</span>);
@@ -1317,93 +1169,24 @@
 
         <span class="ident">req</span>.<span class="ident">mut_create_game</span>().<span class="ident">set_realtime</span>(<span class="bool-val">false</span>);
 
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
+        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">clone</span>().<span class="ident">request</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">CreateGame</span>(<span class="ident">CreateGame</span> {
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-        }))
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">on_game_ready</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">setup</span>: <span class="ident">PlayerSetup</span>,
-        <span class="ident">ports</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GamePorts</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">this_soma</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>();
-
-        <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>
-            .<span class="ident">send</span>(<span class="ident">this_soma</span>, <span class="ident">Signal</span>::<span class="ident">GameReady</span>(<span class="ident">setup</span>, <span class="ident">ports</span>));
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">GameCreated</span>(<span class="ident">GameCreated</span> {}))
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateGame</span> {
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">CreateGame</span> {
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-                <span class="ident">GameCreated</span>::<span class="ident">game_created</span>(<span class="ident">axon</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GameCreated</span>;
-
-<span class="kw">impl</span> <span class="ident">GameCreated</span> {
-    <span class="kw">fn</span> <span class="ident">game_created</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Controller</span>, <span class="ident">Signal</span>::<span class="ident">GameCreated</span>)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">GameCreated</span>(<span class="ident">GameCreated</span> {}))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">GameReady</span>(<span class="ident">setup</span>, <span class="ident">ports</span>)) <span class="op">=&gt;</span> {
-                <span class="ident">JoinGame</span>::<span class="ident">join_game</span>(<span class="ident">axon</span>, <span class="ident">setup</span>, <span class="ident">ports</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">JoinGame</span> {
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">JoinGame</span> {
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
     <span class="kw">fn</span> <span class="ident">join_game</span>(
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
+        <span class="self">self</span>,
         <span class="ident">setup</span>: <span class="ident">PlayerSetup</span>,
         <span class="ident">ports</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GamePorts</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
+    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
 
         <span class="kw">match</span> <span class="ident">setup</span> {
-            <span class="ident">PlayerSetup</span>::<span class="ident">Computer</span> { <span class="ident">race</span>, .. } <span class="op">=&gt;</span> {
+            <span class="ident">PlayerSetup</span>::<span class="ident">Computer</span>(<span class="ident">race</span>, _) <span class="op">=&gt;</span> {
                 <span class="ident">req</span>.<span class="ident">mut_join_game</span>().<span class="ident">set_race</span>(<span class="ident">race</span>.<span class="ident">into_proto</span>()<span class="question-mark">?</span>);
             },
-            <span class="ident">PlayerSetup</span>::<span class="ident">Player</span> { <span class="ident">race</span>, .. } <span class="op">=&gt;</span> {
+            <span class="ident">PlayerSetup</span>::<span class="ident">Player</span>(<span class="ident">race</span>) <span class="op">=&gt;</span> {
                 <span class="ident">req</span>.<span class="ident">mut_join_game</span>().<span class="ident">set_race</span>(<span class="ident">race</span>.<span class="ident">into_proto</span>()<span class="question-mark">?</span>);
             }, <span class="comment">//_ =&gt; req.mut_join_game().set_race(common::Race::NoRace)</span>
         };
@@ -1440,526 +1223,226 @@
             <span class="ident">options</span>.<span class="ident">set_score</span>(<span class="bool-val">true</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(
-            <span class="ident">axon</span>,
-            <span class="ident">ClientRequest</span>::<span class="ident">with_timeout</span>(<span class="ident">req</span>, <span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_secs</span>(<span class="number">60</span>)),
+        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">clone</span>().<span class="ident">request</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">clone</span>().<span class="ident">handle_event</span>(<span class="ident">GameEvent</span>::<span class="ident">GameLoaded</span>))<span class="question-mark">?</span>;
+
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
+    }
+
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">run_game</span>(<span class="self">self</span>, <span class="ident">update_scheme</span>: <span class="ident">UpdateScheme</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">observer</span>.<span class="ident">clone</span>().<span class="ident">reset</span>())<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">clone</span>().<span class="ident">handle_event</span>(<span class="ident">GameEvent</span>::<span class="ident">GameStarted</span>))<span class="question-mark">?</span>;
+
+        <span class="kw">loop</span> {
+            <span class="kw">match</span> <span class="ident">update_scheme</span> {
+                <span class="ident">UpdateScheme</span>::<span class="ident">Realtime</span> <span class="op">=&gt;</span> (),
+                <span class="ident">UpdateScheme</span>::<span class="ident">Interval</span>(<span class="ident">interval</span>) <span class="op">=&gt;</span> {
+                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
+                    <span class="ident">req</span>.<span class="ident">mut_step</span>().<span class="ident">set_count</span>(<span class="ident">interval</span>);
+
+                    <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">clone</span>().<span class="ident">request</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
+                },
+            }
+
+            <span class="kw">let</span> (<span class="ident">events</span>, <span class="ident">game_ended</span>) <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">observer</span>.<span class="ident">clone</span>().<span class="ident">step</span>())<span class="question-mark">?</span>;
+
+            <span class="kw">for</span> <span class="ident">e</span> <span class="kw">in</span> <span class="ident">events</span> {
+                <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">clone</span>().<span class="ident">handle_event</span>(<span class="ident">e</span>))<span class="question-mark">?</span>;
+            }
+
+            <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">clone</span>().<span class="ident">handle_event</span>(<span class="ident">GameEvent</span>::<span class="ident">Step</span>))<span class="question-mark">?</span>;
+
+            <span class="kw">if</span> <span class="ident">game_ended</span> {
+                <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">clone</span>().<span class="ident">handle_event</span>(<span class="ident">GameEvent</span>::<span class="ident">GameEnded</span>))<span class="question-mark">?</span>;
+                <span class="kw">break</span>;
+            }
+
+            <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">action</span>.<span class="ident">clone</span>().<span class="ident">step</span>())<span class="question-mark">?</span>;
+        }
+
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
+    }
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">enum</span> <span class="ident">AgentRequest</span> {
+    <span class="ident">PlayerSetup</span>(<span class="ident">GameSetup</span>, <span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">PlayerSetup</span><span class="op">&gt;</span>),
+    <span class="ident">Event</span>(<span class="ident">GameEvent</span>, <span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span>()<span class="op">&gt;</span>),
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AgentTerminal</span> {
+    <span class="ident">tx</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">AgentRequest</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">AgentTerminal</span> {
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">fn</span> <span class="ident">get_player_setup</span>(<span class="self">self</span>, <span class="ident">game</span>: <span class="ident">GameSetup</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PlayerSetup</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">AgentRequest</span>::<span class="ident">PlayerSetup</span>(<span class="ident">game</span>, <span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(
+                    <span class="string">&quot;unable to send player setup request&quot;</span>
+                ))
         )<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">JoinGame</span>(<span class="ident">JoinGame</span> {
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-        }))
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv player setup&quot;</span>)))
     }
 
-    <span class="kw">fn</span> <span class="ident">update</span>(
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">fn</span> <span class="ident">handle_event</span>(<span class="self">self</span>, <span class="ident">event</span>: <span class="ident">GameEvent</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">AgentRequest</span>::<span class="ident">Event</span>(<span class="ident">event</span>, <span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send event&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv event response&quot;</span>)))
+    }
+}
+
+<span class="doccomment">/// contract for a player soma to obey</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Player</span>: <span class="ident">Sized</span> {
+    <span class="doccomment">/// the type of error that can occur upon failure</span>
+    <span class="kw">type</span> <span class="ident">Error</span>: <span class="ident">std</span>::<span class="ident">error</span>::<span class="ident">Error</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;</span>;
+
+    <span class="doccomment">/// Use the game settings to decide on a player setup</span>
+    <span class="kw">fn</span> <span class="ident">get_player_setup</span>(
         <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_join_game</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">result</span>)
-            },
+        <span class="ident">game</span>: <span class="ident">GameSetup</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="self">Self</span>, <span class="ident">PlayerSetup</span>), <span class="ident">Error</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;&gt;</span>;
 
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_join_game</span>(
+    <span class="doccomment">/// Called whenever the agent needs to handle a game event</span>
+    <span class="kw">fn</span> <span class="ident">on_event</span>(
         <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">result</span>: <span class="ident">ClientResult</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-        <span class="ident">FetchGameData</span>::<span class="ident">fetch</span>(<span class="ident">axon</span>)
+        <span class="ident">_e</span>: <span class="ident">GameEvent</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="self">Self</span>, <span class="ident">Error</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;&gt;</span>
+    <span class="kw">where</span>
+        <span class="self">Self</span>: <span class="lifetime">&#39;static</span>,
+    {
+        <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">future</span>::<span class="ident">ok</span>(<span class="self">self</span>))
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FetchGameData</span>;
-
-<span class="kw">impl</span> <span class="ident">FetchGameData</span> {
-    <span class="kw">fn</span> <span class="ident">fetch</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>, <span class="ident">Signal</span>::<span class="ident">FetchGameData</span>)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">FetchGameData</span>(<span class="ident">FetchGameData</span> {}))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">GameDataReady</span>) <span class="op">=&gt;</span> {
-                <span class="ident">StepperSetup</span>::<span class="ident">setup</span>(<span class="ident">axon</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
+<span class="doccomment">/// receiver for agent requests</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AgentDendrite</span> {
+    <span class="ident">rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">AgentRequest</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StepperSetup</span> {
-    <span class="ident">stepper</span>: <span class="ident">Handle</span>,
-}
+<span class="kw">impl</span> <span class="ident">AgentDendrite</span> {
+    <span class="doccomment">/// wrap a struct that obeys the agent contract and forward requests to</span>
+    <span class="doccomment">/// it</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Player</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">player</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="attribute">#[<span class="ident">async</span>]</span>
+        <span class="kw">for</span> <span class="ident">req</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="op">-&gt;</span> <span class="ident">Error</span> { <span class="macro">unreachable</span><span class="macro">!</span>() }) {
+            <span class="kw">match</span> <span class="ident">req</span> {
+                <span class="ident">AgentRequest</span>::<span class="ident">PlayerSetup</span>(<span class="ident">game</span>, <span class="ident">tx</span>) <span class="op">=&gt;</span> {
+                    <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="ident">player</span>.<span class="ident">get_player_setup</span>(<span class="ident">game</span>))
+                        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">into</span>())<span class="question-mark">?</span>;
 
-<span class="kw">impl</span> <span class="ident">StepperSetup</span> {
-    <span class="kw">fn</span> <span class="ident">setup</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">stepper</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Agent</span>)<span class="question-mark">?</span>;
+                    <span class="ident">player</span> <span class="op">=</span> <span class="ident">result</span>.<span class="number">0</span>;
 
-        <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>
-            .<span class="ident">send</span>(<span class="ident">stepper</span>, <span class="ident">Signal</span>::<span class="ident">RequestUpdateInterval</span>);
+                    <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">result</span>.<span class="number">1</span>).<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> {
+                        <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to get player setup&quot;</span>)
+                    })<span class="question-mark">?</span>;
+                },
+                <span class="ident">AgentRequest</span>::<span class="ident">Event</span>(<span class="ident">e</span>, <span class="ident">tx</span>) <span class="op">=&gt;</span> {
+                    <span class="ident">player</span> <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="ident">player</span>.<span class="ident">on_event</span>(<span class="ident">e</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">into</span>()))<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">StepperSetup</span>(<span class="ident">StepperSetup</span> { <span class="ident">stepper</span>: <span class="ident">stepper</span> }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">UpdateInterval</span>(<span class="ident">interval</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_update_interval</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">interval</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_update_interval</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">interval</span>: <span class="ident">u32</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">src</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">stepper</span> {
-            <span class="ident">Step</span>::<span class="ident">first</span>(<span class="ident">axon</span>, <span class="ident">interval</span>)
-        } <span class="kw">else</span> {
-            <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected source of update interval: {}&quot;</span>, <span class="ident">src</span>)
-        }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Update</span> {
-    <span class="ident">interval</span>: <span class="ident">u32</span>,
-    <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&gt;</span>,
-    <span class="ident">debug_commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DebugCommand</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Update</span> {
-    <span class="kw">fn</span> <span class="ident">next</span>(
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">interval</span>: <span class="ident">u32</span>,
-        <span class="ident">frame</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">FrameData</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Agent</span>, <span class="ident">Signal</span>::<span class="ident">Observation</span>(<span class="ident">frame</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Update</span>(<span class="ident">Update</span> {
-            <span class="ident">interval</span>: <span class="ident">interval</span>,
-            <span class="ident">commands</span>: <span class="macro">vec</span><span class="macro">!</span>[],
-            <span class="ident">debug_commands</span>: <span class="macro">vec</span><span class="macro">!</span>[],
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">Command</span>(<span class="ident">cmd</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">commands</span>.<span class="ident">push</span>(<span class="ident">cmd</span>);
-                <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Update</span>(<span class="self">self</span>))
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">DebugCommand</span>(<span class="ident">cmd</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">debug_commands</span>.<span class="ident">push</span>(<span class="ident">cmd</span>);
-                <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Update</span>(<span class="self">self</span>))
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">UpdateComplete</span>) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_update_complete</span>(<span class="ident">axon</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_update_complete</span>(<span class="self">self</span>, <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="ident">SendActions</span>::<span class="ident">send_actions</span>(
-            <span class="ident">axon</span>,
-            <span class="self">self</span>.<span class="ident">interval</span>,
-            <span class="self">self</span>.<span class="ident">commands</span>,
-            <span class="self">self</span>.<span class="ident">debug_commands</span>,
-        )
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SendActions</span> {
-    <span class="ident">interval</span>: <span class="ident">u32</span>,
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
-
-    <span class="ident">debug_commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DebugCommand</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">SendActions</span> {
-    <span class="kw">fn</span> <span class="ident">send_actions</span>(
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">interval</span>: <span class="ident">u32</span>,
-        <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&gt;</span>,
-        <span class="ident">debug_commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DebugCommand</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
-        <span class="ident">req</span>.<span class="ident">mut_action</span>().<span class="ident">mut_actions</span>();
-
-        <span class="kw">for</span> <span class="ident">cmd</span> <span class="kw">in</span> <span class="ident">commands</span> {
-            <span class="kw">match</span> <span class="ident">cmd</span> {
-                <span class="ident">Command</span>::<span class="ident">Action</span> {
-                    <span class="ident">units</span>,
-                    <span class="ident">ability</span>,
-                    <span class="ident">target</span>,
-                } <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Action</span>::<span class="ident">new</span>();
-
-                    {
-                        <span class="kw">let</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">a</span>.<span class="ident">mut_action_raw</span>().<span class="ident">mut_unit_command</span>();
-
-                        <span class="ident">cmd</span>.<span class="ident">set_ability_id</span>(<span class="ident">ability</span>.<span class="ident">into_proto</span>()<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">i32</span>);
-
-                        <span class="kw">match</span> <span class="ident">target</span> {
-                            <span class="prelude-val">Some</span>(<span class="ident">ActionTarget</span>::<span class="ident">UnitTag</span>(<span class="ident">tag</span>)) <span class="op">=&gt;</span> {
-                                <span class="ident">cmd</span>.<span class="ident">set_target_unit_tag</span>(<span class="ident">tag</span>);
-                            },
-                            <span class="prelude-val">Some</span>(<span class="ident">ActionTarget</span>::<span class="ident">Location</span>(<span class="ident">pos</span>)) <span class="op">=&gt;</span> {
-                                <span class="kw">let</span> <span class="ident">target</span> <span class="op">=</span> <span class="ident">cmd</span>.<span class="ident">mut_target_world_space_pos</span>();
-                                <span class="ident">target</span>.<span class="ident">set_x</span>(<span class="ident">pos</span>.<span class="ident">x</span>);
-                                <span class="ident">target</span>.<span class="ident">set_y</span>(<span class="ident">pos</span>.<span class="ident">y</span>);
-                            },
-                            <span class="prelude-val">None</span> <span class="op">=&gt;</span> (),
-                        }
-
-                        <span class="kw">for</span> <span class="ident">u</span> <span class="kw">in</span> <span class="ident">units</span> {
-                            <span class="ident">cmd</span>.<span class="ident">mut_unit_tags</span>().<span class="ident">push</span>(<span class="ident">u</span>.<span class="ident">tag</span>);
-                        }
-                    }
-
-                    <span class="ident">req</span>.<span class="ident">mut_action</span>().<span class="ident">mut_actions</span>().<span class="ident">push</span>(<span class="ident">a</span>);
+                    <span class="ident">tx</span>.<span class="ident">send</span>(())
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to ack event&quot;</span>))<span class="question-mark">?</span>;
                 },
             }
         }
 
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">SendActions</span>(<span class="ident">SendActions</span> {
-            <span class="ident">interval</span>: <span class="ident">interval</span>,
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-
-            <span class="ident">debug_commands</span>: <span class="ident">debug_commands</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-                <span class="ident">SendDebug</span>::<span class="ident">send_debug</span>(<span class="ident">axon</span>, <span class="self">self</span>.<span class="ident">interval</span>, <span class="self">self</span>.<span class="ident">debug_commands</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
+        <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SendDebug</span> {
-    <span class="ident">interval</span>: <span class="ident">u32</span>,
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">synapse</span>() <span class="op">-&gt;</span> (<span class="ident">AgentTerminal</span>, <span class="ident">AgentDendrite</span>) {
+    <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">10</span>);
+
+    (<span class="ident">AgentTerminal</span> { <span class="ident">tx</span>: <span class="ident">tx</span> }, <span class="ident">AgentDendrite</span> { <span class="ident">rx</span>: <span class="ident">rx</span> })
 }
 
-<span class="kw">impl</span> <span class="ident">SendDebug</span> {
-    <span class="kw">fn</span> <span class="ident">send_debug</span>(
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">interval</span>: <span class="ident">u32</span>,
-        <span class="ident">commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DebugCommand</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
-        <span class="ident">req</span>.<span class="ident">mut_debug</span>().<span class="ident">mut_debug</span>();
+<span class="comment">// pub struct LeaveGame {</span>
+<span class="comment">//     transactor: Transactor,</span>
+<span class="comment">// }</span>
 
-        <span class="kw">for</span> <span class="ident">cmd</span> <span class="kw">in</span> <span class="ident">commands</span> {
-            <span class="kw">match</span> <span class="ident">cmd</span> {
-                <span class="ident">DebugCommand</span>::<span class="ident">DebugText</span> {
-                    <span class="ident">text</span>,
-                    <span class="ident">target</span>,
-                    <span class="ident">color</span>,
-                } <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugCommand</span>::<span class="ident">new</span>();
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">debug_text</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugText</span>::<span class="ident">new</span>();
+<span class="comment">// impl LeaveGame {</span>
+<span class="comment">//     fn leave(axon: &amp;Axon) -&gt; Result&lt;AgentSoma&gt; {</span>
+<span class="comment">//         let mut req = sc2api::Request::new();</span>
 
-                    <span class="ident">debug_text</span>.<span class="ident">set_text</span>(<span class="ident">text</span>);
+<span class="comment">//         req.mut_leave_game();</span>
 
-                    <span class="kw">match</span> <span class="ident">target</span> {
-                        <span class="prelude-val">Some</span>(<span class="ident">DebugTextTarget</span>::<span class="ident">Screen</span>(<span class="ident">p</span>)) <span class="op">=&gt;</span> {
-                            <span class="ident">debug_text</span>.<span class="ident">mut_virtual_pos</span>().<span class="ident">set_x</span>(<span class="ident">p</span>.<span class="ident">x</span>);
-                            <span class="ident">debug_text</span>.<span class="ident">mut_virtual_pos</span>().<span class="ident">set_y</span>(<span class="ident">p</span>.<span class="ident">y</span>);
-                        },
-                        <span class="prelude-val">Some</span>(<span class="ident">DebugTextTarget</span>::<span class="ident">World</span>(<span class="ident">p</span>)) <span class="op">=&gt;</span> {
-                            <span class="ident">debug_text</span>.<span class="ident">mut_world_pos</span>().<span class="ident">set_x</span>(<span class="ident">p</span>.<span class="ident">x</span>);
-                            <span class="ident">debug_text</span>.<span class="ident">mut_world_pos</span>().<span class="ident">set_y</span>(<span class="ident">p</span>.<span class="ident">y</span>);
-                            <span class="ident">debug_text</span>.<span class="ident">mut_world_pos</span>().<span class="ident">set_z</span>(<span class="ident">p</span>.<span class="ident">z</span>);
-                        },
-                        <span class="prelude-val">None</span> <span class="op">=&gt;</span> (),
-                    }
+<span class="comment">//         let transactor = Transactor::send(axon, ClientRequest::new(req))?;</span>
 
-                    <span class="ident">debug_text</span>.<span class="ident">mut_color</span>().<span class="ident">set_r</span>(<span class="ident">color</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_text</span>.<span class="ident">mut_color</span>().<span class="ident">set_g</span>(<span class="ident">color</span>.<span class="number">1</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_text</span>.<span class="ident">mut_color</span>().<span class="ident">set_b</span>(<span class="ident">color</span>.<span class="number">2</span> <span class="kw">as</span> <span class="ident">u32</span>);
+<span class="comment">//         Ok(AgentSoma::LeaveGame(LeaveGame {</span>
+<span class="comment">//             transactor: transactor,</span>
+<span class="comment">//         }))</span>
+<span class="comment">//     }</span>
 
-                    <span class="ident">cmd</span>.<span class="ident">mut_draw</span>().<span class="ident">mut_text</span>().<span class="ident">push</span>(<span class="ident">debug_text</span>);
-                    <span class="ident">req</span>.<span class="ident">mut_debug</span>().<span class="ident">mut_debug</span>().<span class="ident">push</span>(<span class="ident">cmd</span>);
-                },
-                <span class="ident">DebugCommand</span>::<span class="ident">DebugLine</span> { <span class="ident">p1</span>, <span class="ident">p2</span>, <span class="ident">color</span> } <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugCommand</span>::<span class="ident">new</span>();
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">debug_line</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugLine</span>::<span class="ident">new</span>();
+<span class="comment">//     fn update(</span>
+<span class="comment">//         self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         msg: Impulse&lt;Signal, Synapse&gt;,</span>
+<span class="comment">//     ) -&gt; Result&lt;AgentSoma&gt; {</span>
+<span class="comment">//         match msg {</span>
+<span class="comment">//             Impulse::Signal(src, Signal::ClientResult(result)) =&gt; {</span>
+<span class="comment">//                 self.transactor.expect(src, result)?;</span>
 
-                    <span class="ident">debug_line</span>.<span class="ident">mut_line</span>().<span class="ident">mut_p0</span>().<span class="ident">set_x</span>(<span class="ident">p1</span>.<span class="ident">x</span>);
-                    <span class="ident">debug_line</span>.<span class="ident">mut_line</span>().<span class="ident">mut_p0</span>().<span class="ident">set_y</span>(<span class="ident">p1</span>.<span class="ident">y</span>);
-                    <span class="ident">debug_line</span>.<span class="ident">mut_line</span>().<span class="ident">mut_p0</span>().<span class="ident">set_z</span>(<span class="ident">p1</span>.<span class="ident">z</span>);
+<span class="comment">//                 Reset::reset(axon)</span>
+<span class="comment">//             },</span>
 
-                    <span class="ident">debug_line</span>.<span class="ident">mut_line</span>().<span class="ident">mut_p1</span>().<span class="ident">set_x</span>(<span class="ident">p2</span>.<span class="ident">x</span>);
-                    <span class="ident">debug_line</span>.<span class="ident">mut_line</span>().<span class="ident">mut_p1</span>().<span class="ident">set_y</span>(<span class="ident">p2</span>.<span class="ident">y</span>);
-                    <span class="ident">debug_line</span>.<span class="ident">mut_line</span>().<span class="ident">mut_p1</span>().<span class="ident">set_z</span>(<span class="ident">p2</span>.<span class="ident">z</span>);
+<span class="comment">// Impulse::Signal(_, msg) =&gt; bail!(&quot;unexpected message {:#?}&quot;,</span>
+<span class="comment">// msg),             _ =&gt; bail!(&quot;unexpected protocol message&quot;),</span>
+<span class="comment">//         }</span>
+<span class="comment">//     }</span>
+<span class="comment">// }</span>
 
-                    <span class="ident">debug_line</span>.<span class="ident">mut_color</span>().<span class="ident">set_r</span>(<span class="ident">color</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_line</span>.<span class="ident">mut_color</span>().<span class="ident">set_g</span>(<span class="ident">color</span>.<span class="number">1</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_line</span>.<span class="ident">mut_color</span>().<span class="ident">set_b</span>(<span class="ident">color</span>.<span class="number">2</span> <span class="kw">as</span> <span class="ident">u32</span>);
+<span class="comment">// pub struct Reset;</span>
 
-                    <span class="ident">cmd</span>.<span class="ident">mut_draw</span>().<span class="ident">mut_lines</span>().<span class="ident">push</span>(<span class="ident">debug_line</span>);
-                    <span class="ident">req</span>.<span class="ident">mut_debug</span>().<span class="ident">mut_debug</span>().<span class="ident">push</span>(<span class="ident">cmd</span>);
-                },
-                <span class="ident">DebugCommand</span>::<span class="ident">DebugBox</span> { <span class="ident">min</span>, <span class="ident">max</span>, <span class="ident">color</span> } <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugCommand</span>::<span class="ident">new</span>();
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">debug_box</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugBox</span>::<span class="ident">new</span>();
+<span class="comment">// impl Reset {</span>
+<span class="comment">//     fn reset(axon: &amp;Axon) -&gt; Result&lt;AgentSoma&gt; {</span>
+<span class="comment">//         axon.send_req_output(Synapse::Client, Signal::ClientDisconnect)?;</span>
 
-                    <span class="ident">debug_box</span>.<span class="ident">mut_min</span>().<span class="ident">set_x</span>(<span class="ident">min</span>.<span class="ident">x</span>);
-                    <span class="ident">debug_box</span>.<span class="ident">mut_min</span>().<span class="ident">set_y</span>(<span class="ident">min</span>.<span class="ident">y</span>);
-                    <span class="ident">debug_box</span>.<span class="ident">mut_min</span>().<span class="ident">set_z</span>(<span class="ident">min</span>.<span class="ident">z</span>);
+<span class="comment">//         Ok(AgentSoma::Reset(Reset {}))</span>
+<span class="comment">//     }</span>
 
-                    <span class="ident">debug_box</span>.<span class="ident">mut_max</span>().<span class="ident">set_x</span>(<span class="ident">max</span>.<span class="ident">x</span>);
-                    <span class="ident">debug_box</span>.<span class="ident">mut_max</span>().<span class="ident">set_y</span>(<span class="ident">max</span>.<span class="ident">y</span>);
-                    <span class="ident">debug_box</span>.<span class="ident">mut_max</span>().<span class="ident">set_z</span>(<span class="ident">max</span>.<span class="ident">z</span>);
+<span class="comment">//     fn update(</span>
+<span class="comment">//         self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         msg: Impulse&lt;Signal, Synapse&gt;,</span>
+<span class="comment">//     ) -&gt; Result&lt;AgentSoma&gt; {</span>
+<span class="comment">//         match msg {</span>
+<span class="comment">//             Impulse::Signal(_, Signal::ClientError(_)) =&gt; {</span>
+<span class="comment">//                 // client does not close cleanly anyway right now, so just</span>
+<span class="comment">//                 // ignore the error and wait for ClientClosed.</span>
+<span class="comment">//                 Ok(AgentSoma::Reset(self))</span>
+<span class="comment">//             },</span>
+<span class="comment">//             Impulse::Signal(_, Signal::ClientClosed) =&gt; {</span>
+<span class="comment">//                 axon.send_req_input(Synapse::Controller, Signal::GameEnded)?;</span>
+<span class="comment">//                 axon.send_req_output(Synapse::Agent, Signal::GameEnded)?;</span>
 
-                    <span class="ident">debug_box</span>.<span class="ident">mut_color</span>().<span class="ident">set_r</span>(<span class="ident">color</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_box</span>.<span class="ident">mut_color</span>().<span class="ident">set_g</span>(<span class="ident">color</span>.<span class="number">1</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_box</span>.<span class="ident">mut_color</span>().<span class="ident">set_b</span>(<span class="ident">color</span>.<span class="number">2</span> <span class="kw">as</span> <span class="ident">u32</span>);
+<span class="comment">//                 Setup::setup()</span>
+<span class="comment">//             },</span>
 
-                    <span class="ident">cmd</span>.<span class="ident">mut_draw</span>().<span class="ident">mut_boxes</span>().<span class="ident">push</span>(<span class="ident">debug_box</span>);
-                    <span class="ident">req</span>.<span class="ident">mut_debug</span>().<span class="ident">mut_debug</span>().<span class="ident">push</span>(<span class="ident">cmd</span>);
-                },
-                <span class="ident">DebugCommand</span>::<span class="ident">DebugSphere</span> {
-                    <span class="ident">center</span>,
-                    <span class="ident">radius</span>,
-                    <span class="ident">color</span>,
-                } <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugCommand</span>::<span class="ident">new</span>();
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">debug_sphere</span> <span class="op">=</span> <span class="ident">debug</span>::<span class="ident">DebugSphere</span>::<span class="ident">new</span>();
-
-                    <span class="ident">debug_sphere</span>.<span class="ident">mut_p</span>().<span class="ident">set_x</span>(<span class="ident">center</span>.<span class="ident">x</span>);
-                    <span class="ident">debug_sphere</span>.<span class="ident">mut_p</span>().<span class="ident">set_y</span>(<span class="ident">center</span>.<span class="ident">y</span>);
-                    <span class="ident">debug_sphere</span>.<span class="ident">mut_p</span>().<span class="ident">set_z</span>(<span class="ident">center</span>.<span class="ident">z</span>);
-
-                    <span class="ident">debug_sphere</span>.<span class="ident">set_r</span>(<span class="ident">radius</span>);
-
-                    <span class="ident">debug_sphere</span>.<span class="ident">mut_color</span>().<span class="ident">set_r</span>(<span class="ident">color</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_sphere</span>.<span class="ident">mut_color</span>().<span class="ident">set_g</span>(<span class="ident">color</span>.<span class="number">1</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                    <span class="ident">debug_sphere</span>.<span class="ident">mut_color</span>().<span class="ident">set_b</span>(<span class="ident">color</span>.<span class="number">2</span> <span class="kw">as</span> <span class="ident">u32</span>);
-
-                    <span class="ident">cmd</span>.<span class="ident">mut_draw</span>().<span class="ident">mut_spheres</span>().<span class="ident">push</span>(<span class="ident">debug_sphere</span>);
-                    <span class="ident">req</span>.<span class="ident">mut_debug</span>().<span class="ident">mut_debug</span>().<span class="ident">push</span>(<span class="ident">cmd</span>);
-                },
-            }
-        }
-
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">SendDebug</span>(<span class="ident">SendDebug</span> {
-            <span class="ident">interval</span>: <span class="ident">interval</span>,
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-                <span class="ident">Step</span>::<span class="ident">step</span>(<span class="ident">axon</span>, <span class="self">self</span>.<span class="ident">interval</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Step</span> {
-    <span class="ident">interval</span>: <span class="ident">u32</span>,
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Step</span> {
-    <span class="kw">fn</span> <span class="ident">first</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">interval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Agent</span>, <span class="ident">Signal</span>::<span class="ident">GameStarted</span>)<span class="question-mark">?</span>;
-
-        <span class="ident">Step</span>::<span class="ident">step</span>(<span class="ident">axon</span>, <span class="ident">interval</span>)
-    }
-    <span class="kw">fn</span> <span class="ident">step</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">interval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
-
-        <span class="ident">req</span>.<span class="ident">mut_step</span>().<span class="ident">set_count</span>(<span class="ident">interval</span>);
-
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Step</span>(<span class="ident">Step</span> {
-            <span class="ident">interval</span>: <span class="ident">interval</span>,
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_step</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">result</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_step</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">result</span>: <span class="ident">ClientResult</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-        <span class="ident">Observe</span>::<span class="ident">observe</span>(<span class="ident">axon</span>, <span class="self">self</span>.<span class="ident">interval</span>)
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Observe</span> {
-    <span class="ident">interval</span>: <span class="ident">u32</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Observe</span> {
-    <span class="kw">fn</span> <span class="ident">observe</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">interval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>, <span class="ident">Signal</span>::<span class="ident">Observe</span>)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Observe</span>(<span class="ident">Observe</span> { <span class="ident">interval</span>: <span class="ident">interval</span> }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">Observation</span>(<span class="ident">frame</span>)) <span class="op">=&gt;</span> {
-                <span class="ident">Update</span>::<span class="ident">next</span>(<span class="ident">axon</span>, <span class="self">self</span>.<span class="ident">interval</span>, <span class="ident">frame</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">GameEnded</span>) <span class="op">=&gt;</span> <span class="ident">LeaveGame</span>::<span class="ident">leave</span>(<span class="ident">axon</span>),
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LeaveGame</span> {
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">LeaveGame</span> {
-    <span class="kw">fn</span> <span class="ident">leave</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
-
-        <span class="ident">req</span>.<span class="ident">mut_leave_game</span>();
-
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">LeaveGame</span>(<span class="ident">LeaveGame</span> {
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-                <span class="ident">Reset</span>::<span class="ident">reset</span>(<span class="ident">axon</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Reset</span>;
-
-<span class="kw">impl</span> <span class="ident">Reset</span> {
-    <span class="kw">fn</span> <span class="ident">reset</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>, <span class="ident">Signal</span>::<span class="ident">ClientDisconnect</span>)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Reset</span>(<span class="ident">Reset</span> {}))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AgentSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">ClientError</span>(_)) <span class="op">=&gt;</span> {
-                <span class="comment">// client does not close cleanly anyway right now, so just</span>
-                <span class="comment">// ignore the error and wait for ClientClosed.</span>
-                <span class="prelude-val">Ok</span>(<span class="ident">AgentSoma</span>::<span class="ident">Reset</span>(<span class="self">self</span>))
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">ClientClosed</span>) <span class="op">=&gt;</span> {
-                <span class="ident">axon</span>.<span class="ident">send_req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Controller</span>, <span class="ident">Signal</span>::<span class="ident">GameEnded</span>)<span class="question-mark">?</span>;
-                <span class="ident">axon</span>.<span class="ident">send_req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Agent</span>, <span class="ident">Signal</span>::<span class="ident">GameEnded</span>)<span class="question-mark">?</span>;
-
-                <span class="ident">Setup</span>::<span class="ident">setup</span>()
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-}
+<span class="comment">// Impulse::Signal(_, msg) =&gt; bail!(&quot;unexpected message {:#?}&quot;,</span>
+<span class="comment">// msg),             _ =&gt; bail!(&quot;unexpected protocol message&quot;),</span>
+<span class="comment">//         }</span>
+<span class="comment">//     }</span>
+<span class="comment">// }</span>
 </pre>
 </section>
     <section id='search' class="content hidden"></section>
@@ -1974,20 +1457,22 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>↑</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>↓</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>↹</dt>
+                    <dt><kbd>↹</kbd></dt>
                     <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 

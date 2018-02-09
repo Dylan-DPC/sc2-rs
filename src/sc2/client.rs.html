@@ -10,8 +10,11 @@
     <title>client.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
         
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -785,749 +796,781 @@
 <span id="740">740</span>
 <span id="741">741</span>
 <span id="742">742</span>
+<span id="743">743</span>
+<span id="744">744</span>
+<span id="745">745</span>
+<span id="746">746</span>
+<span id="747">747</span>
+<span id="748">748</span>
+<span id="749">749</span>
+<span id="750">750</span>
+<span id="751">751</span>
+<span id="752">752</span>
+<span id="753">753</span>
+<span id="754">754</span>
+<span id="755">755</span>
+<span id="756">756</span>
+<span id="757">757</span>
+<span id="758">758</span>
 </pre><pre class="rust ">
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">VecDeque</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">rc</span>::<span class="ident">Rc</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">time</span>;
+<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">io</span>, <span class="ident">time</span>};
 
 <span class="kw">use</span> <span class="ident">bytes</span>::{<span class="ident">Buf</span>, <span class="ident">BufMut</span>};
 <span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">sync</span>::{<span class="ident">mpsc</span>, <span class="ident">oneshot</span>};
-<span class="kw">use</span> <span class="ident">organelle</span>;
-<span class="kw">use</span> <span class="ident">organelle</span>::{<span class="ident">Dendrite</span>, <span class="ident">Handle</span>, <span class="ident">Impulse</span>, <span class="ident">Neuron</span>, <span class="ident">ResultExt</span>, <span class="ident">Sheath</span>};
-<span class="kw">use</span> <span class="ident">protobuf</span>;
-<span class="kw">use</span> <span class="ident">protobuf</span>::{<span class="ident">parse_from_reader</span>, <span class="ident">Message</span> <span class="kw">as</span> <span class="ident">ProtobufMessage</span>};
+<span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">unsync</span>::{<span class="ident">mpsc</span>, <span class="ident">oneshot</span>};
+<span class="kw">use</span> <span class="ident">organelle</span>::{<span class="ident">Axon</span>, <span class="ident">Constraint</span>, <span class="ident">Impulse</span>, <span class="ident">Soma</span>};
+<span class="kw">use</span> <span class="ident">protobuf</span>::{<span class="self">self</span>, <span class="ident">parse_from_reader</span>, <span class="ident">Message</span>};
 <span class="kw">use</span> <span class="ident">sc2_proto</span>::<span class="ident">sc2api</span>::{<span class="ident">Request</span>, <span class="ident">Response</span>};
+<span class="kw">use</span> <span class="ident">tokio_core</span>::<span class="ident">reactor</span>;
 <span class="kw">use</span> <span class="ident">tokio_timer</span>::<span class="ident">Timer</span>;
 <span class="kw">use</span> <span class="ident">tokio_tungstenite</span>::<span class="ident">connect_async</span>;
 <span class="kw">use</span> <span class="ident">tungstenite</span>;
 <span class="kw">use</span> <span class="ident">url</span>::<span class="ident">Url</span>;
-<span class="kw">use</span> <span class="ident">uuid</span>::<span class="ident">Uuid</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Axon</span>, <span class="ident">Error</span>, <span class="ident">ErrorKind</span>, <span class="prelude-ty">Result</span>, <span class="ident">Signal</span>, <span class="ident">Synapse</span>};
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Error</span>, <span class="prelude-ty">Result</span>};
+<span class="kw">use</span> <span class="ident">synapses</span>::{<span class="ident">Dendrite</span>, <span class="ident">Synapse</span>};
 
-<span class="doccomment">/// keeps a record of a req/rsp transaction between the game instance</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Transactor</span> {
-    <span class="ident">client</span>: <span class="ident">Handle</span>,
-    <span class="ident">transaction</span>: <span class="ident">Uuid</span>,
-    <span class="ident">kind</span>: <span class="ident">ClientMessageKind</span>,
+<span class="kw">fn</span> <span class="ident">stream_next</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Stream</span><span class="op">&gt;</span>(
+    <span class="ident">stream</span>: <span class="ident">T</span>,
+) <span class="op">-&gt;</span> <span class="kw">impl</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Item</span><span class="op">&gt;</span>, <span class="ident">T</span>), <span class="ident">Error</span> <span class="op">=</span> (<span class="ident">T</span>::<span class="ident">Error</span>, <span class="ident">T</span>)<span class="op">&gt;</span> {
+    <span class="ident">stream</span>
+        .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="prelude-val">Ok</span>(<span class="ident">item</span>))
+        .<span class="ident">into_future</span>()
+        .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">item</span>, <span class="ident">and_then</span>)<span class="op">|</span> (<span class="ident">item</span>, <span class="ident">and_then</span>.<span class="ident">into_inner</span>()))
+        .<span class="ident">map_err</span>(<span class="op">|</span>(<span class="ident">e</span>, <span class="ident">and_then</span>)<span class="op">|</span> (<span class="ident">e</span>, <span class="ident">and_then</span>.<span class="ident">into_inner</span>()))
 }
 
-<span class="kw">impl</span> <span class="ident">Transactor</span> {
-    <span class="doccomment">/// send a client request to the client soma</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">req</span>: <span class="ident">ClientRequest</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">transaction</span> <span class="op">=</span> <span class="ident">req</span>.<span class="ident">transaction</span>;
-        <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="ident">req</span>.<span class="ident">kind</span>;
-
-        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">req_output</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span>;
-
-        <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">send</span>(<span class="ident">client</span>, <span class="ident">Signal</span>::<span class="ident">ClientRequest</span>(<span class="ident">req</span>));
-
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
-            <span class="ident">client</span>: <span class="ident">client</span>,
-            <span class="ident">transaction</span>: <span class="ident">transaction</span>,
-            <span class="ident">kind</span>: <span class="ident">kind</span>,
-        })
-    }
-
-    <span class="doccomment">/// expect the result to contain the response expected by this</span>
-    <span class="doccomment">/// transactor</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expect</span>(<span class="self">self</span>, <span class="ident">src</span>: <span class="ident">Handle</span>, <span class="ident">result</span>: <span class="ident">ClientResult</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="ident">ClientResult</span>::<span class="ident">Success</span>(<span class="ident">rsp</span>) <span class="op">=&gt;</span> {
-                <span class="kw">if</span> <span class="self">self</span>.<span class="ident">client</span> <span class="op">!=</span> <span class="ident">src</span> {
-                    <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected source for client response&quot;</span>)
-                }
-
-                <span class="kw">if</span> <span class="self">self</span>.<span class="ident">transaction</span> <span class="op">!=</span> <span class="ident">rsp</span>.<span class="ident">transaction</span> {
-                    <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;transaction id mismatch&quot;</span>)
-                }
-
-                <span class="kw">if</span> <span class="self">self</span>.<span class="ident">kind</span> <span class="op">!=</span> <span class="ident">rsp</span>.<span class="ident">kind</span> {
-                    <span class="macro">bail</span><span class="macro">!</span>(
-                        <span class="string">&quot;expected {:?} message, got {:?}&quot;</span>,
-                        <span class="self">self</span>.<span class="ident">kind</span>,
-                        <span class="ident">rsp</span>.<span class="ident">kind</span>
-                    )
-                }
-
-                <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">response</span>.<span class="ident">get_error</span>().<span class="ident">len</span>() <span class="op">!=</span> <span class="number">0</span> {
-                    <span class="macro">bail</span><span class="macro">!</span>(<span class="ident">ErrorKind</span>::<span class="ident">GameErrors</span>(
-                        <span class="ident">rsp</span>.<span class="ident">response</span>
-                            .<span class="ident">get_error</span>()
-                            .<span class="ident">iter</span>()
-                            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">clone</span>())
-                            .<span class="ident">collect</span>()
-                    ))
-                }
-
-                <span class="prelude-val">Ok</span>(<span class="ident">rsp</span>.<span class="ident">response</span>)
-            },
-            <span class="ident">ClientResult</span>::<span class="ident">Timeout</span>(<span class="ident">transaction</span>) <span class="op">=&gt;</span> {
-                <span class="kw">if</span> <span class="self">self</span>.<span class="ident">transaction</span> <span class="op">!=</span> <span class="ident">transaction</span> {
-                    <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;transaction id mismatch&quot;</span>)
-                } <span class="kw">else</span> {
-                    <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;transaction timed out&quot;</span>)
-                }
-            },
-        }
-    }
-}
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">enum</span> <span class="ident">ClientMessageKind</span> {
-    <span class="ident">Unknown</span>,
-    <span class="ident">CreateGame</span>,
-    <span class="ident">JoinGame</span>,
-    <span class="ident">RestartGame</span>,
-    <span class="ident">StartReplay</span>,
-    <span class="ident">LeaveGame</span>,
-    <span class="ident">QuickSave</span>,
-    <span class="ident">QuickLoad</span>,
-    <span class="ident">Quit</span>,
-    <span class="ident">GameInfo</span>,
-    <span class="ident">Observation</span>,
-    <span class="ident">Action</span>,
-    <span class="ident">Step</span>,
-    <span class="ident">Data</span>,
-    <span class="ident">Query</span>,
-    <span class="ident">SaveReplay</span>,
-    <span class="ident">ReplayInfo</span>,
-    <span class="ident">AvailableMaps</span>,
-    <span class="ident">SaveMap</span>,
-    <span class="ident">Ping</span>,
-    <span class="ident">Debug</span>,
-}
-
-<span class="doccomment">/// a request to send to the game instance</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClientRequest</span> {
-    <span class="ident">transaction</span>: <span class="ident">Uuid</span>,
-    <span class="ident">request</span>: <span class="ident">Request</span>,
-    <span class="ident">timeout</span>: <span class="ident">time</span>::<span class="ident">Duration</span>,
-    <span class="ident">kind</span>: <span class="ident">ClientMessageKind</span>,
+<span class="kw">enum</span> <span class="ident">ClientRequest</span> {
+    <span class="ident">Connect</span>(<span class="ident">Url</span>, <span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span>()<span class="op">&gt;</span>),
+    <span class="ident">Request</span>(<span class="ident">Request</span>, <span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;&gt;</span>),
 }
 
-<span class="kw">impl</span> <span class="ident">ClientRequest</span> {
-    <span class="doccomment">/// create a new request with the default timeout</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">request</span>: <span class="ident">Request</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>::<span class="ident">with_timeout</span>(<span class="ident">request</span>, <span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_secs</span>(<span class="number">5</span>))
+<span class="doccomment">/// sender for the client soma</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClientTerminal</span> {
+    <span class="ident">tx</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">ClientRequest</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">ClientTerminal</span> {
+    <span class="doccomment">/// connect to the game instance</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect</span>(<span class="self">self</span>, <span class="ident">url</span>: <span class="ident">Url</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ClientRequest</span>::<span class="ident">Connect</span>(<span class="ident">url</span>, <span class="ident">tx</span>))
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send connect&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to receive connect ack&quot;</span>)))
     }
 
-    <span class="doccomment">/// create a new request with a custom timeout</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_timeout</span>(<span class="ident">request</span>: <span class="ident">Request</span>, <span class="ident">timeout</span>: <span class="ident">time</span>::<span class="ident">Duration</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">get_kind</span>(<span class="kw-2">&amp;</span><span class="ident">request</span>);
+    <span class="doccomment">/// send a request to the game instance</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request</span>(<span class="self">self</span>, <span class="ident">req</span>: <span class="ident">Request</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
 
-        <span class="self">Self</span> {
-            <span class="ident">transaction</span>: <span class="ident">Uuid</span>::<span class="ident">new_v4</span>(),
-            <span class="ident">request</span>: <span class="ident">request</span>,
-            <span class="ident">timeout</span>: <span class="ident">timeout</span>,
-            <span class="ident">kind</span>: <span class="ident">kind</span>,
-        }
-    }
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ClientRequest</span>::<span class="ident">Request</span>(<span class="ident">req</span>, <span class="ident">tx</span>))
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send request&quot;</span>))
+        )<span class="question-mark">?</span>;
 
-    <span class="kw">fn</span> <span class="ident">get_kind</span>(<span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">Request</span>) <span class="op">-&gt;</span> <span class="ident">ClientMessageKind</span> {
-        <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_create_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">CreateGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_join_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">JoinGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_restart_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">RestartGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_start_replay</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">StartReplay</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_leave_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">LeaveGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_quick_save</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">QuickSave</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_quick_load</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">QuickLoad</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_quit</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Quit</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_game_info</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">GameInfo</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_observation</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Observation</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_action</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Action</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_step</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Step</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_data</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Data</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_query</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Query</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_save_replay</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">SaveReplay</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_replay_info</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">ReplayInfo</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_available_maps</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">AvailableMaps</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_save_map</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">SaveMap</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_ping</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Ping</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">has_debug</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Debug</span>
-        } <span class="kw">else</span> {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Unknown</span>
-        }
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to receive response&quot;</span>)))<span class="question-mark">?</span>
     }
 }
 
-<span class="doccomment">/// a successful response from the game instance</span>
+<span class="doccomment">/// receiver for the client soma</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClientResponse</span> {
-    <span class="ident">transaction</span>: <span class="ident">Uuid</span>,
-    <span class="ident">response</span>: <span class="ident">Response</span>,
-    <span class="ident">kind</span>: <span class="ident">ClientMessageKind</span>,
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClientDendrite</span> {
+    <span class="ident">rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ClientRequest</span><span class="op">&gt;</span>,
 }
 
-<span class="doccomment">/// the result of a transaction with the game instance</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ClientResult</span> {
-    <span class="doccomment">/// transaction succeeded</span>
-    <span class="ident">Success</span>(<span class="ident">ClientResponse</span>),
-    <span class="doccomment">/// transaction timed out</span>
-    <span class="ident">Timeout</span>(<span class="ident">Uuid</span>),
+<span class="doccomment">/// create a client synapse</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">synapse</span>() <span class="op">-&gt;</span> (<span class="ident">ClientTerminal</span>, <span class="ident">ClientDendrite</span>) {
+    <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">10</span>);
+
+    (<span class="ident">ClientTerminal</span> { <span class="ident">tx</span>: <span class="ident">tx</span> }, <span class="ident">ClientDendrite</span> { <span class="ident">rx</span>: <span class="ident">rx</span> })
 }
 
-<span class="kw">impl</span> <span class="ident">ClientResult</span> {
-    <span class="kw">fn</span> <span class="ident">success</span>(<span class="ident">transaction</span>: <span class="ident">Uuid</span>, <span class="ident">response</span>: <span class="ident">Response</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">get_kind</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>);
-
-        <span class="ident">ClientResult</span>::<span class="ident">Success</span>(<span class="ident">ClientResponse</span> {
-            <span class="ident">transaction</span>: <span class="ident">transaction</span>,
-            <span class="ident">response</span>: <span class="ident">response</span>,
-            <span class="ident">kind</span>: <span class="ident">kind</span>,
-        })
-    }
-
-    <span class="kw">fn</span> <span class="ident">get_kind</span>(<span class="ident">rsp</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>) <span class="op">-&gt;</span> <span class="ident">ClientMessageKind</span> {
-        <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_create_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">CreateGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_join_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">JoinGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_restart_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">RestartGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_start_replay</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">StartReplay</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_leave_game</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">LeaveGame</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_quick_save</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">QuickSave</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_quick_load</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">QuickLoad</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_quit</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Quit</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_game_info</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">GameInfo</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_observation</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Observation</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_action</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Action</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_step</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Step</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_data</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Data</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_query</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Query</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_save_replay</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">SaveReplay</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_replay_info</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">ReplayInfo</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_available_maps</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">AvailableMaps</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_save_map</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">SaveMap</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_ping</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Ping</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">has_debug</span>() {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Debug</span>
-        } <span class="kw">else</span> {
-            <span class="ident">ClientMessageKind</span>::<span class="ident">Unknown</span>
-        }
-    }
-}
-
-<span class="kw">const</span> <span class="ident">NUM_RETRIES</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">10</span>;
-
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ClientSoma</span> {
-    <span class="ident">Init</span>(<span class="ident">Init</span>),
-    <span class="ident">AwaitInstance</span>(<span class="ident">AwaitInstance</span>),
-    <span class="ident">Connect</span>(<span class="ident">Connect</span>),
-
-    <span class="ident">Open</span>(<span class="ident">Open</span>),
-
-    <span class="ident">Disconnect</span>(<span class="ident">Disconnect</span>),
+<span class="doccomment">/// soma used to communicate with the game instance</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClientSoma</span> {
+    <span class="ident">dendrites</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClientDendrite</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ClientSoma</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sheath</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Sheath</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">Sheath</span>::<span class="ident">new</span>(
-            <span class="ident">ClientSoma</span>::<span class="ident">Init</span>(<span class="ident">Init</span> {}),
-            <span class="macro">vec</span><span class="macro">!</span>[
-                <span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">InstanceProvider</span>),
-                <span class="ident">Dendrite</span>::<span class="ident">Variadic</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>),
-            ],
+    <span class="doccomment">/// create a new client</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axon</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Axon</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Axon</span>::<span class="ident">new</span>(
+            <span class="self">Self</span> { <span class="ident">dendrites</span>: <span class="macro">vec</span><span class="macro">!</span>[] },
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Constraint</span>::<span class="ident">Variadic</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)],
             <span class="macro">vec</span><span class="macro">!</span>[],
-        )<span class="question-mark">?</span>)
+        ))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Neuron</span> <span class="kw">for</span> <span class="ident">ClientSoma</span> {
-    <span class="kw">type</span> <span class="ident">Signal</span> <span class="op">=</span> <span class="ident">Signal</span>;
+<span class="kw">impl</span> <span class="ident">Soma</span> <span class="kw">for</span> <span class="ident">ClientSoma</span> {
     <span class="kw">type</span> <span class="ident">Synapse</span> <span class="op">=</span> <span class="ident">Synapse</span>;
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
 
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">organelle</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">ClientSoma</span>::<span class="ident">Init</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">ClientSoma</span>::<span class="ident">AwaitInstance</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">ClientSoma</span>::<span class="ident">Connect</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">ClientSoma</span>::<span class="ident">Open</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">ClientSoma</span>::<span class="ident">Disconnect</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-        }.<span class="ident">chain_err</span>(<span class="op">||</span> <span class="ident">organelle</span>::<span class="ident">ErrorKind</span>::<span class="ident">SomaError</span>)
-    }
-}
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">imp</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Synapse</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">imp</span> {
+            <span class="ident">Impulse</span>::<span class="ident">AddDendrite</span>(_, <span class="ident">Synapse</span>::<span class="ident">Client</span>, <span class="ident">Dendrite</span>::<span class="ident">Client</span>(<span class="ident">rx</span>)) <span class="op">=&gt;</span> {
+                <span class="self">self</span>.<span class="ident">dendrites</span>.<span class="ident">push</span>(<span class="ident">rx</span>);
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Init</span> {}
-
-<span class="kw">impl</span> <span class="ident">Init</span> {
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        _: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Start</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">start</span>(),
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">start</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="ident">AwaitInstance</span>::<span class="ident">await</span>()
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AwaitInstance</span> {}
-
-<span class="kw">impl</span> <span class="ident">AwaitInstance</span> {
-    <span class="kw">fn</span> <span class="ident">await</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">AwaitInstance</span>(<span class="ident">AwaitInstance</span> {}))
-    }
-
-    <span class="kw">fn</span> <span class="ident">reset</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">axon</span>.<span class="ident">var_input</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span> {
-            <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">send</span>(<span class="kw-2">*</span><span class="ident">c</span>, <span class="ident">Signal</span>::<span class="ident">ClientClosed</span>);
-        }
-
-        <span class="self">Self</span>::<span class="ident">await</span>()
-    }
-
-    <span class="kw">fn</span> <span class="ident">reset_error</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">e</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">axon</span>.<span class="ident">var_input</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span> {
-            <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">send_in_order</span>(
-                <span class="kw-2">*</span><span class="ident">c</span>,
-                <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Signal</span>::<span class="ident">ClientError</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">e</span>)), <span class="ident">Signal</span>::<span class="ident">ClientClosed</span>],
-            );
-        }
-
-        <span class="self">Self</span>::<span class="ident">await</span>()
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ProvideInstance</span>(<span class="ident">instance</span>, <span class="ident">url</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">assign_instance</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">instance</span>, <span class="ident">url</span>)
+                <span class="prelude-val">Ok</span>(<span class="self">self</span>)
             },
+            <span class="ident">Impulse</span>::<span class="ident">Start</span>(_, <span class="ident">main_tx</span>, <span class="ident">handle</span>) <span class="op">=&gt;</span> {
+                <span class="kw">let</span> <span class="ident">listen_handle</span> <span class="op">=</span> <span class="ident">handle</span>.<span class="ident">clone</span>();
 
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
+                <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">10</span>);
 
-    <span class="kw">fn</span> <span class="ident">assign_instance</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        _: <span class="ident">Uuid</span>,
-        <span class="ident">url</span>: <span class="ident">Url</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_input</span>(<span class="ident">Synapse</span>::<span class="ident">InstanceProvider</span>)<span class="question-mark">?</span>);
+                <span class="kw">for</span> <span class="ident">d</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">dendrites</span> {
+                    <span class="ident">handle</span>.<span class="ident">spawn</span>(
+                        <span class="ident">tx</span>.<span class="ident">clone</span>()
+                            .<span class="ident">send_all</span>(<span class="ident">d</span>.<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="macro">unreachable</span><span class="macro">!</span>()))
+                            .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                            .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ()),
+                    );
+                }
 
-        <span class="ident">Connect</span>::<span class="ident">connect</span>(<span class="ident">axon</span>, <span class="ident">url</span>)
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Connect</span> {
-    <span class="ident">timer</span>: <span class="ident">Timer</span>,
-    <span class="ident">retries</span>: <span class="ident">u32</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Connect</span> {
-    <span class="kw">fn</span> <span class="ident">connect</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">url</span>: <span class="ident">Url</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">this_soma</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>();
-        <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>
-            .<span class="ident">send</span>(<span class="ident">this_soma</span>, <span class="ident">Signal</span>::<span class="ident">ClientAttemptConnect</span>(<span class="ident">url</span>));
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">Connect</span>(<span class="ident">Connect</span> {
-            <span class="ident">timer</span>: <span class="ident">Timer</span>::<span class="ident">default</span>(),
-            <span class="ident">retries</span>: <span class="ident">NUM_RETRIES</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientAttemptConnect</span>(<span class="ident">url</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">attempt_connect</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">url</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientConnected</span>(<span class="ident">sender</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_connected</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">sender</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">attempt_connect</span>(
-        <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">url</span>: <span class="ident">Url</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>());
-
-        <span class="kw">let</span> <span class="ident">connected_effector</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">clone</span>();
-        <span class="kw">let</span> <span class="ident">retry_effector</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">clone</span>();
-        <span class="kw">let</span> <span class="ident">timer_effector</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">clone</span>();
-
-        <span class="kw">let</span> <span class="ident">client_remote</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">remote</span>();
-
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">retries</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unable to connect to instance&quot;</span>)
-        } <span class="kw">else</span> {
-            <span class="macro">println</span><span class="macro">!</span>(
-                <span class="string">&quot;attempting to connect to instance {} - retries {}&quot;</span>,
-                <span class="ident">url</span>, <span class="self">self</span>.<span class="ident">retries</span>
-            );
-
-            <span class="self">self</span>.<span class="ident">retries</span> <span class="op">-=</span> <span class="number">1</span>;
-        }
-
-        <span class="kw">let</span> <span class="ident">retry_url</span> <span class="op">=</span> <span class="ident">url</span>.<span class="ident">clone</span>();
-
-        <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">spawn</span>(
-            <span class="self">self</span>.<span class="ident">timer</span>
-                .<span class="ident">sleep</span>(<span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_secs</span>(<span class="number">5</span>))
-                .<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span>_<span class="op">|</span> {
-                    <span class="ident">connect_async</span>(<span class="ident">url</span>, <span class="ident">client_remote</span>)
-                        .<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span>(<span class="ident">ws_stream</span>, _)<span class="op">|</span> {
-                            <span class="kw">let</span> <span class="ident">this_soma</span> <span class="op">=</span> <span class="ident">connected_effector</span>.<span class="ident">this_soma</span>();
-
-                            <span class="kw">let</span> (<span class="ident">send_tx</span>, <span class="ident">send_rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">10</span>);
-
-                            <span class="kw">let</span> (<span class="ident">sink</span>, <span class="ident">stream</span>) <span class="op">=</span> <span class="ident">ws_stream</span>.<span class="ident">split</span>();
-
-                            <span class="ident">connected_effector</span>.<span class="ident">spawn</span>(<span class="ident">sink</span>.<span class="ident">send_all</span>(
-                                <span class="ident">send_rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> {
-                                    <span class="ident">tungstenite</span>::<span class="ident">Error</span>::<span class="ident">Io</span>(
-                                        <span class="ident">io</span>::<span class="ident">ErrorKind</span>::<span class="ident">BrokenPipe</span>.<span class="ident">into</span>(),
-                                    )
-                                }),
-                            ).<span class="ident">then</span>(<span class="op">|</span>_<span class="op">|</span> <span class="prelude-val">Ok</span>(())));
-
-                            <span class="kw">let</span> <span class="ident">recv_eff</span> <span class="op">=</span> <span class="ident">connected_effector</span>.<span class="ident">clone</span>();
-                            <span class="kw">let</span> <span class="ident">close_eff</span> <span class="op">=</span> <span class="ident">connected_effector</span>.<span class="ident">clone</span>();
-                            <span class="kw">let</span> <span class="ident">error_eff</span> <span class="op">=</span> <span class="ident">connected_effector</span>.<span class="ident">clone</span>();
-
-                            <span class="ident">connected_effector</span>.<span class="ident">spawn</span>(
-                                <span class="ident">stream</span>
-                                    .<span class="ident">for_each</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">msg</span><span class="op">|</span> {
-                                        <span class="ident">recv_eff</span>.<span class="ident">send</span>(
-                                            <span class="ident">this_soma</span>,
-                                            <span class="ident">Signal</span>::<span class="ident">ClientReceive</span>(<span class="ident">msg</span>),
-                                        );
-
-                                        <span class="prelude-val">Ok</span>(())
-                                    })
-                                    .<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span>_<span class="op">|</span> {
-                                        <span class="ident">close_eff</span>.<span class="ident">send</span>(
-                                            <span class="ident">this_soma</span>,
-                                            <span class="ident">Signal</span>::<span class="ident">ClientClosed</span>,
-                                        );
-
-                                        <span class="prelude-val">Ok</span>(())
-                                    })
-                                    .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                                        <span class="ident">error_eff</span>.<span class="ident">send</span>(
-                                            <span class="ident">this_soma</span>,
-                                            <span class="ident">Signal</span>::<span class="ident">ClientError</span>(<span class="ident">Rc</span>::<span class="ident">from</span>(
-                                                <span class="ident">Error</span>::<span class="ident">with_chain</span>(
-                                                    <span class="ident">e</span>,
-                                                    <span class="ident">ErrorKind</span>::<span class="ident">ClientRecvFailed</span>,
-                                                ),
-                                            )),
-                                        );
-
-                                        <span class="prelude-val">Ok</span>(())
-                                    }),
-                            );
-                            <span class="ident">connected_effector</span>.<span class="ident">send</span>(
-                                <span class="ident">this_soma</span>,
-                                <span class="ident">Signal</span>::<span class="ident">ClientConnected</span>(<span class="ident">send_tx</span>),
-                            );
-
-                            <span class="prelude-val">Ok</span>(())
-                        })
-                        .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span>_<span class="op">|</span> {
-                            <span class="kw">let</span> <span class="ident">this_soma</span> <span class="op">=</span> <span class="ident">retry_effector</span>.<span class="ident">this_soma</span>();
-                            <span class="ident">retry_effector</span>.<span class="ident">send</span>(
-                                <span class="ident">this_soma</span>,
-                                <span class="ident">Signal</span>::<span class="ident">ClientAttemptConnect</span>(<span class="ident">retry_url</span>),
-                            );
-
-                            <span class="prelude-val">Ok</span>(())
-                        })
-                })
-                .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                    <span class="ident">timer_effector</span>.<span class="ident">error</span>(<span class="ident">organelle</span>::<span class="ident">Error</span>::<span class="ident">with_chain</span>(
-                        <span class="ident">e</span>,
-                        <span class="ident">organelle</span>::<span class="ident">ErrorKind</span>::<span class="ident">SomaError</span>,
-                    ));
-
-                    <span class="prelude-val">Ok</span>(())
-                }),
-        );
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">Connect</span>(<span class="self">self</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_connected</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">sender</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">tungstenite</span>::<span class="ident">Message</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>());
-
-        <span class="ident">Open</span>::<span class="ident">open</span>(<span class="ident">axon</span>, <span class="ident">sender</span>, <span class="self">self</span>.<span class="ident">timer</span>)
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Open</span> {
-    <span class="ident">sender</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">tungstenite</span>::<span class="ident">Message</span><span class="op">&gt;</span>,
-    <span class="ident">timer</span>: <span class="ident">Timer</span>,
-
-    <span class="ident">transactions</span>: <span class="ident">VecDeque</span><span class="op">&lt;</span>(<span class="ident">Uuid</span>, <span class="ident">Handle</span>, <span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span>()<span class="op">&gt;</span>)<span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Open</span> {
-    <span class="kw">fn</span> <span class="ident">open</span>(
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">sender</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">tungstenite</span>::<span class="ident">Message</span><span class="op">&gt;</span>,
-        <span class="ident">timer</span>: <span class="ident">Timer</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">c</span> <span class="kw">in</span> <span class="ident">axon</span>.<span class="ident">var_input</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)<span class="question-mark">?</span> {
-            <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">send</span>(<span class="kw-2">*</span><span class="ident">c</span>, <span class="ident">Signal</span>::<span class="ident">Ready</span>);
-        }
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">Open</span>(<span class="ident">Open</span> {
-            <span class="ident">sender</span>: <span class="ident">sender</span>,
-            <span class="ident">timer</span>: <span class="ident">timer</span>,
-
-            <span class="ident">transactions</span>: <span class="ident">VecDeque</span>::<span class="ident">new</span>(),
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientRequest</span>(<span class="ident">req</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">send</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">req</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientReceive</span>(<span class="ident">msg</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">recv</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">msg</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientTimeout</span>(<span class="ident">transaction</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_timeout</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">transaction</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">ClientDisconnect</span>) <span class="op">=&gt;</span> {
-                <span class="ident">Disconnect</span>::<span class="ident">disconnect</span>()
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientClosed</span>) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_close</span>(<span class="ident">axon</span>, <span class="ident">src</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientError</span>(<span class="ident">e</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_error</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">e</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">send</span>(
-        <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">req</span>: <span class="ident">ClientRequest</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">writer</span>();
-
-        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
-        <span class="kw">let</span> <span class="ident">transaction</span> <span class="op">=</span> <span class="ident">req</span>.<span class="ident">transaction</span>;
-
-        <span class="self">self</span>.<span class="ident">transactions</span>.<span class="ident">push_back</span>((<span class="ident">transaction</span>, <span class="ident">src</span>, <span class="ident">tx</span>));
-
-        {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cos</span> <span class="op">=</span> <span class="ident">protobuf</span>::<span class="ident">CodedOutputStream</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">writer</span>);
-
-            <span class="ident">req</span>.<span class="ident">request</span>.<span class="ident">write_to</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cos</span>)<span class="question-mark">?</span>;
-            <span class="ident">cos</span>.<span class="ident">flush</span>()<span class="question-mark">?</span>;
-        }
-
-        <span class="kw">let</span> <span class="ident">timeout_effector</span> <span class="op">=</span> <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">clone</span>();
-
-        <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">spawn</span>(
-            <span class="self">self</span>.<span class="ident">timer</span>
-                .<span class="ident">timeout</span>(
-                    <span class="self">self</span>.<span class="ident">sender</span>
-                        .<span class="ident">clone</span>()
-                        .<span class="ident">send</span>(<span class="ident">tungstenite</span>::<span class="ident">Message</span>::<span class="ident">Binary</span>(<span class="ident">writer</span>.<span class="ident">into_inner</span>()))
+                <span class="ident">handle</span>.<span class="ident">spawn</span>(<span class="ident">listen</span>(<span class="ident">rx</span>, <span class="ident">listen_handle</span>).<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+                    <span class="ident">main_tx</span>
+                        .<span class="ident">send</span>(<span class="ident">Impulse</span>::<span class="ident">Error</span>(<span class="ident">e</span>.<span class="ident">into</span>()))
+                        .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
                         .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ())
-                        .<span class="ident">and_then</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ())),
-                    <span class="ident">req</span>.<span class="ident">timeout</span>,
-                )
-                .<span class="ident">and_then</span>(<span class="op">|</span>_<span class="op">|</span> <span class="prelude-val">Ok</span>(()))
-                .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span>_<span class="op">|</span> {
-                    <span class="kw">let</span> <span class="ident">this_soma</span> <span class="op">=</span> <span class="ident">timeout_effector</span>.<span class="ident">this_soma</span>();
+                }));
 
-                    <span class="ident">timeout_effector</span>
-                        .<span class="ident">send</span>(<span class="ident">this_soma</span>, <span class="ident">Signal</span>::<span class="ident">ClientTimeout</span>(<span class="ident">transaction</span>));
-
-                    <span class="prelude-val">Ok</span>(())
-                }),
-        );
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">Open</span>(<span class="self">self</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">recv</span>(
-        <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">msg</span>: <span class="ident">tungstenite</span>::<span class="ident">Message</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>());
-
-        <span class="kw">let</span> <span class="ident">rsp</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">tungstenite</span>::<span class="ident">Message</span>::<span class="ident">Binary</span>(<span class="ident">buf</span>) <span class="op">=&gt;</span> {
-                <span class="kw">let</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">io</span>::<span class="ident">Cursor</span>::<span class="ident">new</span>(<span class="ident">buf</span>);
-
-                <span class="ident">parse_from_reader</span>::<span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cursor</span>.<span class="ident">reader</span>())<span class="question-mark">?</span>
-            },
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected non-binary message&quot;</span>),
-        };
-
-        <span class="kw">let</span> (<span class="ident">transaction</span>, <span class="ident">dest</span>, <span class="ident">tx</span>) <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">transactions</span>.<span class="ident">pop_front</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">transaction</span>) <span class="op">=&gt;</span> <span class="ident">transaction</span>,
-            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;no pending transactions for this response&quot;</span>),
-        };
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(_) <span class="op">=</span> <span class="ident">tx</span>.<span class="ident">send</span>(()) {
-            <span class="comment">// rx must be closed</span>
-        }
-
-        <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">send</span>(
-            <span class="ident">dest</span>,
-            <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">ClientResult</span>::<span class="ident">success</span>(<span class="ident">transaction</span>, <span class="ident">rsp</span>)),
-        );
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">Open</span>(<span class="self">self</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_timeout</span>(
-        <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">transaction</span>: <span class="ident">Uuid</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>());
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">i</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">transactions</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">position</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="kw-2">ref</span> <span class="ident">t</span>, _, _)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">t</span> <span class="op">==</span> <span class="ident">transaction</span>)
-        {
-            <span class="kw">let</span> <span class="ident">dest</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">transactions</span>[<span class="ident">i</span>].<span class="number">1</span>;
-
-            <span class="self">self</span>.<span class="ident">transactions</span>.<span class="ident">remove</span>(<span class="ident">i</span>);
-            <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>
-                .<span class="ident">send</span>(<span class="ident">dest</span>, <span class="ident">Signal</span>::<span class="ident">ClientTimeout</span>(<span class="ident">transaction</span>));
-        }
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">Open</span>(<span class="self">self</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_close</span>(<span class="self">self</span>, <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">src</span>: <span class="ident">Handle</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>());
-
-        <span class="ident">AwaitInstance</span>::<span class="ident">reset</span>(<span class="ident">axon</span>)
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_error</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">e</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">effector</span>()<span class="question-mark">?</span>.<span class="ident">this_soma</span>());
-
-        <span class="ident">AwaitInstance</span>::<span class="ident">reset_error</span>(<span class="ident">axon</span>, <span class="ident">e</span>)
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Disconnect</span> {}
-
-<span class="kw">impl</span> <span class="ident">Disconnect</span> {
-    <span class="kw">fn</span> <span class="ident">disconnect</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">ClientSoma</span>::<span class="ident">Disconnect</span>(<span class="ident">Disconnect</span> {}))
-    }
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClientSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">ClientClosed</span>) <span class="op">=&gt;</span> {
-                <span class="ident">AwaitInstance</span>::<span class="ident">reset</span>(<span class="ident">axon</span>)
-            },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">ClientError</span>(<span class="ident">e</span>)) <span class="op">=&gt;</span> {
-                <span class="ident">AwaitInstance</span>::<span class="ident">reset_error</span>(<span class="ident">axon</span>, <span class="ident">e</span>)
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> { <span class="ident">dendrites</span>: <span class="macro">vec</span><span class="macro">!</span>[] })
             },
 
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected msg {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
+            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected impulse&quot;</span>),
         }
     }
 }
+
+<span class="attribute">#[<span class="ident">async</span>]</span>
+<span class="kw">fn</span> <span class="ident">listen</span>(
+    <span class="kw-2">mut</span> <span class="ident">rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ClientRequest</span><span class="op">&gt;</span>,
+    <span class="ident">handle</span>: <span class="ident">reactor</span>::<span class="ident">Handle</span>,
+) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">loop</span> {
+        <span class="kw">let</span> (<span class="ident">req</span>, <span class="ident">stream</span>) <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(
+            <span class="ident">stream_next</span>(<span class="ident">rx</span>)
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to receive next item&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="ident">rx</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">req</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">ClientRequest</span>::<span class="ident">Connect</span>(<span class="ident">url</span>, <span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                <span class="macro">await</span><span class="macro">!</span>(<span class="ident">connect</span>(<span class="ident">url</span>, <span class="ident">handle</span>.<span class="ident">clone</span>(), <span class="ident">tx</span>, <span class="ident">stream</span>))<span class="question-mark">?</span>
+            },
+            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="kw">break</span>,
+            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected req {:?}&quot;</span>, <span class="ident">req</span>),
+        }
+    }
+
+    <span class="prelude-val">Ok</span>(())
+}
+
+<span class="attribute">#[<span class="ident">async</span>]</span>
+<span class="kw">fn</span> <span class="ident">connect</span>(
+    <span class="ident">url</span>: <span class="ident">Url</span>,
+    <span class="ident">handle</span>: <span class="ident">reactor</span>::<span class="ident">Handle</span>,
+    <span class="ident">tx</span>: <span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
+    <span class="ident">rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ClientRequest</span><span class="op">&gt;</span>,
+) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ClientRequest</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">const</span> <span class="ident">NUM_RETRIES</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">10</span>;
+
+    <span class="kw">let</span> <span class="ident">timer</span> <span class="op">=</span> <span class="ident">Timer</span>::<span class="ident">default</span>();
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">client</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+
+    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">NUM_RETRIES</span> {
+        <span class="kw">let</span> <span class="ident">url</span> <span class="op">=</span> <span class="ident">url</span>.<span class="ident">clone</span>();
+        <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="ident">handle</span>.<span class="ident">clone</span>();
+
+        <span class="macro">println</span><span class="macro">!</span>(
+            <span class="string">&quot;attempting to connect to instance {} - retries {}&quot;</span>,
+            <span class="ident">url</span>,
+            (<span class="ident">NUM_RETRIES</span> <span class="op">-</span> <span class="number">1</span>) <span class="op">-</span> <span class="ident">i</span>
+        );
+
+        <span class="kw">match</span> <span class="macro">await</span><span class="macro">!</span>(
+            <span class="ident">timer</span>
+                .<span class="ident">sleep</span>(<span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_secs</span>(<span class="number">5</span>))
+                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">into</span>())
+                .<span class="ident">and_then</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">attempt_connect</span>(<span class="ident">url</span>, <span class="ident">handle</span>))
+        ) {
+            <span class="prelude-val">Err</span>(_) <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;connect failed. retrying in 5s&quot;</span>),
+            <span class="prelude-val">Ok</span>((<span class="ident">send</span>, <span class="ident">recv</span>)) <span class="op">=&gt;</span> {
+                <span class="ident">client</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">send</span>, <span class="ident">recv</span>));
+                <span class="kw">break</span>;
+            },
+        }
+    }
+
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">send</span>, <span class="ident">recv</span>)) <span class="op">=</span> <span class="ident">client</span> {
+        <span class="ident">tx</span>.<span class="ident">send</span>(())
+            .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send connect ack&quot;</span>))<span class="question-mark">?</span>;
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">run_client</span>(<span class="ident">rx</span>, <span class="ident">send</span>, <span class="ident">recv</span>))
+    } <span class="kw">else</span> {
+        <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unable to connect&quot;</span>)
+    }
+}
+
+<span class="attribute">#[<span class="ident">async</span>]</span>
+<span class="kw">fn</span> <span class="ident">attempt_connect</span>(
+    <span class="ident">url</span>: <span class="ident">Url</span>,
+    <span class="ident">handle</span>: <span class="ident">reactor</span>::<span class="ident">Handle</span>,
+) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>
+    (
+        <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">tungstenite</span>::<span class="ident">Message</span><span class="op">&gt;</span>,
+        <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
+    ),
+<span class="op">&gt;</span> {
+    <span class="kw">let</span> (<span class="ident">send_tx</span>, <span class="ident">send_rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">10</span>);
+    <span class="kw">let</span> (<span class="ident">recv_tx</span>, <span class="ident">recv_rx</span>) <span class="op">=</span>
+        <span class="ident">mpsc</span>::<span class="ident">channel</span>::<span class="op">&lt;</span><span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>(<span class="number">10</span>);
+
+    <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="ident">handle</span>.<span class="ident">clone</span>();
+
+    <span class="macro">await</span><span class="macro">!</span>(<span class="ident">connect_async</span>(<span class="ident">url</span>, <span class="ident">handle</span>.<span class="ident">remote</span>().<span class="ident">clone</span>()).<span class="ident">and_then</span>(
+        <span class="kw">move</span> <span class="op">|</span>(<span class="ident">ws_stream</span>, _)<span class="op">|</span> {
+            <span class="kw">let</span> (<span class="ident">sink</span>, <span class="ident">stream</span>) <span class="op">=</span> <span class="ident">ws_stream</span>.<span class="ident">split</span>();
+
+            <span class="ident">handle</span>.<span class="ident">spawn</span>(
+                <span class="ident">sink</span>.<span class="ident">send_all</span>(
+                    <span class="ident">send_rx</span>
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="op">-&gt;</span> <span class="ident">tungstenite</span>::<span class="ident">Error</span> { <span class="macro">unreachable</span><span class="macro">!</span>() }),
+                ).<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                    .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ()),
+            );
+            <span class="ident">handle</span>.<span class="ident">spawn</span>(
+                <span class="ident">stream</span>
+                    .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;client error {:?}&quot;</span>, <span class="ident">e</span>))
+                    .<span class="ident">zip</span>(<span class="ident">recv_rx</span>)
+                    .<span class="ident">for_each</span>(<span class="op">|</span>(<span class="ident">msg</span>, <span class="ident">tx</span>)<span class="op">|</span> {
+                        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">tungstenite</span>::<span class="ident">Message</span>::<span class="ident">Binary</span>(<span class="ident">buf</span>) <span class="op">=</span> <span class="ident">msg</span> {
+                            <span class="kw">let</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">io</span>::<span class="ident">Cursor</span>::<span class="ident">new</span>(<span class="ident">buf</span>);
+
+                            <span class="kw">match</span> <span class="ident">parse_from_reader</span>::<span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cursor</span>.<span class="ident">reader</span>())
+                            {
+                                <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> {
+                                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(_) <span class="op">=</span> <span class="ident">tx</span>.<span class="ident">send</span>(<span class="prelude-val">Err</span>(<span class="ident">e</span>.<span class="ident">into</span>())) {
+                                        <span class="comment">// keep going</span>
+                                    }
+                                },
+                                <span class="prelude-val">Ok</span>(<span class="ident">rsp</span>) <span class="op">=&gt;</span> {
+                                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(_) <span class="op">=</span> <span class="ident">tx</span>.<span class="ident">send</span>(<span class="prelude-val">Ok</span>(<span class="ident">rsp</span>)) {
+                                        <span class="comment">// keep going</span>
+                                    }
+                                },
+                            }
+                        }
+
+                        <span class="prelude-val">Ok</span>(())
+                    }),
+            );
+
+            <span class="prelude-val">Ok</span>(())
+        }
+    )).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="ident">e</span>))<span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>((<span class="ident">send_tx</span>, <span class="ident">recv_tx</span>))
+}
+
+<span class="attribute">#[<span class="ident">async</span>]</span>
+<span class="kw">fn</span> <span class="ident">run_client</span>(
+    <span class="kw-2">mut</span> <span class="ident">rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ClientRequest</span><span class="op">&gt;</span>,
+    <span class="ident">send</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">tungstenite</span>::<span class="ident">Message</span><span class="op">&gt;</span>,
+    <span class="ident">recv</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>,
+) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ClientRequest</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">loop</span> {
+        <span class="kw">let</span> (<span class="ident">req</span>, <span class="ident">stream</span>) <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(
+            <span class="ident">stream_next</span>(<span class="ident">rx</span>)
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to receive next item&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="ident">rx</span> <span class="op">=</span> <span class="ident">stream</span>;
+
+        <span class="kw">match</span> <span class="ident">req</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">ClientRequest</span>::<span class="ident">Request</span>(<span class="ident">req</span>, <span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">writer</span>();
+
+                {
+                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cos</span> <span class="op">=</span> <span class="ident">protobuf</span>::<span class="ident">CodedOutputStream</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">writer</span>);
+
+                    <span class="ident">req</span>.<span class="ident">write_to</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cos</span>)<span class="question-mark">?</span>;
+                    <span class="ident">cos</span>.<span class="ident">flush</span>()<span class="question-mark">?</span>;
+                }
+                <span class="macro">await</span><span class="macro">!</span>(
+                    <span class="ident">send</span>.<span class="ident">clone</span>()
+                        .<span class="ident">send</span>(<span class="ident">tungstenite</span>::<span class="ident">Message</span>::<span class="ident">Binary</span>(<span class="ident">writer</span>.<span class="ident">into_inner</span>()))
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send request&quot;</span>))
+                )<span class="question-mark">?</span>;
+                <span class="macro">await</span><span class="macro">!</span>(
+                    <span class="ident">recv</span>.<span class="ident">clone</span>()
+                        .<span class="ident">send</span>(<span class="ident">tx</span>)
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send responder&quot;</span>))
+                )<span class="question-mark">?</span>;
+            },
+
+            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="kw">break</span>,
+
+            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected request&quot;</span>),
+        }
+    }
+
+    <span class="prelude-val">Ok</span>(<span class="ident">rx</span>)
+}
+<span class="comment">// #[derive(PartialEq, Copy, Clone, Debug)]</span>
+<span class="comment">// enum ClientMessageKind {</span>
+<span class="comment">//     Unknown,</span>
+<span class="comment">//     CreateGame,</span>
+<span class="comment">//     JoinGame,</span>
+<span class="comment">//     RestartGame,</span>
+<span class="comment">//     StartReplay,</span>
+<span class="comment">//     LeaveGame,</span>
+<span class="comment">//     QuickSave,</span>
+<span class="comment">//     QuickLoad,</span>
+<span class="comment">//     Quit,</span>
+<span class="comment">//     GameInfo,</span>
+<span class="comment">//     Observation,</span>
+<span class="comment">//     Action,</span>
+<span class="comment">//     Step,</span>
+<span class="comment">//     Data,</span>
+<span class="comment">//     Query,</span>
+<span class="comment">//     SaveReplay,</span>
+<span class="comment">//     ReplayInfo,</span>
+<span class="comment">//     AvailableMaps,</span>
+<span class="comment">//     SaveMap,</span>
+<span class="comment">//     Ping,</span>
+<span class="comment">//     Debug,</span>
+<span class="comment">// }</span>
+
+<span class="comment">//     fn get_kind(req: &amp;Request) -&gt; ClientMessageKind {</span>
+<span class="comment">//         if req.has_create_game() {</span>
+<span class="comment">//             ClientMessageKind::CreateGame</span>
+<span class="comment">//         } else if req.has_join_game() {</span>
+<span class="comment">//             ClientMessageKind::JoinGame</span>
+<span class="comment">//         } else if req.has_restart_game() {</span>
+<span class="comment">//             ClientMessageKind::RestartGame</span>
+<span class="comment">//         } else if req.has_start_replay() {</span>
+<span class="comment">//             ClientMessageKind::StartReplay</span>
+<span class="comment">//         } else if req.has_leave_game() {</span>
+<span class="comment">//             ClientMessageKind::LeaveGame</span>
+<span class="comment">//         } else if req.has_quick_save() {</span>
+<span class="comment">//             ClientMessageKind::QuickSave</span>
+<span class="comment">//         } else if req.has_quick_load() {</span>
+<span class="comment">//             ClientMessageKind::QuickLoad</span>
+<span class="comment">//         } else if req.has_quit() {</span>
+<span class="comment">//             ClientMessageKind::Quit</span>
+<span class="comment">//         } else if req.has_game_info() {</span>
+<span class="comment">//             ClientMessageKind::GameInfo</span>
+<span class="comment">//         } else if req.has_observation() {</span>
+<span class="comment">//             ClientMessageKind::Observation</span>
+<span class="comment">//         } else if req.has_action() {</span>
+<span class="comment">//             ClientMessageKind::Action</span>
+<span class="comment">//         } else if req.has_step() {</span>
+<span class="comment">//             ClientMessageKind::Step</span>
+<span class="comment">//         } else if req.has_data() {</span>
+<span class="comment">//             ClientMessageKind::Data</span>
+<span class="comment">//         } else if req.has_query() {</span>
+<span class="comment">//             ClientMessageKind::Query</span>
+<span class="comment">//         } else if req.has_save_replay() {</span>
+<span class="comment">//             ClientMessageKind::SaveReplay</span>
+<span class="comment">//         } else if req.has_replay_info() {</span>
+<span class="comment">//             ClientMessageKind::ReplayInfo</span>
+<span class="comment">//         } else if req.has_available_maps() {</span>
+<span class="comment">//             ClientMessageKind::AvailableMaps</span>
+<span class="comment">//         } else if req.has_save_map() {</span>
+<span class="comment">//             ClientMessageKind::SaveMap</span>
+<span class="comment">//         } else if req.has_ping() {</span>
+<span class="comment">//             ClientMessageKind::Ping</span>
+<span class="comment">//         } else if req.has_debug() {</span>
+<span class="comment">//             ClientMessageKind::Debug</span>
+<span class="comment">//         } else {</span>
+<span class="comment">//             ClientMessageKind::Unknown</span>
+<span class="comment">//         }</span>
+<span class="comment">//     }</span>
+<span class="comment">// }</span>
+<span class="comment">// impl ClientResult {</span>
+<span class="comment">//     fn get_kind(rsp: &amp;Response) -&gt; ClientMessageKind {</span>
+<span class="comment">//         if rsp.has_create_game() {</span>
+<span class="comment">//             ClientMessageKind::CreateGame</span>
+<span class="comment">//         } else if rsp.has_join_game() {</span>
+<span class="comment">//             ClientMessageKind::JoinGame</span>
+<span class="comment">//         } else if rsp.has_restart_game() {</span>
+<span class="comment">//             ClientMessageKind::RestartGame</span>
+<span class="comment">//         } else if rsp.has_start_replay() {</span>
+<span class="comment">//             ClientMessageKind::StartReplay</span>
+<span class="comment">//         } else if rsp.has_leave_game() {</span>
+<span class="comment">//             ClientMessageKind::LeaveGame</span>
+<span class="comment">//         } else if rsp.has_quick_save() {</span>
+<span class="comment">//             ClientMessageKind::QuickSave</span>
+<span class="comment">//         } else if rsp.has_quick_load() {</span>
+<span class="comment">//             ClientMessageKind::QuickLoad</span>
+<span class="comment">//         } else if rsp.has_quit() {</span>
+<span class="comment">//             ClientMessageKind::Quit</span>
+<span class="comment">//         } else if rsp.has_game_info() {</span>
+<span class="comment">//             ClientMessageKind::GameInfo</span>
+<span class="comment">//         } else if rsp.has_observation() {</span>
+<span class="comment">//             ClientMessageKind::Observation</span>
+<span class="comment">//         } else if rsp.has_action() {</span>
+<span class="comment">//             ClientMessageKind::Action</span>
+<span class="comment">//         } else if rsp.has_step() {</span>
+<span class="comment">//             ClientMessageKind::Step</span>
+<span class="comment">//         } else if rsp.has_data() {</span>
+<span class="comment">//             ClientMessageKind::Data</span>
+<span class="comment">//         } else if rsp.has_query() {</span>
+<span class="comment">//             ClientMessageKind::Query</span>
+<span class="comment">//         } else if rsp.has_save_replay() {</span>
+<span class="comment">//             ClientMessageKind::SaveReplay</span>
+<span class="comment">//         } else if rsp.has_replay_info() {</span>
+<span class="comment">//             ClientMessageKind::ReplayInfo</span>
+<span class="comment">//         } else if rsp.has_available_maps() {</span>
+<span class="comment">//             ClientMessageKind::AvailableMaps</span>
+<span class="comment">//         } else if rsp.has_save_map() {</span>
+<span class="comment">//             ClientMessageKind::SaveMap</span>
+<span class="comment">//         } else if rsp.has_ping() {</span>
+<span class="comment">//             ClientMessageKind::Ping</span>
+<span class="comment">//         } else if rsp.has_debug() {</span>
+<span class="comment">//             ClientMessageKind::Debug</span>
+<span class="comment">//         } else {</span>
+<span class="comment">//             ClientMessageKind::Unknown</span>
+<span class="comment">//         }</span>
+<span class="comment">//     }</span>
+<span class="comment">// }</span>
+
+<span class="comment">//     fn attempt_connect(</span>
+<span class="comment">//         mut self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         src: Handle,</span>
+<span class="comment">//         url: Url,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         assert_eq!(src, axon.effector()?.this_soma());</span>
+
+<span class="comment">//         let connected_effector = axon.effector()?.clone();</span>
+<span class="comment">//         let retry_effector = axon.effector()?.clone();</span>
+<span class="comment">//         let timer_effector = axon.effector()?.clone();</span>
+
+<span class="comment">//         let client_remote = axon.effector()?.remote();</span>
+
+<span class="comment">//         if self.retries == 0 {</span>
+<span class="comment">//             bail!(&quot;unable to connect to instance&quot;)</span>
+<span class="comment">//         } else {</span>
+<span class="comment">//             println!(</span>
+<span class="comment">//                 &quot;attempting to connect to instance {} - retries {}&quot;,</span>
+<span class="comment">//                 url, self.retries</span>
+<span class="comment">//             );</span>
+
+<span class="comment">//             self.retries -= 1;</span>
+<span class="comment">//         }</span>
+
+<span class="comment">//         let retry_url = url.clone();</span>
+
+<span class="comment">//         axon.effector()?.spawn(</span>
+<span class="comment">//             self.timer</span>
+<span class="comment">//                 .sleep(time::Duration::from_secs(5))</span>
+<span class="comment">//                 .and_then(move |_| {</span>
+<span class="comment">//                     connect_async(url, client_remote)</span>
+<span class="comment">//                         .and_then(move |(ws_stream, _)| {</span>
+<span class="comment">//                             let this_soma = connected_effector.this_soma();</span>
+
+<span class="comment">//                             let (send_tx, send_rx) = mpsc::channel(10);</span>
+
+<span class="comment">//                             let (sink, stream) = ws_stream.split();</span>
+
+<span class="comment">//                             connected_effector.spawn(sink.send_all(</span>
+<span class="comment">//                                 send_rx.map_err(|_| {</span>
+<span class="comment">//                                     tungstenite::Error::Io(</span>
+<span class="comment">//                                         io::ErrorKind::BrokenPipe.into(),</span>
+<span class="comment">//                                     )</span>
+<span class="comment">//                                 }),</span>
+<span class="comment">//                             ).then(|_| Ok(())));</span>
+
+<span class="comment">//                             let recv_eff = connected_effector.clone();</span>
+<span class="comment">//                             let close_eff = connected_effector.clone();</span>
+<span class="comment">//                             let error_eff = connected_effector.clone();</span>
+
+<span class="comment">//                             connected_effector.spawn(</span>
+<span class="comment">//                                 stream</span>
+<span class="comment">//                                     .for_each(move |msg| {</span>
+<span class="comment">//                                         recv_eff.send(</span>
+<span class="comment">//                                             this_soma,</span>
+<span class="comment">//                                             Signal::ClientReceive(msg),</span>
+<span class="comment">//                                         );</span>
+
+<span class="comment">//                                         Ok(())</span>
+<span class="comment">//                                     })</span>
+<span class="comment">//                                     .and_then(move |_| {</span>
+<span class="comment">//                                         close_eff.send(</span>
+<span class="comment">//                                             this_soma,</span>
+<span class="comment">//                                             Signal::ClientClosed,</span>
+<span class="comment">//                                         );</span>
+
+<span class="comment">//                                         Ok(())</span>
+<span class="comment">//                                     })</span>
+<span class="comment">//                                     .or_else(move |e| {</span>
+<span class="comment">//                                         error_eff.send(</span>
+<span class="comment">//                                             this_soma,</span>
+<span class="comment">//                                             Signal::ClientError(Rc::from(</span>
+<span class="comment">//                                                 Error::with_chain(</span>
+<span class="comment">//                                                     e,</span>
+<span class="comment">//</span>
+<span class="comment">// ErrorKind::ClientRecvFailed,</span>
+<span class="comment">// ),                                             )),</span>
+<span class="comment">//                                         );</span>
+
+<span class="comment">//                                         Ok(())</span>
+<span class="comment">//                                     }),</span>
+<span class="comment">//                             );</span>
+<span class="comment">//                             connected_effector.send(</span>
+<span class="comment">//                                 this_soma,</span>
+<span class="comment">//                                 Signal::ClientConnected(send_tx),</span>
+<span class="comment">//                             );</span>
+
+<span class="comment">//                             Ok(())</span>
+<span class="comment">//                         })</span>
+<span class="comment">//                         .or_else(move |_| {</span>
+<span class="comment">//                             let this_soma = retry_effector.this_soma();</span>
+<span class="comment">//                             retry_effector.send(</span>
+<span class="comment">//                                 this_soma,</span>
+<span class="comment">//                                 Signal::ClientAttemptConnect(retry_url),</span>
+<span class="comment">//                             );</span>
+
+<span class="comment">//                             Ok(())</span>
+<span class="comment">//                         })</span>
+<span class="comment">//                 })</span>
+<span class="comment">//                 .or_else(move |e| {</span>
+<span class="comment">//                     timer_effector.error(organelle::Error::with_chain(</span>
+<span class="comment">//                         e,</span>
+<span class="comment">//                         organelle::ErrorKind::SomaError,</span>
+<span class="comment">//                     ));</span>
+
+<span class="comment">//                     Ok(())</span>
+<span class="comment">//                 }),</span>
+<span class="comment">//         );</span>
+
+<span class="comment">//         Ok(ClientSoma::Connect(self))</span>
+<span class="comment">//     }</span>
+
+<span class="comment">//     fn on_connected(</span>
+<span class="comment">//         self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         src: Handle,</span>
+<span class="comment">//         sender: mpsc::Sender&lt;tungstenite::Message&gt;,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         assert_eq!(src, axon.effector()?.this_soma());</span>
+
+<span class="comment">//         Open::open(axon, sender, self.timer)</span>
+<span class="comment">//     }</span>
+<span class="comment">// }</span>
+
+<span class="comment">// pub struct Open {</span>
+<span class="comment">//     sender: mpsc::Sender&lt;tungstenite::Message&gt;,</span>
+<span class="comment">//     timer: Timer,</span>
+
+<span class="comment">//     transactions: VecDeque&lt;(Uuid, Handle, oneshot::Sender&lt;()&gt;)&gt;,</span>
+<span class="comment">// }</span>
+
+<span class="comment">// impl Open {</span>
+<span class="comment">//     fn open(</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         sender: mpsc::Sender&lt;tungstenite::Message&gt;,</span>
+<span class="comment">//         timer: Timer,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         for c in axon.var_input(Synapse::Client)? {</span>
+<span class="comment">//             axon.effector()?.send(*c, Signal::Ready);</span>
+<span class="comment">//         }</span>
+
+<span class="comment">//         Ok(ClientSoma::Open(Open {</span>
+<span class="comment">//             sender: sender,</span>
+<span class="comment">//             timer: timer,</span>
+
+<span class="comment">//             transactions: VecDeque::new(),</span>
+<span class="comment">//         }))</span>
+<span class="comment">//     }</span>
+
+<span class="comment">//     fn update(</span>
+<span class="comment">//         self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         msg: Impulse&lt;Signal, Synapse&gt;,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         match msg {</span>
+<span class="comment">//             Impulse::Signal(src, Signal::ClientRequest(req)) =&gt; {</span>
+<span class="comment">//                 self.send(axon, src, req)</span>
+<span class="comment">//             },</span>
+<span class="comment">//             Impulse::Signal(src, Signal::ClientReceive(msg)) =&gt; {</span>
+<span class="comment">//                 self.recv(axon, src, msg)</span>
+<span class="comment">//             },</span>
+<span class="comment">//             Impulse::Signal(src, Signal::ClientTimeout(transaction)) =&gt; {</span>
+<span class="comment">//                 self.on_timeout(axon, src, transaction)</span>
+<span class="comment">//             },</span>
+<span class="comment">//             Impulse::Signal(_, Signal::ClientDisconnect) =&gt; {</span>
+<span class="comment">//                 Disconnect::disconnect()</span>
+<span class="comment">//             },</span>
+<span class="comment">//             Impulse::Signal(src, Signal::ClientClosed) =&gt; {</span>
+<span class="comment">//                 self.on_close(axon, src)</span>
+<span class="comment">//             },</span>
+<span class="comment">//             Impulse::Signal(src, Signal::ClientError(e)) =&gt; {</span>
+<span class="comment">//                 self.on_error(axon, src, e)</span>
+<span class="comment">//             },</span>
+
+<span class="comment">// Impulse::Signal(_, msg) =&gt; bail!(&quot;unexpected message {:#?}&quot;,</span>
+<span class="comment">// msg),             _ =&gt; bail!(&quot;unexpected protocol message&quot;),</span>
+<span class="comment">//         }</span>
+<span class="comment">//     }</span>
+
+<span class="comment">//     fn send(</span>
+<span class="comment">//         mut self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         src: Handle,</span>
+<span class="comment">//         req: ClientRequest,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         let buf = Vec::new();</span>
+<span class="comment">//         let mut writer = buf.writer();</span>
+
+<span class="comment">//         let (tx, rx) = oneshot::channel();</span>
+<span class="comment">//         let transaction = req.transaction;</span>
+
+<span class="comment">//         self.transactions.push_back((transaction, src, tx));</span>
+
+<span class="comment">//         {</span>
+<span class="comment">//             let mut cos = protobuf::CodedOutputStream::new(&amp;mut writer);</span>
+
+<span class="comment">//             req.request.write_to(&amp;mut cos)?;</span>
+<span class="comment">//             cos.flush()?;</span>
+<span class="comment">//         }</span>
+
+<span class="comment">//         let timeout_effector = axon.effector()?.clone();</span>
+
+<span class="comment">//         axon.effector()?.spawn(</span>
+<span class="comment">//             self.timer</span>
+<span class="comment">//                 .timeout(</span>
+<span class="comment">//                     self.sender</span>
+<span class="comment">//                         .clone()</span>
+<span class="comment">//</span>
+<span class="comment">// .send(tungstenite::Message::Binary(writer.into_inner()))</span>
+<span class="comment">// .map_err(|_| ())                         .and_then(|_| rx.map_err(|_| ())),</span>
+<span class="comment">//                     req.timeout,</span>
+<span class="comment">//                 )</span>
+<span class="comment">//                 .and_then(|_| Ok(()))</span>
+<span class="comment">//                 .or_else(move |_| {</span>
+<span class="comment">//                     let this_soma = timeout_effector.this_soma();</span>
+
+<span class="comment">//                     timeout_effector</span>
+<span class="comment">//                         .send(this_soma, Signal::ClientTimeout(transaction));</span>
+
+<span class="comment">//                     Ok(())</span>
+<span class="comment">//                 }),</span>
+<span class="comment">//         );</span>
+
+<span class="comment">//         Ok(ClientSoma::Open(self))</span>
+<span class="comment">//     }</span>
+
+<span class="comment">//     fn recv(</span>
+<span class="comment">//         mut self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         src: Handle,</span>
+<span class="comment">//         msg: tungstenite::Message,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         assert_eq!(src, axon.effector()?.this_soma());</span>
+
+<span class="comment">//         let rsp = match msg {</span>
+<span class="comment">//             tungstenite::Message::Binary(buf) =&gt; {</span>
+<span class="comment">//                 let cursor = io::Cursor::new(buf);</span>
+
+<span class="comment">//                 parse_from_reader::&lt;Response&gt;(&amp;mut cursor.reader())?</span>
+<span class="comment">//             },</span>
+<span class="comment">//             _ =&gt; bail!(&quot;unexpected non-binary message&quot;),</span>
+<span class="comment">//         };</span>
+
+<span class="comment">//         let (transaction, dest, tx) = match self.transactions.pop_front() {</span>
+<span class="comment">//             Some(transaction) =&gt; transaction,</span>
+<span class="comment">//             None =&gt; bail!(&quot;no pending transactions for this response&quot;),</span>
+<span class="comment">//         };</span>
+
+<span class="comment">//         if let Err(_) = tx.send(()) {</span>
+<span class="comment">//             // rx must be closed</span>
+<span class="comment">//         }</span>
+
+<span class="comment">//         axon.effector()?.send(</span>
+<span class="comment">//             dest,</span>
+<span class="comment">//             Signal::ClientResult(ClientResult::success(transaction, rsp)),</span>
+<span class="comment">//         );</span>
+
+<span class="comment">//         Ok(ClientSoma::Open(self))</span>
+<span class="comment">//     }</span>
+
+<span class="comment">//     fn on_timeout(</span>
+<span class="comment">//         mut self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         src: Handle,</span>
+<span class="comment">//         transaction: Uuid,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         assert_eq!(src, axon.effector()?.this_soma());</span>
+
+<span class="comment">//         if let Some(i) = self.transactions</span>
+<span class="comment">//             .iter()</span>
+<span class="comment">//             .position(|&amp;(ref t, _, _)| *t == transaction)</span>
+<span class="comment">//         {</span>
+<span class="comment">//             let dest = self.transactions[i].1;</span>
+
+<span class="comment">//             self.transactions.remove(i);</span>
+<span class="comment">//             axon.effector()?</span>
+<span class="comment">//                 .send(dest, Signal::ClientTimeout(transaction));</span>
+<span class="comment">//         }</span>
+
+<span class="comment">//         Ok(ClientSoma::Open(self))</span>
+<span class="comment">//     }</span>
+
+<span class="comment">//     fn on_close(self, axon: &amp;Axon, src: Handle) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         assert_eq!(src, axon.effector()?.this_soma());</span>
+
+<span class="comment">//         AwaitInstance::reset(axon)</span>
+<span class="comment">//     }</span>
+
+<span class="comment">//     fn on_error(</span>
+<span class="comment">//         self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         src: Handle,</span>
+<span class="comment">//         e: Rc&lt;Error&gt;,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         assert_eq!(src, axon.effector()?.this_soma());</span>
+
+<span class="comment">//         AwaitInstance::reset_error(axon, e)</span>
+<span class="comment">//     }</span>
+<span class="comment">// }</span>
+
+<span class="comment">// pub struct Disconnect {}</span>
+
+<span class="comment">// impl Disconnect {</span>
+<span class="comment">//     fn disconnect() -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         Ok(ClientSoma::Disconnect(Disconnect {}))</span>
+<span class="comment">//     }</span>
+<span class="comment">//     fn update(</span>
+<span class="comment">//         self,</span>
+<span class="comment">//         axon: &amp;Axon,</span>
+<span class="comment">//         msg: Impulse&lt;Signal, Synapse&gt;,</span>
+<span class="comment">//     ) -&gt; Result&lt;ClientSoma&gt; {</span>
+<span class="comment">//         match msg {</span>
+<span class="comment">//             Impulse::Signal(_, Signal::ClientClosed) =&gt; {</span>
+<span class="comment">//                 AwaitInstance::reset(axon)</span>
+<span class="comment">//             },</span>
+<span class="comment">//             Impulse::Signal(_, Signal::ClientError(e)) =&gt; {</span>
+<span class="comment">//                 AwaitInstance::reset_error(axon, e)</span>
+<span class="comment">//             },</span>
+
+<span class="comment">//             Impulse::Signal(_, msg) =&gt; bail!(&quot;unexpected msg {:#?}&quot;, msg),</span>
+<span class="comment">//             _ =&gt; bail!(&quot;unexpected protocol message&quot;),</span>
+<span class="comment">//         }</span>
+<span class="comment">//     }</span>
+<span class="comment">// }</span>
 </pre>
 </section>
     <section id='search' class="content hidden"></section>
@@ -1542,20 +1585,22 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>↑</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>↓</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>↹</dt>
+                    <dt><kbd>↹</kbd></dt>
                     <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 

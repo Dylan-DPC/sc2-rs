@@ -10,8 +10,11 @@
     <title>observer.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
         
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -653,304 +664,623 @@
 <span id="608">608</span>
 <span id="609">609</span>
 <span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
+<span id="638">638</span>
+<span id="639">639</span>
+<span id="640">640</span>
+<span id="641">641</span>
+<span id="642">642</span>
+<span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+<span id="681">681</span>
+<span id="682">682</span>
+<span id="683">683</span>
+<span id="684">684</span>
+<span id="685">685</span>
+<span id="686">686</span>
+<span id="687">687</span>
+<span id="688">688</span>
+<span id="689">689</span>
+<span id="690">690</span>
+<span id="691">691</span>
+<span id="692">692</span>
+<span id="693">693</span>
+<span id="694">694</span>
+<span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
+<span id="706">706</span>
+<span id="707">707</span>
+<span id="708">708</span>
+<span id="709">709</span>
+<span id="710">710</span>
+<span id="711">711</span>
+<span id="712">712</span>
+<span id="713">713</span>
+<span id="714">714</span>
+<span id="715">715</span>
+<span id="716">716</span>
+<span id="717">717</span>
+<span id="718">718</span>
+<span id="719">719</span>
+<span id="720">720</span>
+<span id="721">721</span>
+<span id="722">722</span>
+<span id="723">723</span>
+<span id="724">724</span>
+<span id="725">725</span>
+<span id="726">726</span>
+<span id="727">727</span>
+<span id="728">728</span>
+<span id="729">729</span>
+<span id="730">730</span>
+<span id="731">731</span>
+<span id="732">732</span>
+<span id="733">733</span>
+<span id="734">734</span>
+<span id="735">735</span>
+<span id="736">736</span>
+<span id="737">737</span>
+<span id="738">738</span>
+<span id="739">739</span>
+<span id="740">740</span>
+<span id="741">741</span>
+<span id="742">742</span>
+<span id="743">743</span>
+<span id="744">744</span>
+<span id="745">745</span>
+<span id="746">746</span>
+<span id="747">747</span>
+<span id="748">748</span>
+<span id="749">749</span>
+<span id="750">750</span>
+<span id="751">751</span>
+<span id="752">752</span>
+<span id="753">753</span>
+<span id="754">754</span>
+<span id="755">755</span>
+<span id="756">756</span>
+<span id="757">757</span>
+<span id="758">758</span>
+<span id="759">759</span>
+<span id="760">760</span>
+<span id="761">761</span>
+<span id="762">762</span>
+<span id="763">763</span>
+<span id="764">764</span>
+<span id="765">765</span>
+<span id="766">766</span>
+<span id="767">767</span>
+<span id="768">768</span>
+<span id="769">769</span>
+<span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
+<span id="820">820</span>
+<span id="821">821</span>
+<span id="822">822</span>
+<span id="823">823</span>
+<span id="824">824</span>
+<span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
+<span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
+<span id="864">864</span>
+<span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">rc</span>::<span class="ident">Rc</span>;
 
-<span class="kw">use</span> <span class="ident">organelle</span>;
-<span class="kw">use</span> <span class="ident">organelle</span>::{<span class="ident">Dendrite</span>, <span class="ident">Handle</span>, <span class="ident">Impulse</span>, <span class="ident">Neuron</span>, <span class="ident">ResultExt</span>, <span class="ident">Sheath</span>};
+<span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">unsync</span>::{<span class="ident">mpsc</span>, <span class="ident">oneshot</span>};
+<span class="kw">use</span> <span class="ident">organelle</span>::{<span class="ident">Axon</span>, <span class="ident">Constraint</span>, <span class="ident">Impulse</span>, <span class="ident">Soma</span>};
 <span class="kw">use</span> <span class="ident">sc2_proto</span>::<span class="ident">sc2api</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Error</span>, <span class="ident">FromProto</span>, <span class="ident">IntoSc2</span>, <span class="prelude-ty">Result</span>};
+<span class="kw">use</span> <span class="ident">agent</span>::<span class="ident">GameEvent</span>;
+<span class="kw">use</span> <span class="ident">client</span>::<span class="ident">ClientTerminal</span>;
+<span class="kw">use</span> <span class="ident">data</span>::{
     <span class="ident">Ability</span>,
     <span class="ident">AbilityData</span>,
     <span class="ident">Action</span>,
     <span class="ident">Alliance</span>,
-    <span class="ident">Axon</span>,
     <span class="ident">Buff</span>,
     <span class="ident">BuffData</span>,
     <span class="ident">DisplayType</span>,
-    <span class="ident">FrameData</span>,
-    <span class="ident">FromProto</span>,
-    <span class="ident">GameData</span>,
-    <span class="ident">GameEvent</span>,
-    <span class="ident">GameState</span>,
-    <span class="ident">IntoSc2</span>,
-    <span class="ident">MapState</span>,
+    <span class="ident">Effect</span>,
+    <span class="ident">ImageData</span>,
+    <span class="ident">MapInfo</span>,
     <span class="ident">Point2</span>,
-    <span class="prelude-ty">Result</span>,
-    <span class="ident">Signal</span>,
-    <span class="ident">SpatialAction</span>,
-    <span class="ident">Synapse</span>,
+    <span class="ident">PowerSource</span>,
+    <span class="ident">Score</span>,
     <span class="ident">Tag</span>,
     <span class="ident">Unit</span>,
     <span class="ident">UnitType</span>,
     <span class="ident">UnitTypeData</span>,
     <span class="ident">Upgrade</span>,
     <span class="ident">UpgradeData</span>,
+    <span class="ident">Visibility</span>,
 };
-<span class="kw">use</span> <span class="ident">client</span>::{<span class="ident">ClientRequest</span>, <span class="ident">ClientResult</span>, <span class="ident">Transactor</span>};
+<span class="kw">use</span> <span class="ident">synapses</span>::{<span class="ident">Dendrite</span>, <span class="ident">Synapse</span>, <span class="ident">Terminal</span>};
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ObserverSoma</span> {
-    <span class="ident">Init</span>(<span class="ident">Init</span>),
+<span class="doccomment">/// state of the game (changes every frame)</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Observation</span> {
+    <span class="doccomment">/// the player id associated with the participant</span>
+    <span class="ident">player_id</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the previous game step</span>
+    <span class="ident">previous_step</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the current game step</span>
+    <span class="ident">current_step</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// position of the center of the camera</span>
+    <span class="ident">camera_pos</span>: <span class="ident">Point2</span>,
 
-    <span class="ident">Started</span>(<span class="ident">Started</span>),
+    <span class="doccomment">/// a list of all known units at the moment</span>
+    <span class="ident">units</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;&gt;</span>,
 
-    <span class="ident">GameDataReady</span>(<span class="ident">GameDataReady</span>),
+    <span class="doccomment">/// all power sources associated with the current player</span>
+    <span class="ident">power_sources</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PowerSource</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// all active effects in vision of the current player</span>
+    <span class="ident">effects</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Effect</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// all upgrades</span>
+    <span class="ident">upgrades</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Upgrade</span><span class="op">&gt;</span>,
 
-    <span class="ident">FetchGameData</span>(<span class="ident">FetchGameData</span>),
-    <span class="ident">FetchTerrainData</span>(<span class="ident">FetchTerrainData</span>),
+    <span class="doccomment">/// current mineral count</span>
+    <span class="ident">minerals</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// current vespene count</span>
+    <span class="ident">vespene</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the total supply cap given the players max supply</span>
+    <span class="ident">food_cap</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the total supply used by the player</span>
+    <span class="ident">food_used</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the total supply consumed by army units alone</span>
+    <span class="ident">food_army</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the total supply consumed by workers alone</span>
+    <span class="ident">food_workers</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the number of workers that currently have no orders</span>
+    <span class="ident">idle_worker_count</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the number of army units</span>
+    <span class="ident">army_count</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the number of warp gates owned by the player</span>
+    <span class="ident">warp_gate_count</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// the number of larva owned by the player</span>
+    <span class="ident">larva_count</span>: <span class="ident">u32</span>,
 
-    <span class="ident">Observe</span>(<span class="ident">Observe</span>),
+    <span class="doccomment">/// creep image (sample pixels to find tiles with creep)</span>
+    <span class="ident">creep</span>: <span class="ident">ImageData</span>,
+    <span class="doccomment">/// visibility image (sample pixels to find visible tiles)</span>
+    <span class="ident">visibility</span>: <span class="ident">ImageData</span>,
+
+    <span class="doccomment">/// detailed current set of scores</span>
+    <span class="ident">score</span>: <span class="ident">Score</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Observation</span> {
+    <span class="doccomment">/// the player id associated with the participant</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_player_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">player_id</span>
+    }
+    <span class="doccomment">/// the previous game step</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_previous_step</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">previous_step</span>
+    }
+    <span class="doccomment">/// the current game step</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_current_step</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">current_step</span>
+    }
+    <span class="doccomment">/// position of the center of the camera</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_camera_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Point2</span> {
+        <span class="self">self</span>.<span class="ident">camera_pos</span>
+    }
+
+    <span class="doccomment">/// a list of all known units at the moment</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_units</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">units</span>
+    }
+
+    <span class="doccomment">/// all power sources associated with the current player</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_power_sources</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">PowerSource</span>] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">power_sources</span>
+    }
+    <span class="doccomment">/// all active effects in vision of the current player</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_effects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">Effect</span>] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">effects</span>
+    }
+    <span class="doccomment">/// all upgrades</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_upgrades</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">Upgrade</span>] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">upgrades</span>
+    }
+
+    <span class="doccomment">/// current mineral count</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_minerals</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">minerals</span>
+    }
+    <span class="doccomment">/// current vespene count</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_vespene</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">vespene</span>
+    }
+    <span class="doccomment">/// the total supply cap given the players max supply</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_food_cap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">food_cap</span>
+    }
+    <span class="doccomment">/// the total supply used by the player</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_food_used</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">food_used</span>
+    }
+    <span class="doccomment">/// the total supply consumed by army units alone</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_food_army</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">food_army</span>
+    }
+    <span class="doccomment">/// the total supply consumed by workers alone</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_food_workers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">food_workers</span>
+    }
+    <span class="doccomment">/// the number of workers that currently have no orders</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_idle_worker_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">idle_worker_count</span>
+    }
+    <span class="doccomment">/// the number of army units</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_army_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">army_count</span>
+    }
+    <span class="doccomment">/// the number of warp gates owned by the player</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_warp_gate_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">warp_gate_count</span>
+    }
+    <span class="doccomment">/// the number of larva owned by the player</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_larva_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="ident">larva_count</span>
+    }
+
+    <span class="doccomment">/// creep image (sample pixels to find tiles with creep)</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_creep</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ImageData</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">creep</span>
+    }
+    <span class="doccomment">/// visibility image (sample pixels to find visible tiles)</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_visibility</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">ImageData</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">visibility</span>
+    }
+
+    <span class="doccomment">/// detailed current set of scores</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_score</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Score</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">score</span>
+    }
+
+    <span class="doccomment">/// filter all units based on a custom condition</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filter_units</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filter</span>: <span class="ident">F</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Unit</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>,
+    {
+        <span class="self">self</span>.<span class="ident">units</span>
+            .<span class="ident">iter</span>()
+            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">u</span><span class="op">|</span> <span class="ident">filter</span>(<span class="ident">u</span>))
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">u</span><span class="op">|</span> <span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">u</span>))
+            .<span class="ident">collect</span>()
+    }
+    <span class="doccomment">/// check if the given point contains creep</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sample_creep</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, _: <span class="ident">Point2</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="macro">unimplemented</span><span class="macro">!</span>(<span class="string">&quot;has creep&quot;</span>)
+    }
+    <span class="doccomment">/// get the visibility of the given point for the current player</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sample_visibility</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, _: <span class="ident">Point2</span>) <span class="op">-&gt;</span> <span class="ident">Visibility</span> {
+        <span class="macro">unimplemented</span><span class="macro">!</span>(<span class="string">&quot;get visibility&quot;</span>)
+    }
+}
+
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObserverSoma</span> {
+    <span class="ident">client</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ClientTerminal</span><span class="op">&gt;</span>,
+    <span class="ident">controller</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ObserverControlDendrite</span><span class="op">&gt;</span>,
+    <span class="ident">users</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ObserverDendrite</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ObserverSoma</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sheath</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Sheath</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">Sheath</span>::<span class="ident">new</span>(
-            <span class="ident">ObserverSoma</span>::<span class="ident">Init</span>(<span class="ident">Init</span> {}),
-            <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>)],
-            <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Dendrite</span>::<span class="ident">RequireOne</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)],
-        )<span class="question-mark">?</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axon</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Axon</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Axon</span>::<span class="ident">new</span>(
+            <span class="self">Self</span> {
+                <span class="ident">client</span>: <span class="prelude-val">None</span>,
+                <span class="ident">controller</span>: <span class="prelude-val">None</span>,
+                <span class="ident">users</span>: <span class="macro">vec</span><span class="macro">!</span>[],
+            },
+            <span class="macro">vec</span><span class="macro">!</span>[
+                <span class="ident">Constraint</span>::<span class="ident">One</span>(<span class="ident">Synapse</span>::<span class="ident">ObserverControl</span>),
+                <span class="ident">Constraint</span>::<span class="ident">Variadic</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>),
+            ],
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Constraint</span>::<span class="ident">One</span>(<span class="ident">Synapse</span>::<span class="ident">Client</span>)],
+        ))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Neuron</span> <span class="kw">for</span> <span class="ident">ObserverSoma</span> {
-    <span class="kw">type</span> <span class="ident">Signal</span> <span class="op">=</span> <span class="ident">Signal</span>;
+<span class="kw">impl</span> <span class="ident">Soma</span> <span class="kw">for</span> <span class="ident">ObserverSoma</span> {
     <span class="kw">type</span> <span class="ident">Synapse</span> <span class="op">=</span> <span class="ident">Synapse</span>;
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
 
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">organelle</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">ObserverSoma</span>::<span class="ident">Init</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
+    <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">imp</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Synapse</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">imp</span> {
+            <span class="ident">Impulse</span>::<span class="ident">AddTerminal</span>(_, <span class="ident">Synapse</span>::<span class="ident">Client</span>, <span class="ident">Terminal</span>::<span class="ident">Client</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                <span class="self">self</span>.<span class="ident">client</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tx</span>);
 
-            <span class="ident">ObserverSoma</span>::<span class="ident">Started</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-
-            <span class="ident">ObserverSoma</span>::<span class="ident">FetchGameData</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-            <span class="ident">ObserverSoma</span>::<span class="ident">FetchTerrainData</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-
-            <span class="ident">ObserverSoma</span>::<span class="ident">GameDataReady</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-
-            <span class="ident">ObserverSoma</span>::<span class="ident">Observe</span>(<span class="ident">state</span>) <span class="op">=&gt;</span> <span class="ident">state</span>.<span class="ident">update</span>(<span class="ident">axon</span>, <span class="ident">msg</span>),
-        }.<span class="ident">chain_err</span>(<span class="op">||</span> <span class="ident">organelle</span>::<span class="ident">ErrorKind</span>::<span class="ident">SomaError</span>)
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Init</span>;
-
-<span class="kw">impl</span> <span class="ident">Init</span> {
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">_axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Start</span> <span class="op">=&gt;</span> <span class="ident">Started</span>::<span class="ident">start</span>(),
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Started</span>;
-
-<span class="kw">impl</span> <span class="ident">Started</span> {
-    <span class="kw">fn</span> <span class="ident">start</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">Started</span>(<span class="ident">Started</span> {}))
-    }
-
-    <span class="kw">fn</span> <span class="ident">restart</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>, <span class="ident">Signal</span>::<span class="ident">GameEnded</span>)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">Started</span>(<span class="ident">Started</span> {}))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">Ready</span>)
-            <span class="op">|</span> <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">ClientClosed</span>)
-            <span class="op">|</span> <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">Signal</span>::<span class="ident">ClientError</span>(_)) <span class="op">=&gt;</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">Started</span>(<span class="self">self</span>))
+                <span class="prelude-val">Ok</span>(<span class="self">self</span>)
             },
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">FetchGameData</span>) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_fetch_game_data</span>(<span class="ident">axon</span>, <span class="ident">src</span>)
+            <span class="ident">Impulse</span>::<span class="ident">AddDendrite</span>(
+                _,
+                <span class="ident">Synapse</span>::<span class="ident">ObserverControl</span>,
+                <span class="ident">Dendrite</span>::<span class="ident">ObserverControl</span>(<span class="ident">rx</span>),
+            ) <span class="op">=&gt;</span> {
+                <span class="self">self</span>.<span class="ident">controller</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">rx</span>);
+
+                <span class="prelude-val">Ok</span>(<span class="self">self</span>)
+            },
+            <span class="ident">Impulse</span>::<span class="ident">AddDendrite</span>(
+                _,
+                <span class="ident">Synapse</span>::<span class="ident">Observer</span>,
+                <span class="ident">Dendrite</span>::<span class="ident">Observer</span>(<span class="ident">rx</span>),
+            ) <span class="op">=&gt;</span> {
+                <span class="self">self</span>.<span class="ident">users</span>.<span class="ident">push</span>(<span class="ident">rx</span>);
+
+                <span class="prelude-val">Ok</span>(<span class="self">self</span>)
             },
 
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
+            <span class="ident">Impulse</span>::<span class="ident">Start</span>(_, <span class="ident">main_tx</span>, <span class="ident">handle</span>) <span class="op">=&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">controller</span>.<span class="ident">is_some</span>());
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">is_some</span>());
 
-    <span class="kw">fn</span> <span class="ident">on_fetch_game_data</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>)<span class="question-mark">?</span>);
+                <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">10</span>);
 
-        <span class="ident">FetchGameData</span>::<span class="ident">fetch</span>(<span class="ident">axon</span>)
-    }
-}
+                <span class="comment">// merge all queues</span>
+                <span class="kw">for</span> <span class="ident">user</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">users</span> {
+                    <span class="ident">handle</span>.<span class="ident">spawn</span>(
+                        <span class="ident">tx</span>.<span class="ident">clone</span>()
+                            .<span class="ident">send_all</span>(<span class="ident">user</span>.<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="macro">unreachable</span><span class="macro">!</span>()))
+                            .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                            .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ()),
+                    );
+                }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FetchGameData</span> {
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
-}
+                <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> <span class="ident">ObserverTask</span>::<span class="ident">new</span>(
+                    <span class="self">self</span>.<span class="ident">controller</span>.<span class="ident">unwrap</span>(),
+                    <span class="self">self</span>.<span class="ident">client</span>.<span class="ident">unwrap</span>(),
+                    <span class="ident">rx</span>,
+                );
 
-<span class="kw">impl</span> <span class="ident">FetchGameData</span> {
-    <span class="kw">fn</span> <span class="ident">fetch</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
-        <span class="ident">req</span>.<span class="ident">mut_data</span>().<span class="ident">set_unit_type_id</span>(<span class="bool-val">true</span>);
+                <span class="ident">handle</span>.<span class="ident">spawn</span>(<span class="ident">task</span>.<span class="ident">run</span>().<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+                    <span class="ident">main_tx</span>
+                        .<span class="ident">send</span>(<span class="ident">Impulse</span>::<span class="ident">Error</span>(<span class="ident">e</span>.<span class="ident">into</span>()))
+                        .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                }));
 
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">FetchGameData</span>(<span class="ident">FetchGameData</span> {
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_game_data</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">result</span>)
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+                    <span class="ident">controller</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">client</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">users</span>: <span class="macro">vec</span><span class="macro">!</span>[],
+                })
             },
 
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
+            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected impulse&quot;</span>),
         }
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_game_data</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">result</span>: <span class="ident">ClientResult</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rsp</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">unit_type_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ability_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">upgrade_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buff_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
-
-        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_units</span>().<span class="ident">into_iter</span>() {
-            <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">UnitTypeData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
-
-            <span class="kw">let</span> <span class="ident">unit_type</span> <span class="op">=</span> <span class="ident">u</span>.<span class="ident">unit_type</span>;
-            <span class="ident">unit_type_data</span>.<span class="ident">insert</span>(<span class="ident">unit_type</span>, <span class="ident">u</span>);
-        }
-
-        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_abilities</span>().<span class="ident">into_iter</span>() {
-            <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">AbilityData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
-
-            <span class="kw">let</span> <span class="ident">ability</span> <span class="op">=</span> <span class="ident">a</span>.<span class="ident">ability</span>;
-            <span class="ident">ability_data</span>.<span class="ident">insert</span>(<span class="ident">ability</span>, <span class="ident">a</span>);
-        }
-
-        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_upgrades</span>().<span class="ident">into_iter</span>() {
-            <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">UpgradeData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
-
-            <span class="kw">let</span> <span class="ident">upgrade</span> <span class="op">=</span> <span class="ident">u</span>.<span class="ident">upgrade</span>;
-            <span class="ident">upgrade_data</span>.<span class="ident">insert</span>(<span class="ident">upgrade</span>, <span class="ident">u</span>);
-        }
-
-        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_buffs</span>().<span class="ident">into_iter</span>() {
-            <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">BuffData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
-
-            <span class="kw">let</span> <span class="ident">buff</span> <span class="op">=</span> <span class="ident">b</span>.<span class="ident">buff</span>;
-            <span class="ident">buff_data</span>.<span class="ident">insert</span>(<span class="ident">buff</span>, <span class="ident">b</span>);
-        }
-
-        <span class="ident">FetchTerrainData</span>::<span class="ident">fetch</span>(
-            <span class="ident">axon</span>,
-            <span class="ident">unit_type_data</span>,
-            <span class="ident">ability_data</span>,
-            <span class="ident">upgrade_data</span>,
-            <span class="ident">buff_data</span>,
-        )
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FetchTerrainData</span> {
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
+<span class="kw">struct</span> <span class="ident">ObserverTask</span> {
+    <span class="ident">controller</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ObserverControlDendrite</span><span class="op">&gt;</span>,
+    <span class="ident">client</span>: <span class="ident">ClientTerminal</span>,
+    <span class="ident">request_rx</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ObserverRequest</span><span class="op">&gt;&gt;</span>,
 
-    <span class="ident">unit_type_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">UnitType</span>, <span class="ident">UnitTypeData</span><span class="op">&gt;</span>,
-    <span class="ident">ability_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ability</span>, <span class="ident">AbilityData</span><span class="op">&gt;</span>,
-    <span class="ident">upgrade_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Upgrade</span>, <span class="ident">UpgradeData</span><span class="op">&gt;</span>,
-    <span class="ident">buff_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Buff</span>, <span class="ident">BuffData</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">FetchTerrainData</span> {
-    <span class="kw">fn</span> <span class="ident">fetch</span>(
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">unit_type_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">UnitType</span>, <span class="ident">UnitTypeData</span><span class="op">&gt;</span>,
-        <span class="ident">ability_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ability</span>, <span class="ident">AbilityData</span><span class="op">&gt;</span>,
-        <span class="ident">upgrade_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Upgrade</span>, <span class="ident">UpgradeData</span><span class="op">&gt;</span>,
-        <span class="ident">buff_data</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Buff</span>, <span class="ident">BuffData</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
-        <span class="ident">req</span>.<span class="ident">mut_game_info</span>();
-
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">FetchTerrainData</span>(<span class="ident">FetchTerrainData</span> {
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-
-            <span class="ident">unit_type_data</span>: <span class="ident">unit_type_data</span>,
-            <span class="ident">ability_data</span>: <span class="ident">ability_data</span>,
-            <span class="ident">upgrade_data</span>: <span class="ident">upgrade_data</span>,
-            <span class="ident">buff_data</span>: <span class="ident">buff_data</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">rsp</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_terrain_info</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">rsp</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_terrain_info</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">result</span>: <span class="ident">ClientResult</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rsp</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-        <span class="kw">let</span> <span class="ident">game_data</span> <span class="op">=</span> <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">GameData</span> {
-            <span class="ident">unit_type_data</span>: <span class="self">self</span>.<span class="ident">unit_type_data</span>,
-            <span class="ident">ability_data</span>: <span class="self">self</span>.<span class="ident">ability_data</span>,
-            <span class="ident">upgrade_data</span>: <span class="self">self</span>.<span class="ident">upgrade_data</span>,
-            <span class="ident">buff_data</span>: <span class="self">self</span>.<span class="ident">buff_data</span>,
-
-            <span class="ident">terrain_info</span>: <span class="ident">rsp</span>.<span class="ident">take_game_info</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>,
-        });
-
-        <span class="ident">GameDataReady</span>::<span class="ident">start</span>(<span class="ident">axon</span>, <span class="ident">game_data</span>)
-    }
-}
-
-<span class="kw">struct</span> <span class="ident">ObserverData</span> {
     <span class="ident">previous_step</span>: <span class="ident">u32</span>,
     <span class="ident">current_step</span>: <span class="ident">u32</span>,
     <span class="ident">previous_units</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Tag</span>, <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;&gt;</span>,
@@ -960,148 +1290,205 @@
     <span class="ident">upgrades</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Upgrade</span><span class="op">&gt;</span>,
 
     <span class="ident">actions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Action</span><span class="op">&gt;</span>,
-    <span class="ident">spatial_actions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SpatialAction</span><span class="op">&gt;</span>,
-
-    <span class="ident">game_data</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">GameData</span><span class="op">&gt;</span>,
+    <span class="comment">// spatial_actions: Vec&lt;SpatialAction&gt;,</span>
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GameDataReady</span> {
-    <span class="ident">data</span>: <span class="ident">ObserverData</span>,
-}
+<span class="kw">impl</span> <span class="ident">ObserverTask</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">controller</span>: <span class="ident">ObserverControlDendrite</span>,
+        <span class="ident">client</span>: <span class="ident">ClientTerminal</span>,
+        <span class="ident">request_rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ObserverRequest</span><span class="op">&gt;</span>,
+    ) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">controller</span>: <span class="prelude-val">Some</span>(<span class="ident">controller</span>),
+            <span class="ident">client</span>: <span class="ident">client</span>,
+            <span class="ident">request_rx</span>: <span class="prelude-val">Some</span>(<span class="ident">request_rx</span>),
 
-<span class="kw">impl</span> <span class="ident">GameDataReady</span> {
-    <span class="kw">fn</span> <span class="ident">start</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">game_data</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">GameData</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="ident">axon</span>.<span class="ident">send_req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>, <span class="ident">Signal</span>::<span class="ident">GameDataReady</span>)<span class="question-mark">?</span>;
+            <span class="ident">previous_step</span>: <span class="number">0</span>,
+            <span class="ident">current_step</span>: <span class="number">0</span>,
+            <span class="ident">previous_units</span>: <span class="ident">HashMap</span>::<span class="ident">new</span>(),
+            <span class="ident">units</span>: <span class="ident">HashMap</span>::<span class="ident">new</span>(),
 
-        <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">GameDataReady</span>(<span class="ident">GameDataReady</span> {
-            <span class="ident">data</span>: <span class="ident">ObserverData</span> {
-                <span class="ident">previous_step</span>: <span class="number">0</span>,
-                <span class="ident">current_step</span>: <span class="number">0</span>,
-                <span class="ident">previous_units</span>: <span class="ident">HashMap</span>::<span class="ident">new</span>(),
-                <span class="ident">units</span>: <span class="ident">HashMap</span>::<span class="ident">new</span>(),
+            <span class="ident">previous_upgrades</span>: <span class="ident">HashSet</span>::<span class="ident">new</span>(),
+            <span class="ident">upgrades</span>: <span class="ident">HashSet</span>::<span class="ident">new</span>(),
 
-                <span class="ident">previous_upgrades</span>: <span class="ident">HashSet</span>::<span class="ident">new</span>(),
-                <span class="ident">upgrades</span>: <span class="ident">HashSet</span>::<span class="ident">new</span>(),
-
-                <span class="ident">actions</span>: <span class="macro">vec</span><span class="macro">!</span>[],
-                <span class="ident">spatial_actions</span>: <span class="macro">vec</span><span class="macro">!</span>[],
-                <span class="ident">game_data</span>: <span class="ident">game_data</span>,
-            },
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">ready</span>(<span class="ident">data</span>: <span class="ident">ObserverData</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">GameDataReady</span>(<span class="ident">GameDataReady</span> { <span class="ident">data</span>: <span class="ident">data</span> }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">Observe</span>) <span class="op">=&gt;</span> {
-                <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">src</span>, <span class="ident">axon</span>.<span class="ident">req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>)<span class="question-mark">?</span>);
-                <span class="ident">Observe</span>::<span class="ident">observe</span>(<span class="ident">axon</span>, <span class="self">self</span>.<span class="ident">data</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
+            <span class="ident">actions</span>: <span class="macro">vec</span><span class="macro">!</span>[],
+            <span class="comment">// spatial_actions: vec![],</span>
         }
     }
-}
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Observe</span> {
-    <span class="ident">transactor</span>: <span class="ident">Transactor</span>,
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">fn</span> <span class="ident">run</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">queue</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">controller</span>, <span class="prelude-val">None</span>)
+            .<span class="ident">unwrap</span>()
+            .<span class="ident">rx</span>
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">req</span><span class="op">|</span> <span class="ident">Either</span>::<span class="ident">Control</span>(<span class="ident">req</span>))
+            .<span class="ident">select</span>(
+                <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">request_rx</span>, <span class="prelude-val">None</span>)
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">req</span><span class="op">|</span> <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">req</span>)),
+            );
 
-    <span class="ident">data</span>: <span class="ident">ObserverData</span>,
-}
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">observation</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map_info</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">unit_data</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ability_data</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">upgrade_data</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buff_data</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="kw">impl</span> <span class="ident">Observe</span> {
-    <span class="kw">fn</span> <span class="ident">observe</span>(<span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>, <span class="ident">data</span>: <span class="ident">ObserverData</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
+        <span class="attribute">#[<span class="ident">async</span>]</span>
+        <span class="kw">for</span> <span class="ident">req</span> <span class="kw">in</span> <span class="ident">queue</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="op">-&gt;</span> <span class="ident">Error</span> { <span class="macro">unreachable</span><span class="macro">!</span>() }) {
+            <span class="kw">match</span> <span class="ident">req</span> {
+                <span class="ident">Either</span>::<span class="ident">Control</span>(<span class="ident">ObserverControlRequest</span>::<span class="ident">Reset</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                    <span class="comment">// clear data cache every game</span>
+                    <span class="ident">map_info</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+                    <span class="ident">unit_data</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+
+                    <span class="ident">tx</span>.<span class="ident">send</span>(())
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to ack reset&quot;</span>))<span class="question-mark">?</span>;
+                },
+                <span class="ident">Either</span>::<span class="ident">Control</span>(<span class="ident">ObserverControlRequest</span>::<span class="ident">Step</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                    <span class="kw">let</span> (<span class="ident">observer</span>, <span class="ident">new_observation</span>, <span class="ident">events</span>, <span class="ident">game_ended</span>) <span class="op">=</span>
+                        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">get_observation</span>())<span class="question-mark">?</span>;
+
+                    <span class="self">self</span> <span class="op">=</span> <span class="ident">observer</span>;
+                    <span class="ident">observation</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">new_observation</span>);
+
+                    <span class="ident">tx</span>.<span class="ident">send</span>((<span class="ident">events</span>, <span class="ident">game_ended</span>))
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to ack step&quot;</span>))<span class="question-mark">?</span>;
+                },
+
+                <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">Observe</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                    <span class="comment">// observation should exist because step should create it</span>
+                    <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">observation</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>()))
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> {
+                            <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to return observation&quot;</span>)
+                        })<span class="question-mark">?</span>;
+                },
+                <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetMapInfo</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                    <span class="kw">if</span> <span class="ident">map_info</span>.<span class="ident">is_none</span>() {
+                        <span class="kw">let</span> (<span class="ident">observer</span>, <span class="ident">new_map_info</span>) <span class="op">=</span>
+                            <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">get_map_info</span>())<span class="question-mark">?</span>;
+
+                        <span class="self">self</span> <span class="op">=</span> <span class="ident">observer</span>;
+                        <span class="ident">map_info</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">new_map_info</span>);
+                    }
+
+                    <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">map_info</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>()))
+                        .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to return map info&quot;</span>))<span class="question-mark">?</span>;
+                },
+                <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetUnitData</span>(_))
+                <span class="op">|</span> <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetAbilityData</span>(_))
+                <span class="op">|</span> <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetUpgradeData</span>(_))
+                <span class="op">|</span> <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetBuffData</span>(_)) <span class="op">=&gt;</span> {
+                    <span class="kw">if</span> <span class="ident">unit_data</span>.<span class="ident">is_none</span>() {
+                        <span class="kw">let</span> (
+                            <span class="ident">observer</span>,
+                            <span class="ident">new_unit_data</span>,
+                            <span class="ident">new_ability_data</span>,
+                            <span class="ident">new_upgrade_data</span>,
+                            <span class="ident">new_buff_data</span>,
+                        ) <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">get_game_data</span>())<span class="question-mark">?</span>;
+
+                        <span class="self">self</span> <span class="op">=</span> <span class="ident">observer</span>;
+                        <span class="ident">unit_data</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">new_unit_data</span>);
+                        <span class="ident">ability_data</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">new_ability_data</span>);
+                        <span class="ident">upgrade_data</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">new_upgrade_data</span>);
+                        <span class="ident">buff_data</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">new_buff_data</span>);
+                    }
+
+                    <span class="kw">match</span> <span class="ident">req</span> {
+                        <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetUnitData</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                            <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">unit_data</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>()))
+                                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> {
+                                    <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to return unit data&quot;</span>)
+                                })<span class="question-mark">?</span>;
+                        },
+                        <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetAbilityData</span>(
+                            <span class="ident">tx</span>,
+                        )) <span class="op">=&gt;</span> {
+                            <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">ability_data</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>()))
+                                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> {
+                                    <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to return ability data&quot;</span>)
+                                })<span class="question-mark">?</span>;
+                        },
+                        <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetUpgradeData</span>(
+                            <span class="ident">tx</span>,
+                        )) <span class="op">=&gt;</span> {
+                            <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">upgrade_data</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>()))
+                                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> {
+                                    <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to return upgrade data&quot;</span>)
+                                })<span class="question-mark">?</span>;
+                        },
+                        <span class="ident">Either</span>::<span class="ident">Request</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetBuffData</span>(<span class="ident">tx</span>)) <span class="op">=&gt;</span> {
+                            <span class="ident">tx</span>.<span class="ident">send</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">buff_data</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>()))
+                                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> {
+                                    <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to return buff data&quot;</span>)
+                                })<span class="question-mark">?</span>;
+                        },
+
+                        _ <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                    }
+                },
+            }
+        }
+
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">fn</span> <span class="ident">get_observation</span>(
+        <span class="kw-2">mut</span> <span class="self">self</span>,
+    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Observation</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">GameEvent</span><span class="op">&gt;</span>, <span class="ident">bool</span>)<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
         <span class="ident">req</span>.<span class="ident">mut_observation</span>();
 
-        <span class="kw">let</span> <span class="ident">transactor</span> <span class="op">=</span> <span class="ident">Transactor</span>::<span class="ident">send</span>(<span class="ident">axon</span>, <span class="ident">ClientRequest</span>::<span class="ident">new</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(<span class="ident">ObserverSoma</span>::<span class="ident">Observe</span>(<span class="ident">Observe</span> {
-            <span class="ident">transactor</span>: <span class="ident">transactor</span>,
-
-            <span class="ident">data</span>: <span class="ident">data</span>,
-        }))
-    }
-
-    <span class="kw">fn</span> <span class="ident">update</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">msg</span>: <span class="ident">Impulse</span><span class="op">&lt;</span><span class="ident">Signal</span>, <span class="ident">Synapse</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(<span class="ident">src</span>, <span class="ident">Signal</span>::<span class="ident">ClientResult</span>(<span class="ident">result</span>)) <span class="op">=&gt;</span> {
-                <span class="self">self</span>.<span class="ident">on_observe</span>(<span class="ident">axon</span>, <span class="ident">src</span>, <span class="ident">result</span>)
-            },
-
-            <span class="ident">Impulse</span>::<span class="ident">Signal</span>(_, <span class="ident">msg</span>) <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected message {:#?}&quot;</span>, <span class="ident">msg</span>),
-            _ <span class="op">=&gt;</span> <span class="macro">bail</span><span class="macro">!</span>(<span class="string">&quot;unexpected protocol message&quot;</span>),
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">on_observe</span>(
-        <span class="self">self</span>,
-        <span class="ident">axon</span>: <span class="kw-2">&amp;</span><span class="ident">Axon</span>,
-        <span class="ident">src</span>: <span class="ident">Handle</span>,
-        <span class="ident">result</span>: <span class="ident">ClientResult</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ObserverSoma</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rsp</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">transactor</span>.<span class="ident">expect</span>(<span class="ident">src</span>, <span class="ident">result</span>)<span class="question-mark">?</span>;
-
-        <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">get_status</span>() <span class="op">!=</span> <span class="ident">sc2api</span>::<span class="ident">Status</span>::<span class="ident">in_game</span> {
-            <span class="kw">return</span> <span class="ident">Started</span>::<span class="ident">restart</span>(<span class="ident">axon</span>);
-        }
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rsp</span> <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">clone</span>().<span class="ident">request</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">observation</span> <span class="op">=</span> <span class="ident">rsp</span>.<span class="ident">take_observation</span>().<span class="ident">take_observation</span>();
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>;
-
-        <span class="ident">data</span>.<span class="ident">previous_step</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">current_step</span>;
-        <span class="ident">data</span>.<span class="ident">current_step</span> <span class="op">=</span> <span class="ident">observation</span>.<span class="ident">get_game_loop</span>();
-        <span class="kw">let</span> <span class="ident">is_new_frame</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">current_step</span> <span class="op">!=</span> <span class="ident">data</span>.<span class="ident">previous_step</span>;
+        <span class="self">self</span>.<span class="ident">previous_step</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">current_step</span>;
+        <span class="self">self</span>.<span class="ident">current_step</span> <span class="op">=</span> <span class="ident">observation</span>.<span class="ident">get_game_loop</span>();
+        <span class="kw">let</span> <span class="ident">is_new_frame</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">current_step</span> <span class="op">!=</span> <span class="self">self</span>.<span class="ident">previous_step</span>;
 
         <span class="kw">let</span> <span class="ident">player_common</span> <span class="op">=</span> <span class="ident">observation</span>.<span class="ident">take_player_common</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">observation</span>.<span class="ident">take_raw_data</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">player_raw</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">take_player</span>();
 
-        <span class="ident">data</span>.<span class="ident">previous_units</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>.<span class="ident">units</span>, <span class="ident">HashMap</span>::<span class="ident">new</span>());
+        <span class="self">self</span>.<span class="ident">previous_units</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">units</span>, <span class="ident">HashMap</span>::<span class="ident">new</span>());
         <span class="kw">for</span> <span class="ident">unit</span> <span class="kw">in</span> <span class="ident">raw</span>.<span class="ident">take_units</span>().<span class="ident">into_iter</span>() {
             <span class="kw">match</span> <span class="ident">Unit</span>::<span class="ident">from_proto</span>(<span class="ident">unit</span>) {
                 <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">unit</span>) <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="ident">tag</span> <span class="op">=</span> <span class="ident">unit</span>.<span class="ident">tag</span>;
+                    <span class="kw">let</span> <span class="ident">tag</span> <span class="op">=</span> <span class="ident">unit</span>.<span class="ident">get_tag</span>();
 
-                    <span class="ident">unit</span>.<span class="ident">last_seen_game_loop</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">current_step</span>;
+                    <span class="ident">unit</span>.<span class="ident">set_last_seen_step</span>(<span class="self">self</span>.<span class="ident">current_step</span>);
 
-                    <span class="ident">data</span>.<span class="ident">units</span>.<span class="ident">insert</span>(<span class="ident">tag</span>, <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">unit</span>));
+                    <span class="self">self</span>.<span class="ident">units</span>.<span class="ident">insert</span>(<span class="ident">tag</span>, <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">unit</span>));
                 },
                 _ <span class="op">=&gt;</span> (),
             }
         }
 
-        <span class="ident">data</span>.<span class="ident">previous_upgrades</span> <span class="op">=</span>
-            <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>.<span class="ident">upgrades</span>, <span class="ident">HashSet</span>::<span class="ident">new</span>());
+        <span class="self">self</span>.<span class="ident">previous_upgrades</span> <span class="op">=</span>
+            <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">upgrades</span>, <span class="ident">HashSet</span>::<span class="ident">new</span>());
 
         <span class="kw">for</span> <span class="ident">u</span> <span class="kw">in</span> <span class="ident">player_raw</span>.<span class="ident">take_upgrade_ids</span>().<span class="ident">into_iter</span>() {
-            <span class="ident">data</span>.<span class="ident">upgrades</span>.<span class="ident">insert</span>(<span class="ident">Upgrade</span>::<span class="ident">from_proto</span>(<span class="ident">u</span>)<span class="question-mark">?</span>);
+            <span class="self">self</span>.<span class="ident">upgrades</span>.<span class="ident">insert</span>(<span class="ident">Upgrade</span>::<span class="ident">from_proto</span>(<span class="ident">u</span>)<span class="question-mark">?</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">new_state</span> <span class="op">=</span> <span class="ident">GameState</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map_state</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">take_map_state</span>();
+
+        <span class="kw">let</span> <span class="ident">new_observation</span> <span class="op">=</span> <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">Observation</span> {
             <span class="ident">player_id</span>: <span class="ident">player_common</span>.<span class="ident">get_player_id</span>(),
-            <span class="ident">previous_step</span>: <span class="ident">data</span>.<span class="ident">previous_step</span>,
-            <span class="ident">current_step</span>: <span class="ident">data</span>.<span class="ident">current_step</span>,
+            <span class="ident">previous_step</span>: <span class="self">self</span>.<span class="ident">previous_step</span>,
+            <span class="ident">current_step</span>: <span class="self">self</span>.<span class="ident">current_step</span>,
             <span class="ident">camera_pos</span>: {
                 <span class="kw">let</span> <span class="ident">camera</span> <span class="op">=</span> <span class="ident">player_raw</span>.<span class="ident">get_camera</span>();
 
                 <span class="ident">Point2</span>::<span class="ident">new</span>(<span class="ident">camera</span>.<span class="ident">get_x</span>(), <span class="ident">camera</span>.<span class="ident">get_y</span>())
             },
 
-            <span class="ident">units</span>: <span class="ident">data</span>.<span class="ident">units</span>.<span class="ident">values</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">u</span><span class="op">|</span> <span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">u</span>)).<span class="ident">collect</span>(),
+            <span class="ident">units</span>: <span class="self">self</span>.<span class="ident">units</span>.<span class="ident">values</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">u</span><span class="op">|</span> <span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">u</span>)).<span class="ident">collect</span>(),
             <span class="ident">power_sources</span>: {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">power_sources</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
 
@@ -1111,7 +1498,7 @@
 
                 <span class="ident">power_sources</span>
             },
-            <span class="ident">upgrades</span>: <span class="ident">data</span>.<span class="ident">upgrades</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">u</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">u</span>).<span class="ident">collect</span>(),
+            <span class="ident">upgrades</span>: <span class="self">self</span>.<span class="ident">upgrades</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">u</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">u</span>).<span class="ident">collect</span>(),
             <span class="ident">effects</span>: <span class="macro">vec</span><span class="macro">!</span>[],
 
             <span class="ident">minerals</span>: <span class="ident">player_common</span>.<span class="ident">get_minerals</span>(),
@@ -1125,12 +1512,15 @@
             <span class="ident">warp_gate_count</span>: <span class="ident">player_common</span>.<span class="ident">get_warp_gate_count</span>(),
             <span class="ident">larva_count</span>: <span class="ident">player_common</span>.<span class="ident">get_larva_count</span>(),
 
+            <span class="ident">creep</span>: <span class="ident">map_state</span>.<span class="ident">take_creep</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>,
+            <span class="ident">visibility</span>: <span class="ident">map_state</span>.<span class="ident">take_visibility</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>,
+
             <span class="ident">score</span>: <span class="ident">observation</span>.<span class="ident">take_score</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>,
-        };
+        });
 
         <span class="kw">if</span> <span class="ident">is_new_frame</span> {
-            <span class="ident">data</span>.<span class="ident">actions</span>.<span class="ident">clear</span>();
-            <span class="ident">data</span>.<span class="ident">spatial_actions</span>.<span class="ident">clear</span>();
+            <span class="self">self</span>.<span class="ident">actions</span>.<span class="ident">clear</span>();
+            <span class="comment">// self.spatial_actions.clear();</span>
         }
 
         <span class="kw">for</span> <span class="ident">action</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">get_observation</span>().<span class="ident">get_actions</span>() {
@@ -1148,30 +1538,30 @@
                 <span class="kw">continue</span>;
             }
 
-            <span class="ident">data</span>.<span class="ident">actions</span>.<span class="ident">push</span>(<span class="ident">cmd</span>.<span class="ident">clone</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>);
+            <span class="self">self</span>.<span class="ident">actions</span>.<span class="ident">push</span>(<span class="ident">cmd</span>.<span class="ident">clone</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>);
         }
 
-        <span class="kw">for</span> <span class="ident">action</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">get_observation</span>().<span class="ident">get_actions</span>() {
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">action</span>.<span class="ident">has_action_feature_layer</span>() {
-                <span class="kw">continue</span>;
-            }
+        <span class="comment">// for action in rsp.get_observation().get_actions() {</span>
+        <span class="comment">//     if !action.has_action_feature_layer() {</span>
+        <span class="comment">//         continue;</span>
+        <span class="comment">//     }</span>
 
-            <span class="kw">let</span> <span class="ident">fl</span> <span class="op">=</span> <span class="ident">action</span>.<span class="ident">get_action_feature_layer</span>();
+        <span class="comment">//     let fl = action.get_action_feature_layer();</span>
 
-            <span class="kw">if</span> <span class="ident">fl</span>.<span class="ident">has_unit_command</span>() {
-                <span class="ident">data</span>.<span class="ident">spatial_actions</span>
-                    .<span class="ident">push</span>(<span class="ident">fl</span>.<span class="ident">get_unit_command</span>().<span class="ident">clone</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>);
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">fl</span>.<span class="ident">has_camera_move</span>() {
-                <span class="ident">data</span>.<span class="ident">spatial_actions</span>
-                    .<span class="ident">push</span>(<span class="ident">fl</span>.<span class="ident">get_camera_move</span>().<span class="ident">clone</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>);
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">fl</span>.<span class="ident">has_unit_selection_point</span>() {
-                <span class="ident">data</span>.<span class="ident">spatial_actions</span>
-                    .<span class="ident">push</span>(<span class="ident">fl</span>.<span class="ident">get_unit_selection_point</span>().<span class="ident">clone</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>);
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">fl</span>.<span class="ident">has_unit_selection_rect</span>() {
-                <span class="ident">data</span>.<span class="ident">spatial_actions</span>
-                    .<span class="ident">push</span>(<span class="ident">fl</span>.<span class="ident">get_unit_selection_rect</span>().<span class="ident">clone</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>);
-            }
-        }
+        <span class="comment">//     if fl.has_unit_command() {</span>
+        <span class="comment">//         self.spatial_actions</span>
+        <span class="comment">//             .push(fl.get_unit_command().clone().into_sc2()?);</span>
+        <span class="comment">//     } else if fl.has_camera_move() {</span>
+        <span class="comment">//         self.spatial_actions</span>
+        <span class="comment">//             .push(fl.get_camera_move().clone().into_sc2()?);</span>
+        <span class="comment">//     } else if fl.has_unit_selection_point() {</span>
+        <span class="comment">//         self.spatial_actions</span>
+        <span class="comment">//             .push(fl.get_unit_selection_point().clone().into_sc2()?);</span>
+        <span class="comment">//     } else if fl.has_unit_selection_rect() {</span>
+        <span class="comment">//         self.spatial_actions</span>
+        <span class="comment">//             .push(fl.get_unit_selection_rect().clone().into_sc2()?);</span>
+        <span class="comment">//     }</span>
+        <span class="comment">// }</span>
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">events</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
 
@@ -1179,7 +1569,7 @@
             <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">get_event</span>();
 
             <span class="kw">for</span> <span class="ident">tag</span> <span class="kw">in</span> <span class="ident">event</span>.<span class="ident">get_dead_units</span>() {
-                <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">previous_units</span>.<span class="ident">get</span>(<span class="ident">tag</span>) {
+                <span class="kw">match</span> <span class="self">self</span>.<span class="ident">previous_units</span>.<span class="ident">get</span>(<span class="ident">tag</span>) {
                     <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">unit</span>) <span class="op">=&gt;</span> {
                         <span class="ident">events</span>.<span class="ident">push</span>(<span class="ident">GameEvent</span>::<span class="ident">UnitDestroyed</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">unit</span>)));
                     },
@@ -1188,13 +1578,15 @@
             }
         }
 
-        <span class="kw">for</span> <span class="kw-2">ref</span> <span class="ident">unit</span> <span class="kw">in</span> <span class="ident">data</span>.<span class="ident">units</span>.<span class="ident">values</span>() {
-            <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">previous_units</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">unit</span>.<span class="ident">tag</span>) {
+        <span class="kw">for</span> <span class="kw-2">ref</span> <span class="ident">unit</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">units</span>.<span class="ident">values</span>() {
+            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">previous_units</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">unit</span>.<span class="ident">get_tag</span>()) {
                 <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">prev_unit</span>) <span class="op">=&gt;</span> {
-                    <span class="kw">if</span> <span class="ident">unit</span>.<span class="ident">orders</span>.<span class="ident">is_empty</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">prev_unit</span>.<span class="ident">orders</span>.<span class="ident">is_empty</span>() {
+                    <span class="kw">if</span> <span class="ident">unit</span>.<span class="ident">get_orders</span>().<span class="ident">is_empty</span>()
+                        <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">prev_unit</span>.<span class="ident">get_orders</span>().<span class="ident">is_empty</span>()
+                    {
                         <span class="ident">events</span>.<span class="ident">push</span>(<span class="ident">GameEvent</span>::<span class="ident">UnitIdle</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">unit</span>)));
-                    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">unit</span>.<span class="ident">build_progress</span> <span class="op">&gt;=</span> <span class="number">1.0</span>
-                        <span class="op">&amp;&amp;</span> <span class="ident">prev_unit</span>.<span class="ident">build_progress</span> <span class="op">&lt;</span> <span class="number">1.0</span>
+                    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">unit</span>.<span class="ident">get_build_progress</span>() <span class="op">&gt;=</span> <span class="number">1.0</span>
+                        <span class="op">&amp;&amp;</span> <span class="ident">prev_unit</span>.<span class="ident">get_build_progress</span>() <span class="op">&lt;</span> <span class="number">1.0</span>
                     {
                         <span class="ident">events</span>.<span class="ident">push</span>(<span class="ident">GameEvent</span>::<span class="ident">BuildingCompleted</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(
                             <span class="ident">unit</span>,
@@ -1202,8 +1594,8 @@
                     }
                 },
                 <span class="prelude-val">None</span> <span class="op">=&gt;</span> {
-                    <span class="kw">if</span> <span class="ident">unit</span>.<span class="ident">alliance</span> <span class="op">==</span> <span class="ident">Alliance</span>::<span class="ident">Enemy</span>
-                        <span class="op">&amp;&amp;</span> <span class="ident">unit</span>.<span class="ident">display_type</span> <span class="op">==</span> <span class="ident">DisplayType</span>::<span class="ident">Visible</span>
+                    <span class="kw">if</span> <span class="ident">unit</span>.<span class="ident">get_alliance</span>() <span class="op">==</span> <span class="ident">Alliance</span>::<span class="ident">Enemy</span>
+                        <span class="op">&amp;&amp;</span> <span class="ident">unit</span>.<span class="ident">get_display_type</span>() <span class="op">==</span> <span class="ident">DisplayType</span>::<span class="ident">Visible</span>
                     {
                         <span class="ident">events</span>.<span class="ident">push</span>(<span class="ident">GameEvent</span>::<span class="ident">UnitDetected</span>(<span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="ident">unit</span>)));
                     } <span class="kw">else</span> {
@@ -1216,9 +1608,9 @@
         }
 
         <span class="kw">let</span> <span class="ident">prev_upgrades</span> <span class="op">=</span>
-            <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>.<span class="ident">previous_upgrades</span>, <span class="ident">HashSet</span>::<span class="ident">new</span>());
+            <span class="ident">mem</span>::<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">previous_upgrades</span>, <span class="ident">HashSet</span>::<span class="ident">new</span>());
 
-        <span class="kw">for</span> <span class="ident">upgrade</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">upgrades</span> {
+        <span class="kw">for</span> <span class="ident">upgrade</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">upgrades</span> {
             <span class="kw">match</span> <span class="ident">prev_upgrades</span>.<span class="ident">get</span>(<span class="ident">upgrade</span>) {
                 <span class="prelude-val">Some</span>(_) <span class="op">=&gt;</span> (),
                 <span class="prelude-val">None</span> <span class="op">=&gt;</span> {
@@ -1227,7 +1619,7 @@
             }
         }
 
-        <span class="ident">data</span>.<span class="ident">previous_upgrades</span> <span class="op">=</span> <span class="ident">prev_upgrades</span>;
+        <span class="self">self</span>.<span class="ident">previous_upgrades</span> <span class="op">=</span> <span class="ident">prev_upgrades</span>;
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nukes</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nydus_worms</span> <span class="op">=</span> <span class="number">0</span>;
@@ -1247,22 +1639,273 @@
             <span class="ident">events</span>.<span class="ident">push</span>(<span class="ident">GameEvent</span>::<span class="ident">NydusWormsDetected</span>(<span class="ident">nydus_worms</span>));
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map_state</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">take_map_state</span>();
+        <span class="kw">let</span> <span class="ident">game_ended</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">rsp</span>.<span class="ident">get_status</span>() <span class="op">!=</span> <span class="ident">sc2api</span>::<span class="ident">Status</span>::<span class="ident">in_game</span> {
+            <span class="bool-val">true</span>
+        } <span class="kw">else</span> {
+            <span class="bool-val">false</span>
+        };
 
-        <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">FrameData</span> {
-            <span class="ident">state</span>: <span class="ident">new_state</span>,
-            <span class="ident">data</span>: <span class="ident">Rc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">game_data</span>),
-            <span class="ident">events</span>: <span class="ident">events</span>,
-            <span class="ident">map</span>: <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">MapState</span> {
-                <span class="ident">creep</span>: <span class="ident">map_state</span>.<span class="ident">take_creep</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>,
-                <span class="ident">visibility</span>: <span class="ident">map_state</span>.<span class="ident">take_visibility</span>().<span class="ident">into_sc2</span>()<span class="question-mark">?</span>,
-            }),
-        });
-
-        <span class="ident">axon</span>.<span class="ident">send_req_input</span>(<span class="ident">Synapse</span>::<span class="ident">Observer</span>, <span class="ident">Signal</span>::<span class="ident">Observation</span>(<span class="ident">frame</span>))<span class="question-mark">?</span>;
-
-        <span class="ident">GameDataReady</span>::<span class="ident">ready</span>(<span class="ident">data</span>)
+        <span class="prelude-val">Ok</span>((<span class="self">self</span>, <span class="ident">new_observation</span>, <span class="ident">events</span>, <span class="ident">game_ended</span>))
     }
+
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">fn</span> <span class="ident">get_map_info</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">MapInfo</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
+        <span class="ident">req</span>.<span class="ident">mut_game_info</span>();
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rsp</span> <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">clone</span>().<span class="ident">request</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
+
+        <span class="kw">let</span> <span class="ident">info</span> <span class="op">=</span> <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">MapInfo</span>::<span class="ident">from_proto</span>(<span class="ident">rsp</span>.<span class="ident">take_game_info</span>())<span class="question-mark">?</span>);
+
+        <span class="prelude-val">Ok</span>((<span class="self">self</span>, <span class="ident">info</span>))
+    }
+
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">fn</span> <span class="ident">get_game_data</span>(
+        <span class="self">self</span>,
+    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>
+        (
+            <span class="self">Self</span>,
+            <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">UnitType</span>, <span class="ident">UnitTypeData</span><span class="op">&gt;&gt;</span>,
+            <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ability</span>, <span class="ident">AbilityData</span><span class="op">&gt;&gt;</span>,
+            <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Upgrade</span>, <span class="ident">UpgradeData</span><span class="op">&gt;&gt;</span>,
+            <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Buff</span>, <span class="ident">BuffData</span><span class="op">&gt;&gt;</span>,
+        ),
+    <span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">sc2api</span>::<span class="ident">Request</span>::<span class="ident">new</span>();
+        <span class="ident">req</span>.<span class="ident">mut_data</span>().<span class="ident">set_unit_type_id</span>(<span class="bool-val">true</span>);
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rsp</span> <span class="op">=</span> <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">client</span>.<span class="ident">clone</span>().<span class="ident">request</span>(<span class="ident">req</span>))<span class="question-mark">?</span>;
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">unit_type_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ability_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">upgrade_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buff_data</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
+
+        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_units</span>().<span class="ident">into_iter</span>() {
+            <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">UnitTypeData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
+
+            <span class="kw">let</span> <span class="ident">unit_type</span> <span class="op">=</span> <span class="ident">u</span>.<span class="ident">get_id</span>();
+            <span class="ident">unit_type_data</span>.<span class="ident">insert</span>(<span class="ident">unit_type</span>, <span class="ident">u</span>);
+        }
+
+        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_abilities</span>().<span class="ident">into_iter</span>() {
+            <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">AbilityData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
+
+            <span class="kw">let</span> <span class="ident">ability</span> <span class="op">=</span> <span class="ident">a</span>.<span class="ident">get_id</span>();
+            <span class="ident">ability_data</span>.<span class="ident">insert</span>(<span class="ident">ability</span>, <span class="ident">a</span>);
+        }
+
+        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_upgrades</span>().<span class="ident">into_iter</span>() {
+            <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">UpgradeData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
+
+            <span class="kw">let</span> <span class="ident">upgrade</span> <span class="op">=</span> <span class="ident">u</span>.<span class="ident">get_id</span>();
+            <span class="ident">upgrade_data</span>.<span class="ident">insert</span>(<span class="ident">upgrade</span>, <span class="ident">u</span>);
+        }
+
+        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">rsp</span>.<span class="ident">mut_data</span>().<span class="ident">take_buffs</span>().<span class="ident">into_iter</span>() {
+            <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">BuffData</span>::<span class="ident">from_proto</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
+
+            <span class="kw">let</span> <span class="ident">buff</span> <span class="op">=</span> <span class="ident">b</span>.<span class="ident">get_id</span>();
+            <span class="ident">buff_data</span>.<span class="ident">insert</span>(<span class="ident">buff</span>, <span class="ident">b</span>);
+        }
+
+        <span class="prelude-val">Ok</span>((
+            <span class="self">self</span>,
+            <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">unit_type_data</span>),
+            <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">ability_data</span>),
+            <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">upgrade_data</span>),
+            <span class="ident">Rc</span>::<span class="ident">from</span>(<span class="ident">buff_data</span>),
+        ))
+    }
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">enum</span> <span class="ident">ObserverControlRequest</span> {
+    <span class="ident">Reset</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span>()<span class="op">&gt;</span>),
+    <span class="ident">Step</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">GameEvent</span><span class="op">&gt;</span>, <span class="ident">bool</span>)<span class="op">&gt;</span>),
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">enum</span> <span class="ident">ObserverRequest</span> {
+    <span class="ident">Observe</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Observation</span><span class="op">&gt;&gt;</span>),
+
+    <span class="ident">GetMapInfo</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">MapInfo</span><span class="op">&gt;&gt;</span>),
+
+    <span class="ident">GetUnitData</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">UnitType</span>, <span class="ident">UnitTypeData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>),
+    <span class="ident">GetAbilityData</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ability</span>, <span class="ident">AbilityData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>),
+    <span class="ident">GetUpgradeData</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Upgrade</span>, <span class="ident">UpgradeData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>),
+    <span class="ident">GetBuffData</span>(<span class="ident">oneshot</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Buff</span>, <span class="ident">BuffData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>),
+}
+
+<span class="kw">enum</span> <span class="ident">Either</span> {
+    <span class="ident">Control</span>(<span class="ident">ObserverControlRequest</span>),
+    <span class="ident">Request</span>(<span class="ident">ObserverRequest</span>),
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObserverControlTerminal</span> {
+    <span class="ident">tx</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">ObserverControlRequest</span><span class="op">&gt;</span>,
+}
+<span class="kw">impl</span> <span class="ident">ObserverControlTerminal</span> {
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverControlRequest</span>::<span class="ident">Reset</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send reset&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv reset ack&quot;</span>)))
+    }
+
+    <span class="doccomment">/// returns a list of game events that have occurred since last step</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">step</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">GameEvent</span><span class="op">&gt;</span>, <span class="ident">bool</span>)<span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverControlRequest</span>::<span class="ident">Step</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send step&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv step ack&quot;</span>)))
+    }
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObserverControlDendrite</span> {
+    <span class="ident">rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ObserverControlRequest</span><span class="op">&gt;</span>,
+}
+
+<span class="doccomment">/// an interface for the observer soma</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObserverTerminal</span> {
+    <span class="ident">tx</span>: <span class="ident">mpsc</span>::<span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">ObserverRequest</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">ObserverTerminal</span> {
+    <span class="doccomment">/// observe the current game state</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">observe</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Observation</span><span class="op">&gt;&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverRequest</span>::<span class="ident">Observe</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send observation&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv observation&quot;</span>)))
+    }
+
+    <span class="doccomment">/// get information about the current map</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_map_info</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">MapInfo</span><span class="op">&gt;&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetMapInfo</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send map info request&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv map info&quot;</span>)))
+    }
+
+    <span class="doccomment">/// get data about each unit type</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_unit_data</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">UnitType</span>, <span class="ident">UnitTypeData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetUnitData</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send unit data request&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv unit data&quot;</span>)))
+    }
+
+    <span class="doccomment">/// get data about each ability</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ability_data</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ability</span>, <span class="ident">AbilityData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetAbilityData</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(
+                    <span class="string">&quot;unable to send ability data request&quot;</span>
+                ))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv ability data&quot;</span>)))
+    }
+
+    <span class="doccomment">/// get data about each upgrade</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_upgrade_data</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Upgrade</span>, <span class="ident">UpgradeData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetUpgradeData</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(
+                    <span class="string">&quot;unable to send upgrade data request&quot;</span>
+                ))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv upgrade data&quot;</span>)))
+    }
+
+    <span class="doccomment">/// get data about each buff</span>
+    <span class="attribute">#[<span class="ident">async</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_buff_data</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Buff</span>, <span class="ident">BuffData</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">oneshot</span>::<span class="ident">channel</span>();
+
+        <span class="macro">await</span><span class="macro">!</span>(
+            <span class="self">self</span>.<span class="ident">tx</span>
+                .<span class="ident">send</span>(<span class="ident">ObserverRequest</span>::<span class="ident">GetBuffData</span>(<span class="ident">tx</span>))
+                .<span class="ident">map</span>(<span class="op">|</span>_<span class="op">|</span> ())
+                .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to send buff data request&quot;</span>))
+        )<span class="question-mark">?</span>;
+
+        <span class="macro">await</span><span class="macro">!</span>(<span class="ident">rx</span>.<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="ident">Error</span>::<span class="ident">from</span>(<span class="string">&quot;unable to recv buff data&quot;</span>)))
+    }
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObserverDendrite</span> {
+    <span class="ident">rx</span>: <span class="ident">mpsc</span>::<span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">ObserverRequest</span><span class="op">&gt;</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObserverControlSynapse</span>;
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">synapse</span>() <span class="op">-&gt;</span> (<span class="ident">ObserverTerminal</span>, <span class="ident">ObserverDendrite</span>) {
+    <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">10</span>);
+
+    (<span class="ident">ObserverTerminal</span> { <span class="ident">tx</span>: <span class="ident">tx</span> }, <span class="ident">ObserverDendrite</span> { <span class="ident">rx</span>: <span class="ident">rx</span> })
+}
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">control_synapse</span>() <span class="op">-&gt;</span> (<span class="ident">ObserverControlTerminal</span>, <span class="ident">ObserverControlDendrite</span>) {
+    <span class="kw">let</span> (<span class="ident">tx</span>, <span class="ident">rx</span>) <span class="op">=</span> <span class="ident">mpsc</span>::<span class="ident">channel</span>(<span class="number">1</span>);
+
+    (
+        <span class="ident">ObserverControlTerminal</span> { <span class="ident">tx</span>: <span class="ident">tx</span> },
+        <span class="ident">ObserverControlDendrite</span> { <span class="ident">rx</span>: <span class="ident">rx</span> },
+    )
 }
 </pre>
 </section>
@@ -1278,20 +1921,22 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>↑</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>↓</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>↹</dt>
+                    <dt><kbd>↹</kbd></dt>
                     <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 

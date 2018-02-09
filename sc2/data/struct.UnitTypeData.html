@@ -1,10 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0;URL=../../sc2/struct.UnitTypeData.html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `UnitTypeData` struct in crate `sc2`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, UnitTypeData">
+
+    <title>sc2::data::UnitTypeData - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
+    
+
+    
+    
 </head>
-<body>
-    <p>Redirecting to <a href="../../sc2/struct.UnitTypeData.html">../../sc2/struct.UnitTypeData.html</a>...</p>
-    <script>location.replace("../../sc2/struct.UnitTypeData.html" + location.search + location.hash);</script>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Struct UnitTypeData</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.get_id">get_id</a><a href="#method.get_name">get_name</a><a href="#method.is_available">is_available</a><a href="#method.get_cargo_size">get_cargo_size</a><a href="#method.get_mineral_cost">get_mineral_cost</a><a href="#method.get_vespene_cost">get_vespene_cost</a><a href="#method.get_attributes">get_attributes</a><a href="#method.get_movement_speed">get_movement_speed</a><a href="#method.get_armor">get_armor</a><a href="#method.get_weapons">get_weapons</a><a href="#method.get_food_required">get_food_required</a><a href="#method.get_food_provided">get_food_provided</a><a href="#method.get_ability">get_ability</a><a href="#method.get_race">get_race</a><a href="#method.get_build_time">get_build_time</a><a href="#method.has_minerals">has_minerals</a><a href="#method.has_vespene">has_vespene</a><a href="#method.get_tech_alias">get_tech_alias</a><a href="#method.get_unit_alias">get_unit_alias</a><a href="#method.get_tech_requirement">get_tech_requirement</a><a href="#method.get_require_attached">get_require_attached</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Debug">Debug</a><a href="#impl-Clone">Clone</a></div></div><p class='location'><a href='../index.html'>sc2</a>::<wbr><a href='index.html'>data</a></p><script>window.sidebarCurrent = {name: 'UnitTypeData', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>sc2</a>::<wbr><a href='index.html'>data</a>::<wbr><a class="struct" href=''>UnitTypeData</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/sc2/data/unit.rs.html#1323-1347' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct UnitTypeData { /* fields omitted */ }</pre><div class='docblock'><p>data about a unit type</p>
+<p>this data is derived from the catalog (xml) data of the game and upgrades</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../../sc2/data/struct.UnitTypeData.html" title="struct sc2::data::UnitTypeData">UnitTypeData</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1349-1437' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.get_id' class="method"><span id='get_id.v' class='invisible'><code>pub fn <a href='#method.get_id' class='fnname'>get_id</a>(&amp;self) -&gt; <a class="enum" href="../../sc2/data/enum.UnitType.html" title="enum sc2::data::UnitType">UnitType</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1351-1353' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>stable unit ID</p>
+</div><h4 id='method.get_name' class="method"><span id='get_name.v' class='invisible'><code>pub fn <a href='#method.get_name' class='fnname'>get_name</a>(&amp;self) -&gt; &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1355-1357' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>unit type name (corresponds to the game's catalog)</p>
+</div><h4 id='method.is_available' class="method"><span id='is_available.v' class='invisible'><code>pub fn <a href='#method.is_available' class='fnname'>is_available</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1359-1361' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>whether this unit is available to the current mods/map</p>
+</div><h4 id='method.get_cargo_size' class="method"><span id='get_cargo_size.v' class='invisible'><code>pub fn <a href='#method.get_cargo_size' class='fnname'>get_cargo_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1363-1365' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>number of cargo slots this unit occupies in a transport</p>
+</div><h4 id='method.get_mineral_cost' class="method"><span id='get_mineral_cost.v' class='invisible'><code>pub fn <a href='#method.get_mineral_cost' class='fnname'>get_mineral_cost</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1367-1369' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>cost in minerals to build this unit</p>
+</div><h4 id='method.get_vespene_cost' class="method"><span id='get_vespene_cost.v' class='invisible'><code>pub fn <a href='#method.get_vespene_cost' class='fnname'>get_vespene_cost</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1371-1373' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>cost in vespene to build this unit</p>
+</div><h4 id='method.get_attributes' class="method"><span id='get_attributes.v' class='invisible'><code>pub fn <a href='#method.get_attributes' class='fnname'>get_attributes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>Attribute<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1376-1378' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>unit attributes (may change based on upgrades)</p>
+</div><h4 id='method.get_movement_speed' class="method"><span id='get_movement_speed.v' class='invisible'><code>pub fn <a href='#method.get_movement_speed' class='fnname'>get_movement_speed</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1380-1382' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>movement speed of this unit</p>
+</div><h4 id='method.get_armor' class="method"><span id='get_armor.v' class='invisible'><code>pub fn <a href='#method.get_armor' class='fnname'>get_armor</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1384-1386' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>armor of this unit</p>
+</div><h4 id='method.get_weapons' class="method"><span id='get_weapons.v' class='invisible'><code>pub fn <a href='#method.get_weapons' class='fnname'>get_weapons</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>Weapon<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1388-1390' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>weapons on this unit</p>
+</div><h4 id='method.get_food_required' class="method"><span id='get_food_required.v' class='invisible'><code>pub fn <a href='#method.get_food_required' class='fnname'>get_food_required</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1392-1394' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>how much food this unit requires</p>
+</div><h4 id='method.get_food_provided' class="method"><span id='get_food_provided.v' class='invisible'><code>pub fn <a href='#method.get_food_provided' class='fnname'>get_food_provided</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1396-1398' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>how much food this unit provides</p>
+</div><h4 id='method.get_ability' class="method"><span id='get_ability.v' class='invisible'><code>pub fn <a href='#method.get_ability' class='fnname'>get_ability</a>(&amp;self) -&gt; <a class="enum" href="../../sc2/data/enum.Ability.html" title="enum sc2::data::Ability">Ability</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1400-1402' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>which ability id creates this unit</p>
+</div><h4 id='method.get_race' class="method"><span id='get_race.v' class='invisible'><code>pub fn <a href='#method.get_race' class='fnname'>get_race</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="../../sc2/data/enum.Race.html" title="enum sc2::data::Race">Race</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1404-1406' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>the race this unit belongs to</p>
+</div><h4 id='method.get_build_time' class="method"><span id='get_build_time.v' class='invisible'><code>pub fn <a href='#method.get_build_time' class='fnname'>get_build_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1408-1410' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>how long a unit takes to build</p>
+</div><h4 id='method.has_minerals' class="method"><span id='has_minerals.v' class='invisible'><code>pub fn <a href='#method.has_minerals' class='fnname'>has_minerals</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1412-1414' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>whether this unit can have minerals (mineral patches)</p>
+</div><h4 id='method.has_vespene' class="method"><span id='has_vespene.v' class='invisible'><code>pub fn <a href='#method.has_vespene' class='fnname'>has_vespene</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1416-1418' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>whether this unit can have vespene (vespene geysers)</p>
+</div><h4 id='method.get_tech_alias' class="method"><span id='get_tech_alias.v' class='invisible'><code>pub fn <a href='#method.get_tech_alias' class='fnname'>get_tech_alias</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="enum" href="../../sc2/data/enum.UnitType.html" title="enum sc2::data::UnitType">UnitType</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1422-1424' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>units this is equivalent to in terms of satisfying tech
+requirements</p>
+</div><h4 id='method.get_unit_alias' class="method"><span id='get_unit_alias.v' class='invisible'><code>pub fn <a href='#method.get_unit_alias' class='fnname'>get_unit_alias</a>(&amp;self) -&gt; <a class="enum" href="../../sc2/data/enum.UnitType.html" title="enum sc2::data::UnitType">UnitType</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1426-1428' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>units that are morphed variants of the same unit</p>
+</div><h4 id='method.get_tech_requirement' class="method"><span id='get_tech_requirement.v' class='invisible'><code>pub fn <a href='#method.get_tech_requirement' class='fnname'>get_tech_requirement</a>(&amp;self) -&gt; <a class="enum" href="../../sc2/data/enum.UnitType.html" title="enum sc2::data::UnitType">UnitType</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1430-1432' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>structure required to build this unit (or any with same tech alias)</p>
+</div><h4 id='method.get_require_attached' class="method"><span id='get_require_attached.v' class='invisible'><code>pub fn <a href='#method.get_require_attached' class='fnname'>get_require_attached</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1434-1436' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>whether tech requirement is an addon</p>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../sc2/data/struct.UnitTypeData.html" title="struct sc2::data::UnitTypeData">UnitTypeData</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1322' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1322' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../sc2/data/struct.UnitTypeData.html" title="struct sc2::data::UnitTypeData">UnitTypeData</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1322' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../sc2/data/struct.UnitTypeData.html" title="struct sc2::data::UnitTypeData">UnitTypeData</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/sc2/data/unit.rs.html#1322' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt><kbd>?</kbd></dt>
+                    <dd>Show this help dialog</dd>
+                    <dt><kbd>S</kbd></dt>
+                    <dd>Focus the search field</dd>
+                    <dt><kbd>↑</kbd></dt>
+                    <dd>Move up in search results</dd>
+                    <dt><kbd>↓</kbd></dt>
+                    <dd>Move down in search results</dd>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
+                    <dd>Go to active search result</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "sc2";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>
