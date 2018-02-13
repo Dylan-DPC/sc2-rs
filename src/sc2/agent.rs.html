@@ -748,6 +748,7 @@
 <span id="692">692</span>
 <span id="693">693</span>
 <span id="694">694</span>
+<span id="695">695</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">rc</span>::<span class="ident">Rc</span>;
@@ -1233,6 +1234,7 @@
     <span class="attribute">#[<span class="ident">async</span>(<span class="ident">boxed</span>)]</span>
     <span class="kw">fn</span> <span class="ident">run_game</span>(<span class="self">self</span>, <span class="ident">update_scheme</span>: <span class="ident">UpdateScheme</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">observer</span>.<span class="ident">clone</span>().<span class="ident">reset</span>())<span class="question-mark">?</span>;
+        <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">observer</span>.<span class="ident">clone</span>().<span class="ident">step</span>())<span class="question-mark">?</span>;
 
         <span class="macro">await</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">agent</span>.<span class="ident">clone</span>().<span class="ident">handle_event</span>(<span class="ident">GameEvent</span>::<span class="ident">GameStarted</span>))<span class="question-mark">?</span>;
 
