@@ -33,7 +33,7 @@
     <nav class="sidebar">
         <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Struct AgentBuilder</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.handle">handle</a><a href="#method.create">create</a><a href="#method.factory">factory</a></div></div><p class='location'><a href='index.html'>sc2</a></p><script>window.sidebarCurrent = {name: 'AgentBuilder', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+        <p class='location'>Struct AgentBuilder</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.handle">handle</a><a href="#method.create">create</a><a href="#method.factory">factory</a></div><a class="sidebar-title" href="#synthetic-implementations">Auto Trait Implementations</a><div class="sidebar-links"><a href="#impl-Send">!Send</a><a href="#impl-Sync">!Sync</a></div></div><p class='location'><a href='index.html'>sc2</a></p><script>window.sidebarCurrent = {name: 'AgentBuilder', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
     <div class="theme-picker">
@@ -73,7 +73,19 @@
 </div></div><h3 id='impl-1' class='impl'><span class='in-band'><code>impl&lt;T, F&gt; <a class="struct" href="../sc2/struct.AgentBuilder.html" title="struct sc2::AgentBuilder">AgentBuilder</a>&lt;AgentWrapper&lt;T, F&gt;&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="../sc2/trait.Player.html" title="trait sc2::Player">Player</a> + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(<a class="struct" href="../sc2/struct.AgentControl.html" title="struct sc2::AgentControl">AgentControl</a>) -&gt; T,&nbsp;</span></code><a href='#impl-1' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sc2/agent.rs.html#224-236' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.factory' class="method"><span id='factory.v' class='invisible'><code>pub fn <a href='#method.factory' class='fnname'>factory</a>(factory: F) -&gt; <a class="struct" href="../sc2/struct.AgentBuilder.html" title="struct sc2::AgentBuilder">AgentBuilder</a>&lt;AgentWrapper&lt;T, F&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sc2/agent.rs.html#230-235' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>wrap a factory to be called with the agent controls when ready</p>
-</div></div></section>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+            <div id='implementations-list'>
+        </div>
+            <h2 id='synthetic-implementations' class='small-section-header'>
+              Auto Trait Implementations<a href='#synthetic-implementations' class='anchor'></a>
+            </h2>
+            <div id='synthetic-implementations-list'>
+        <h3 id='impl-Send' class='impl'><span class='in-band'><code>impl&lt;T&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="struct" href="../sc2/struct.AgentBuilder.html" title="struct sc2::AgentBuilder">AgentBuilder</a>&lt;T&gt;</code><a href='#impl-Send' class='anchor'></a></span><span class='out-of-band'></span></h3>
+<div class='impl-items'></div><h3 id='impl-Sync' class='impl'><span class='in-band'><code>impl&lt;T&gt; !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="struct" href="../sc2/struct.AgentBuilder.html" title="struct sc2::AgentBuilder">AgentBuilder</a>&lt;T&gt;</code><a href='#impl-Sync' class='anchor'></a></span><span class='out-of-band'></span></h3>
+<div class='impl-items'></div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
